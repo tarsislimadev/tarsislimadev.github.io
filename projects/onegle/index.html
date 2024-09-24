@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>brtmvdl</title>
+  <meta name="google-adsense-account" content="ca-pub-8803365396237758">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8803365396237758"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script type="module">
+    import { HTML } from '../../assets/js/libs/frontend/index.js'
+    import { Page } from './index.js'
+    HTML.fromElement(document.body).setStyle('margin', '0rem')
+    const page = new Page()
+    HTML.fromId('app').append(page)
+    // FB Async Init
+    window.fbAsyncInit = function () {
+      FB.init({ appId: '', xfbml: true, version: 'v20.0' });
+      FB.AppEvents.logPageView();
+      page.dispatchEvent('fb.load', Date.now())
+    };
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+</body>
+
+</html>
