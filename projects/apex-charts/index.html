@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apex Charts</title>
+  <meta name="google-adsense-account" content="ca-pub-8803365396237758">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8803365396237758"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+
+<body>
+  <div id="chart"></div>
+  <script type="module">
+    const searchParams = (param, def = '') => { const url = new URL(window.location); return url.searchParams.get(param) || def }
+
+    const chart = document.getElementById('chart')
+    chart.style.height = (window.innerHeight * 0.5) + 'px'
+    chart.style.width = (window.innerWidth * 0.5) + 'px'
+
+    const apexCharts = new ApexCharts(chart, { chart: { type: 'candlestick' }, series: [{ data: [] }] })
+    apexCharts.render()
+
+    const run = () => {
+      fetch(`https://api4.binance.com/api/v3/klines?symbol=${searchParams('symbol', 'BNBUSDT')}&interval=${searchParams('interval', '1h')}&limit=${searchParams('limit', 100)}`)
+        .then((res) => res.json())
+        .then((data) => Array.from(data).map(([Open_Time, Open_Price, High_Price, Low_Price, Close_Price]) => ([+Open_Time, +Open_Price, +High_Price, +Low_Price, +Close_Price])))
+        .then((data) => [data, console.log({ data })][0])
+        .then((data) => apexCharts.updateSeries([{ data }]))
+        .then(() => run())
+    }
+
+    run()
+
+  </script>
+</body>
+
+</html>
