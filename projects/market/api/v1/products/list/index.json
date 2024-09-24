@@ -1,0 +1,60 @@
+{
+  "status": "ok",
+  "message": null,
+  "data": {
+    "list": [
+      {
+        "ean13": "100010001000100010001000",
+        "name": "Computer 1",
+        "photos": [
+          "files/photos/computer_1.jpg"
+        ],
+        "prices": [
+          {
+            "value": 1200.00,
+            "place": "market 1"
+          },
+          {
+            "value": 1300.00,
+            "place": "market 2"
+          }
+        ]
+      },
+      {
+        "ean13": "100010001000100010002000",
+        "name": "Computer 2",
+        "photos": [
+          "files/photos/computer_1.jpg",
+          "files/photos/computer_2.png"
+        ],
+        "prices": [
+          {
+            "value": 1200.00,
+            "place": "market 3"
+          },
+          {
+            "value": 1300.00,
+            "place": "market 2"
+          }
+        ]
+      },
+      {
+        "ean13": "100010001000200010001000",
+        "name": "Computer 3",
+        "photos": [
+          "files/photos/computer_2.png"
+        ],
+        "prices": [
+          {
+            "value": 1000.00,
+            "place": "market 3"
+          },
+          {
+            "value": 1400.00,
+            "place": "market 2"
+          }
+        ]
+      }
+    ]
+  }
+}
