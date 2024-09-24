@@ -1,0 +1,21 @@
+
+export const getPairsList = () => Array.from([
+  ['BTC', 'BRL'],
+  ['USDT', 'BRL'],
+  ['ETH', 'BRL'],
+  ['XRP', 'BRL'],
+  ['BNB', 'BRL'],
+  ['MATIC', 'BRL'],
+  ['SOL', 'BRL'],
+  ['LINK', 'BRL'],
+  ['LTC', 'BRL'],
+  ['AVAX', 'BRL'],
+  ['DOGE', 'BRL'],
+  ['ADA', 'BRL'],
+  ['SHIB', 'BRL'],
+  ['DOT', 'BRL'],
+  ['BUSD', 'BRL'],
+  ['CHZ', 'BRL'],
+  ['GALA', 'BRL'],
+  ['WIN', 'BRL'],
+])
