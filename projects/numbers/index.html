@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Numbers</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../css/styles.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h1>Numbers <span data-bind="text: gameMessage" class="gameMessage"></span></h1>
+  <div data-bind="foreach: numbers" class="numbers">
+    <span data-bind="text: $data, click: $parent.onNumberClick" class="number"></span>
+  </div>
+  <div data-bind="foreach: history" class="history">
+    <div data-bind="css: { won: won, lose: !won }, text: time"></div>
+  </div>
+  <div data-bind="text: clock" class="clock"></div>
+
+  <script src="../js/jq.js"></script>
+  <script src="../js/ko.js"></script>
+  <script src="./index.js"></script>
+</body>
+
+</html>
