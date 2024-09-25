@@ -9,7 +9,7 @@ export class HeaderComponent extends HTML {
       LOCAL.get(['access_token']) ? ['logout', '/pages/logout/'] : ['login', '/pages/login/'],
       ['products', '/products/'],
       ['projects', '/projects/'],
-      ['blog', '/blog/'],
+      // ['blog', '/blog/'],
       ['donate', '/pages/donate/'],
     ])
   }
