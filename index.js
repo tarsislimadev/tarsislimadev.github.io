@@ -17,10 +17,8 @@ export class Page extends PaddingComponent {
     html.append(new TextComponent({ text: 'social' }))
     const social = new nFlex()
     social.append(new LinkComponent({ text: 'email', href: 'mailto:br.tmvdl@gmail.com' }))
-    social.append(new LinkComponent({ text: 'linkedin', href: 'https://www.linkedin.com/in/brtmvdl/' }))
-    social.append(new LinkComponent({ text: 'github', href: 'https://github.com/brtmvdl' }))
-    social.append(new LinkComponent({ text: 'twitter', href: 'https://twitter.com/brtmvdl' }))
-    social.append(new LinkComponent({ text: 'discord', href: 'https://discord.gg/2zWpWBgmPj' }))
+    social.append(new LinkComponent({ text: 'linkedin', href: 'https://www.linkedin.com/in/tarsislimadev/' }))
+    social.append(new LinkComponent({ text: 'github', href: 'https://github.com/tarsislimadev' }))
     html.append(social)
 
     html.append(new TextComponent({ text: 'projects' }))
