@@ -21,7 +21,7 @@ export class HeaderComponent extends HTML {
 
   getFlex() {
     const flex = new nFlex()
-    flex.append(new LinkComponent({ text: 'brtmvdl', href: '/?' + Date.now() }))
+    flex.append(new LinkComponent({ text: 'tarsis lima', href: '/?' + Date.now() }))
     flex.append(this.getRight())
     return flex
   }
