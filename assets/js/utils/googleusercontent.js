@@ -16,9 +16,9 @@ export const token_uri = 'https://oauth2.googleapis.com/token'
 
 export const auth_provider_x509_cert_url = 'https://www.googleapis.com/oauth2/v1/certs'
 
-export const redirect_uris = ['https://brtmvdl.github.io/pages/login/', 'http://localhost:8080/pages/login/']
+export const redirect_uris = ['http://localhost:8080/pages/login/']
 
-export const javascript_origins = ['https://brtmvdl.github.io', 'http://localhost:8080']
+export const javascript_origins = ['http://localhost:8080']
 
 export const redirect_uri = redirect_uris.find((url) => (new URL(window.location)).host == (new URL(url)).host)
 
