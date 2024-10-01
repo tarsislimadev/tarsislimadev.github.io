@@ -32,7 +32,7 @@ export class Page extends PaddingComponent {
     const VOICE_ID = ''
 
     return new TwoColumnsComponent({
-      html1: new ImageLinkComponent({ src: './logo.png', href: tts_url = `https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}/stream` }),
+      html1: new ImageLinkComponent({ src: './logo.png', href: `https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}/stream` }),
       html2: new HTML(),
     })
   }
