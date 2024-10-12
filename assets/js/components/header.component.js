@@ -7,10 +7,10 @@ export class HeaderComponent extends HTML {
   props = {
     links: Array.from([
       LOCAL.get(['access_token']) ? ['logout', '/pages/logout/'] : ['login', '/pages/login/'],
-      // ['products', '/products/'],
+      ['products', '/products/'],
       ['projects', '/projects/'],
-      // ['blog', '/blog/'],
-      ['donate', '/pages/donate/'],
+      ['blog', '/blog/'],
+      LOCAL.get(['cart']) ? ['cart', '/cart/'] : ['donate', '/pages/donate/'],
     ])
   }
 
