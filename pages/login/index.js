@@ -1,4 +1,4 @@
-import { HTML, nH1, nInput, nButton } from '../../assets/js/libs/frontend/index.js'
+import { HTML, nInput } from '../../assets/js/libs/frontend/index.js'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { FormComponent } from '../../assets/js/components/form.component.js'
@@ -6,7 +6,6 @@ import { TextComponent } from '../../assets/js/components/text.component.js'
 import * as GOOGLE from '../../assets/js/utils/googleusercontent.js'
 import * as LOCAL from '../../assets/js/utils/local.js'
 import * as FLOW from '../../assets/js/utils/flow.js'
-import * as API from '../../assets/js/utils/api.js'
 
 export class Page extends PaddingComponent {
   children = {
@@ -26,7 +25,6 @@ export class Page extends PaddingComponent {
       this.append(new TextComponent({ text: 'login' }))
       this.append(this.getButtons())
       this.append(this.getGoogleForm())
-      this.append(this.getTwitterLoginButton())
     }
   }
 
@@ -46,20 +44,6 @@ export class Page extends PaddingComponent {
 
   getGoogleLoginButton() {
     return this.createButton('google', () => this.children.google_form.submit())
-  }
-
-  getTwitterLoginButton() {
-    return this.createButton('twitter', () => this.onTwitterLogin())
-  }
-
-  onTwitterLogin() {
-    API.twitter.oauth.request_token()
-      .then((res) => this.onRequestToken(res))
-      .catch((err) => console.error(err))
-  }
-
-  onRequestToken(res) {
-    console.log({ res })
   }
 
   createButton(text, onclick = (() => { })) {
