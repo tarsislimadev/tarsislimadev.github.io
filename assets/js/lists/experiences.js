@@ -170,6 +170,11 @@ export default Array.from([
     "step": 1
   },
   {
+    "id": "music",
+    "tags": ["music", "game", "peer"],
+    "step": 1
+  },
+  {
     "id": "musixmatch-rest-api",
     "tags": ["music", "rest", "api"],
     "step": 1
