@@ -29,15 +29,26 @@ export class InputComponent extends HTML {
     this.append(this.getError())
   }
 
-  getLabel() {
-    if (this.state.label) this.children.label.setText(this.state.label)
+  getLabelText(text = this.state.label?.toString()) { return text }
+
+  getLabel(text = this.getLabelText()) {
+    if (text) this.children.label.setText(text)
     return this.children.label
   }
 
+  getPlaceholderText(text = this.state.placeholder?.toString()) { return text }
+
+  getValueText(text = this.state.value?.toString()) { return text }
+
+  getTypeText(text = this.state.type?.toString()) { return text }
+
+  getAccepts(accepts = '') { return accepts }
+
   getInput() {
-    this.children.input.setPlaceholder(this.state.placeholder?.toString())
-    this.children.input.setValue(this.state.value?.toString())
-    this.children.input.setAttr('type', this.state.type?.toString())
+    this.children.input.setPlaceholder(this.getPlaceholderText())
+    this.children.input.setValue(this.getValueText())
+    this.children.input.setAttr('type', this.getTypeText())
+    this.children.input.setAttr('accepts', this.getAccepts())
     this.children.input.setStyle('margin', '0rem 0rem calc(1rem / 4) 0rem')
     this.children.input.setStyle('padding', 'calc(1rem / 4)')
     this.children.input.setStyle('box-sizing', 'border-box')
