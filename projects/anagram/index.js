@@ -1,4 +1,34 @@
 import { HTML, nFlex } from '../../assets/js/libs/frontend/index.js'
+import { createNewPeer } from '../../assets/js/utils/peer.js'
+
+const et = new EventTarget()
+
+const peer = createNewPeer('anagram', true)
+
+peer.on('connection', (conn) => {
+  console.log('peer connection', conn)
+
+  conn.on('data', (data) => {
+    console.log('conn data', data)
+
+    const value = String(data).toString()
+
+    if (['right', 'left'].indexOf(value) !== -1) {
+      const ev = new Event('move')
+      ev.value = value
+      et.dispatchEvent(ev)
+    }
+
+    if (['up', 'down'].indexOf(value) !== -1) {
+      const ev = new Event('letter')
+      ev.value = value
+      et.dispatchEvent(ev)
+    }
+
+  })
+})
+
+const state = { cursor: -1, }
 
 HTML.fromElement(document.body)
   .setStyle('background-color', '#000000')
@@ -8,24 +38,26 @@ HTML.fromElement(document.body)
 
 const app = HTML.fromId('app')
 
-const letters = new nFlex()
-letters.setContainerStyle('text-align', 'center')
-letters.setStyle('margin', '8rem auto')
-letters.setStyle('width', '16rem')
+const lettersFlex = new nFlex()
+lettersFlex.setContainerStyle('text-align', 'center')
+lettersFlex.setStyle('margin', '8rem auto')
+lettersFlex.setStyle('width', '16rem')
 
 class nLetter extends HTML {
   state = {
     letter: null,
-    touch: null
+    touch: null,
+    index: -1,
   }
 
   children = {
     letter: new HTML(),
   }
 
-  constructor(letter) {
+  constructor(letter, index) {
     super()
     this.state.letter = letter
+    this.state.index = index
   }
 
   getName() { return 'letter' }
@@ -45,6 +77,14 @@ class nLetter extends HTML {
     this.addEventListener('touchstart', (data) => this.onTouchStart(data))
     this.addEventListener('touchend', (data) => this.onTouchEnd(data))
     this.addEventListener('wheel', (data) => this.onWheel(data))
+    et.addEventListener('letter', ({ value }) => {
+      console.log('letter', value)
+
+      switch (value) {
+        case 'up': this.goNext(); break;
+        case 'down': this.goPrevious(); break;
+      }
+    })
   }
 
   onTouchStart(data) {
@@ -89,8 +129,31 @@ class nLetter extends HTML {
     return String.fromCharCode(this.state.letter)
   }
 
+  clearColor() {
+    this.setColor(null)
+  }
+
+  setColor(color = null) {
+    this.setStyle('color', color)
+  }
+
 }
 
-Array.from([97, 110, 97, 103, 114, 97, 109]).map((l) => letters.append(new nLetter(l)))
+const letters = Array.from([97, 110, 97, 103, 114, 97, 109]).map((l, i) => (new nLetter(l, i)))
 
-app.append(letters)
+letters.map((l) => lettersFlex.append(l))
+
+app.append(lettersFlex)
+
+et.addEventListener('move', ({ value }) => {
+  console.log('move', value)
+
+  switch (value) {
+    case 'left': state.cursor--; break;
+    case 'right': state.cursor++; break;
+  }
+
+  letters.map((l) => l.clearColor())
+
+  letters[state.cursor].setColor('red')
+})
