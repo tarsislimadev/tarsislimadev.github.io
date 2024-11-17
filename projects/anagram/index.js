@@ -24,7 +24,6 @@ peer.on('connection', (conn) => {
       ev.value = value
       et.dispatchEvent(ev)
     }
-
   })
 })
 
@@ -40,8 +39,7 @@ const app = HTML.fromId('app')
 
 const lettersFlex = new nFlex()
 lettersFlex.setContainerStyle('text-align', 'center')
-lettersFlex.setStyle('margin', '8rem auto')
-lettersFlex.setStyle('width', '16rem')
+lettersFlex.setStyle('margin', '1rem auto')
 
 class nLetter extends HTML {
   state = {
@@ -80,7 +78,7 @@ class nLetter extends HTML {
     et.addEventListener('letter', ({ value }) => {
       console.log('letter', value)
 
-      switch (value) {
+      if (state.cursor == this.state.index) switch (value) {
         case 'up': this.goNext(); break;
         case 'down': this.goPrevious(); break;
       }
