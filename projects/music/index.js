@@ -1,35 +1,55 @@
-import { PaddingComponent } from '../../assets/js/components/padding.component.js'
-import { InputFileComponent } from '../../assets/js/components/input.file.component.js'
-import { ButtonComponent } from '../../assets/js/components/button.component.js'
-import * as Local from '../../assets/js/utils/local.js'
+document.body.style.margin = '0rem'
 
-export class Page extends PaddingComponent {
-  children = {
-    file: new InputFileComponent({ type: '.musicxml' }),
-  }
+const app = document.getElementById('app')
 
-  onCreate() {
-    super.onCreate()
-    this.append(this.getFileComponent())
-    this.append(this.getOpenFileButton())
-  }
-
-  setFile(content = '') {
-    Local.set(['musicxml.content'], content)
-  }
-
-  openFile(file = new File({})) {
-    const reader = new FileReader()
-    reader.addEventListener('load', () => this.setFile(reader.result))
-    if (file) reader.readAsText(file)
-  }
-
-  getFileComponent() {
-    this.children.file.addEventListener('change', ({ target: { files: [file] } }) => this.openFile(file))
-    return this.children.file
-  }
-
-  getOpenFileButton() {
-    return new ButtonComponent({ text: 'open file', onclick: () => this.children.file.children.input.element.click() })
-  }
+const props = {
+  height: () => 600,
+  width: () => 400,
+  head_w: () => 300,
+  head_h: () => 30,
+  head_x: () => (props.width() / 2) - (props.head_w() / 2),
+  head_y: () => 20,
 }
+
+const canvas = document.createElement('canvas')
+
+canvas.height = props.height()
+canvas.width = props.width()
+
+canvas.style.boxShadow = '0rem 0rem 1rem 0rem #000000'
+canvas.style.margin = '1rem'
+
+app.append(canvas)
+
+canvas.addEventListener('click', ({ clientX, clientY }) => onClick({ clientX, clientY }))
+
+const onClick = ({ clientX, clientY } = {}) => {
+  console.log({ clientX, clientY })
+}
+
+const ctx = canvas.getContext('2d')
+
+const drawHead = () => {
+  ctx.fillStyle = 'black'
+  ctx.fillRect(props.head_x(), props.head_y(), props.head_w(), props.head_h())
+  ctx.fill()
+}
+
+const drawLine = (index = 0) => {
+  const w = 2
+  const h = 600
+  const x = props.head_x() + (props.head_w() / 5 * index)
+  const y = 20
+
+  ctx.fillStyle = 'black'
+  ctx.fillRect(x, y, w, h)
+  ctx.fill()
+}
+
+const draw = () => {
+  drawHead()
+
+  Array.from(Array(6)).map((_, i) => drawLine(i))
+}
+
+draw()
