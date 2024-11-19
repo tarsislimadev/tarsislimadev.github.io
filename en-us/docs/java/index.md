@@ -2,6 +2,6 @@
 
 ## run a java jar file
 
-```bash
+```sh
 java -jar Main.jar argument
 ```
