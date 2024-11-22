@@ -12,8 +12,10 @@ jobs:
     steps:
       - name: Copy Google Client Id
         id: copy
-        run: echo "${secret.GOOGLE_CLIENT_ID}"
-
+        run: echo "GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}"
+        env:
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          
   deploy:
     needs: build
     permissions:
