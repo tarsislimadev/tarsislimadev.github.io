@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Copy Google Client Id
         id: copy
-        run: echo "GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}"
+        run: echo CLIENT_ID "${GOOGLE_CLIENT_ID}"
         env:
           GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
           
