@@ -1,37 +1,42 @@
 export default Array.from([
   {
     "id": "airplane",
-    "tags": ["3d", "game"],
-    "step": 2
+    "tags": [],
+    "step": 1
   },
   {
     "id": "anagram",
-    "tags": ["game"],
-    "step": 3
+    "tags": [],
+    "step": 1
   },
   {
     "id": "apex-charts",
-    "tags": ["trading"],
-    "step": 2
+    "tags": [],
+    "step": 1
   },
   {
     "id": "audio-recorder",
-    "tags": ["personal"],
-    "step": 3
+    "tags": [],
+    "step": 1
   },
   {
     "id": "backend",
-    "tags": ["library"],
-    "step": 3
+    "tags": [],
+    "step": 1
+  },
+  {
+    "id": "binance-app",
+    "tags": [],
+    "step": 1
   },
   {
     "id": "binance-websocket-api",
-    "tags": ["websocket", "api"],
+    "tags": [],
     "step": 1
   },
   {
     "id": "bitcoin",
-    "tags": ["trading"],
+    "tags": [],
     "step": 1
   },
   {
@@ -41,87 +46,102 @@ export default Array.from([
   },
   {
     "id": "busy",
-    "tags": ["personal"],
-    "step": 3
+    "tags": [],
+    "step": 1
+  },
+  {
+    "id": "calc",
+    "tags": [],
+    "step": 1
   },
   {
     "id": "calculator",
-    "tags": ["personal"],
-    "step": 3
+    "tags": [],
+    "step": 1
   },
   {
     "id": "candlesticks",
-    "tags": ["trading", "rest", "api"],
-    "step": 2
+    "tags": [],
+    "step": 1
   },
   {
     "id": "chat",
-    "tags": ["peer"],
-    "step": 3
+    "tags": [],
+    "step": 1
   },
   {
     "id": "clock",
-    "tags": ["3d"],
-    "step": 3
+    "tags": [],
+    "step": 1
   },
   {
     "id": "coinext",
-    "tags": ["rest", "api"],
+    "tags": [],
     "step": 1
   },
   {
     "id": "coins",
-    "tags": ["trading"],
+    "tags": [],
     "step": 1
   },
   {
     "id": "coins-calculator",
-    "tags": ["trading"],
-    "step": 3
+    "tags": [],
+    "step": 1
   },
   {
     "id": "cube",
-    "tags": ["3d", "game"],
-    "step": 3
+    "tags": [],
+    "step": 1
   },
   {
     "id": "database",
-    "tags": ["library"],
-    "step": 3
+    "tags": [],
+    "step": 1
+  },
+  {
+    "id": "elevenlabs-rest-api",
+    "tags": [],
+    "step": 1
   },
   {
     "id": "exchanges",
-    "tags": ["trading"],
-    "step": 3
+    "tags": [],
+    "step": 1
   },
   {
     "id": "facebook-rest-api",
-    "tags": ["rest", "api"],
+    "tags": [],
     "step": 1
   },
   {
     "id": "foxbit-websocket-api",
-    "tags": ["websocket", "api"],
+    "tags": [],
     "step": 1
   },
   {
     "id": "frontend",
-    "tags": ["library"],
-    "step": 3
+    "tags": [],
+    "step": 1
+  },
+  {
+    "id": "gemini-rest-api",
+    "tags": [],
+    "step": 1
   },
   {
     "id": "github-rest-api",
-    "tags": ["rest", "api"],
+    "tags": [],
     "step": 1
   },
   {
     "id": "gmail",
-    "tags": ["rest", "api"],
+    "tags": [],
     "step": 1
   },
   {
     "id": "home-workout",
-    "tags": ["personal"],
+    "tags": [],
     "step": 1
   },
   {
@@ -132,31 +152,51 @@ export default Array.from([
   {
     "id": "imc",
     "tags": [],
-    "step": 3
+    "step": 1
+  },
+  {
+    "id": "lawn",
+    "tags": [],
+    "step": 1
   },
   {
     "id": "letter",
-    "tags": ["3d"],
-    "step": 3
+    "tags": [],
+    "step": 1
   },
   {
     "id": "linkedin",
-    "tags": ["rest", "api"],
+    "tags": [],
+    "step": 1
+  },
+  {
+    "id": "luxfacta",
+    "tags": [],
     "step": 1
   },
   {
     "id": "market",
-    "tags": ["personal"],
+    "tags": [],
     "step": 1
   },
   {
     "id": "math",
-    "tags": ["personal"],
-    "step": 3
+    "tags": [],
+    "step": 1
+  },
+  {
+    "id": "math2",
+    "tags": [],
+    "step": 1
+  },
+  {
+    "id": "math.latest",
+    "tags": [],
+    "step": 1
   },
   {
     "id": "meetings",
-    "tags": ["personal"],
+    "tags": [],
     "step": 1
   },
   {
@@ -166,17 +206,17 @@ export default Array.from([
   },
   {
     "id": "metronomo",
-    "tags": ["music"],
+    "tags": [],
     "step": 1
   },
   {
     "id": "music",
-    "tags": ["music", "game", "peer"],
+    "tags": [],
     "step": 1
   },
   {
     "id": "musixmatch-rest-api",
-    "tags": ["music", "rest", "api"],
+    "tags": [],
     "step": 1
   },
   {
@@ -185,17 +225,27 @@ export default Array.from([
     "step": 1
   },
   {
+    "id": "numbers",
+    "tags": [],
+    "step": 1
+  },
+  {
     "id": "nume",
-    "tags": ["game"],
+    "tags": [],
     "step": 1
   },
   {
     "id": "onegle",
-    "tags": ["api"],
+    "tags": [],
     "step": 1
   },
   {
     "id": "panel",
+    "tags": [],
+    "step": 1
+  },
+  {
+    "id": "paypal",
     "tags": [],
     "step": 1
   },
@@ -205,9 +255,14 @@ export default Array.from([
     "step": 1
   },
   {
+    "id": "photos-rest-api",
+    "tags": [],
+    "step": 1
+  },
+  {
     "id": "piano",
-    "tags": ["music", "3d", "game"],
-    "step": 3
+    "tags": [],
+    "step": 1
   },
   {
     "id": "planow",
@@ -220,13 +275,13 @@ export default Array.from([
     "step": 1
   },
   {
-    "id": "requestidlecallback",
+    "id": "rdap",
     "tags": [],
     "step": 1
   },
   {
-    "id": "rdap",
-    "tags": ["rest", "api"],
+    "id": "requestidlecallback",
+    "tags": [],
     "step": 1
   },
   {
@@ -235,23 +290,28 @@ export default Array.from([
     "step": 1
   },
   {
+    "id": "screen-capture-rest-api",
+    "tags": [],
+    "step": 1
+  },
+  {
     "id": "slots",
-    "tags": ["3d, 'game", "peer"],
+    "tags": [],
     "step": 1
   },
   {
     "id": "snake",
-    "tags": ["2d, 'game", "peer"],
-    "step": 3
+    "tags": [],
+    "step": 1
   },
   {
     "id": "socket",
-    "tags": ["websocket"],
+    "tags": [],
     "step": 1
   },
   {
     "id": "speed-match",
-    "tags": ["game"],
+    "tags": [],
     "step": 1
   },
   {
@@ -260,28 +320,33 @@ export default Array.from([
     "step": 1
   },
   {
+    "id": "three.js-sample",
+    "tags": [],
+    "step": 1
+  },
+  {
     "id": "truco",
-    "tags": ["3d", "game", "peer"],
+    "tags": [],
     "step": 1
   },
   {
     "id": "twitch",
-    "tags": ["websocket", "api"],
+    "tags": [],
     "step": 1
   },
   {
     "id": "twitch-websocket-api",
-    "tags": ["websocket", "api"],
+    "tags": [],
     "step": 1
   },
   {
     "id": "twitter-rest-api",
-    "tags": ["rest", "api"],
+    "tags": [],
     "step": 1
   },
   {
     "id": "unique",
-    "tags": ["3d", "game"],
+    "tags": [],
     "step": 1
   },
   {
@@ -291,32 +356,32 @@ export default Array.from([
   },
   {
     "id": "video",
-    "tags": ["api"],
+    "tags": [],
     "step": 1
   },
   {
     "id": "voicerss-rest-api",
-    "tags": ["rest", "api"],
-    "step": 3
+    "tags": [],
+    "step": 1
   },
   {
     "id": "websocket",
-    "tags": ["websocket", "api"],
+    "tags": [],
     "step": 1
   },
   {
     "id": "workout",
-    "tags": ["personal"],
+    "tags": [],
     "step": 1
   },
   {
     "id": "write",
-    "tags": ["3d"],
+    "tags": [],
     "step": 1
   },
   {
     "id": "youtube-data-api",
-    "tags": ["rest", "api"],
+    "tags": [],
     "step": 1
   },
   {
