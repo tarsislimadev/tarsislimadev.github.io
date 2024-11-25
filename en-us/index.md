@@ -2,7 +2,7 @@
 
 ## Docs
 
-[Docker](./docs/Docker/)
+[Docker](./docs/docker/)
 
 [Java](./docs/java/)
 
