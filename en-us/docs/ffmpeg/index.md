@@ -1,5 +1,11 @@
 # [ffmpeg]()
 
+## record from screen
+
+```sh
+ffmpeg -f x11grab  -i "${DISPLAY}" input.mkv 
+```
+
 ## extract images from a video:
 
 ```sh
