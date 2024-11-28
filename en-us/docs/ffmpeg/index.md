@@ -29,3 +29,9 @@ ffmpeg -i x11grab.1.mp4 -filter:a "volume=3" x11grab.2.mp4
 ```sh
 ffmpeg -y -i input.mp3 -filter:a volumedetect output.mp3 
 ```
+
+## join video and audio files
+
+```sh
+ffmpeg -i x11grab.1.mp4 -i alsa.1.mp3 x11grab.alsa.mp3
+```
