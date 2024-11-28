@@ -23,3 +23,9 @@ ffmpeg -i x11grab.1.mp4 -r 1 -f image2 image-%03d.jpeg
 ```sh
 ffmpeg -i x11grab.1.mp4 -filter:a "volume=3" x11grab.2.mp4
 ```
+
+## detect volume
+
+```sh
+ffmpeg -y -i input.mp3 -filter:a volumedetect output.mp3 
+```
