@@ -1,5 +1,11 @@
 # [ffmpeg]()
 
+## record screen and mic, saving video in MP4 and audio in mp3 files
+
+```sh
+ffmpeg -y -t 10 -f x11grab -i "${DISPLAY}" -f alsa -i "" -map 0:v -f mp4 x11grab.1.mp4 -map 1:a -f mp3 alsa.1.mp3 
+```
+
 ## record from screen
 
 ```sh
