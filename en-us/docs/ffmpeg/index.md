@@ -33,5 +33,5 @@ ffmpeg -y -i input.mp3 -filter:a volumedetect output.mp3
 ## join video and audio files
 
 ```sh
-ffmpeg -i x11grab.1.mp4 -i alsa.1.mp3 x11grab.alsa.mp3
+ffmpeg -i video.mp4 -i audio.mp3 video.audio.mp4
 ```
