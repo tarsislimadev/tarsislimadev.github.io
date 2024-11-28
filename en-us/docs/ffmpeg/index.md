@@ -35,3 +35,9 @@ ffmpeg -y -i input.mp3 -filter:a volumedetect output.mp3
 ```sh
 ffmpeg -i video.mp4 -i audio.mp3 video.audio.mp4
 ```
+
+## record camera
+
+```sh
+ffmpeg -f v4l2 -i /dev/video0 -f alsa -i v4l2.alsa.2.mp4
+```
