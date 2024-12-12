@@ -21,7 +21,7 @@ export class MessagesComponent extends HTML {
   }
 
   onMessage(message = new MessageModel()) {
-    this.children.messages.append(this.parseMessageComponent(message))
+    this.children.messages.prepend(this.parseMessageComponent(message))
   }
 
   parseMessageComponent(message = new MessageModel()) {
