@@ -36,8 +36,8 @@ export class MessagesComponent extends HTML {
   parseInputMessageComponent(message = new MessageModel()) {
     switch (message.Endpoint) {
       case 'AuthenticateUser': return new inputs.AuthenticateUserMessageCardComponent(message)
-      // case 'GetInstruments': return new inputs.GetInstrumentsMessageCardComponent(message)
-      // case 'GetProducts': return new inputs.GetProductsMessageCardComponent(message)
+      case 'GetInstruments': return new inputs.GetInstrumentsMessageCardComponent(message)
+      case 'GetProducts': return new inputs.GetProductsMessageCardComponent(message)
     }
 
     return new MessageCardComponent(message)
@@ -47,7 +47,7 @@ export class MessagesComponent extends HTML {
     switch (message.Endpoint) {
       case 'AuthenticateUser': return new outputs.AuthenticateUserMessageCardComponent(message)
       case 'GetInstruments': return new outputs.GetInstrumentsMessageCardComponent(message)
-      // case 'GetProducts': return new outputs.GetProductsMessageCardComponent(message)
+      case 'GetProducts': return new outputs.GetProductsMessageCardComponent(message)
     }
 
     return new MessageCardComponent(message)
