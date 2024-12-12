@@ -26,7 +26,7 @@ export class MessageCardComponent extends CardComponent {
     const card = new CardHeaderComponent()
     const flex = new nFlex()
     flex.append(new TextComponent({ text: this.message.Endpoint }))
-    flex.append(new TextComponent({ text: this.message.Side }))
+    flex.append(new TextComponent({ text: this.message.Side, title: `SequenceNumber: ${this.message.SequenceNumber}` }))
     card.append(flex)
     return card
   }
