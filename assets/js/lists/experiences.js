@@ -320,6 +320,11 @@ export default Array.from([
     "step": 1
   },
   {
+    "id": "string-interpolation",
+    "tags": [],
+    "step": 1
+  },
+  {
     "id": "three.js-sample",
     "tags": [],
     "step": 1
