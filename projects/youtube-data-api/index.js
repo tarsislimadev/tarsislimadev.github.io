@@ -1,69 +1,39 @@
-import { HTML } from '../../assets/js/libs/frontend/index.js'
+import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { TextComponent } from '../../assets/js/components/text.component.js'
+import { ButtonComponent } from '../../assets/js/components/button.component.js'
 
-import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
-import { EndpointsComponent } from '../../assets/js/components/endpoints.component.js'
-import { TopComponent } from '../../assets/js/components/top.component.js'
-import { MessagesComponent } from './components/messages.component.js'
-import inputs from './components/inputs/index.js'
+import Youtube from '../../assets/js/utils/googleusercontent/scopes/youtube.js'
+import YoutubeUpload from '../../assets/js/utils/googleusercontent/scopes/youtube.upload.js'
+import YoutubeForceSSL from '../../assets/js/utils/googleusercontent/scopes/youtube.force-ssl.js'
 
-import { SuccessMessageModel } from '../../assets/js/models/success.message.model.js'
-import { ErrorResponseModel } from '../../assets/js/models/error.response.model.js'
-import { ErrorMessageModel } from '../../assets/js/models/error.message.model.js'
-import { ResponseModel } from '../../assets/js/models/response.model.js'
-import { EndpointModel } from '../../assets/js/models/endpoint.model.js'
-import { MessageModel } from '../../assets/js/models/message.model.js'
-import { RequestModel } from '../../assets/js/models/request.model.js'
+import * as GOOGLE from '../../assets/js/utils/googleusercontent.js'
 
-import { getEndpointsList } from './utils/lists.js'
-
-export class Page extends HTML {
-  state = {
-    messages: [],
-  }
-
-  children = {
-    top_bar: new TopComponent('https://developers.google.com/youtube/v3/docs'),
-    form: new EndpointsComponent(getEndpointsList(), inputs),
-    messages: new MessagesComponent(),
-  }
-
+export class Page extends PaddingComponent {
   onCreate() {
     super.onCreate()
-    this.append(this.getTopBar())
-    this.append(this.getFlex())
+    this.append(new TextComponent({ text: 'Youtube Data API' }))
+    this.append(new ButtonComponent({ text: 'login', onclick: () => this.onLoginButtonClick() }))
+    this.append(new ButtonComponent({ text: 'channels:list', onclick: () => this.onChannelsListClick() }))
+    this.append(new ButtonComponent({ text: 'videos:list', onclick: () => this.onVideosListClick() }))
   }
 
-  getTopBar() {
-    return this.children.top_bar
+  onLoginButtonClick() {
+    window.location = (this.createGoogleOAuthEndpoint())
   }
 
-  getFlex() {
-    return new TwoColumnsComponent({ html1: this.getFormHTML(), html2: this.getMessagesComponent(), })
+  createGoogleOAuthEndpoint({ client_id = GOOGLE.client_id, redirect_uri = GOOGLE.redirect_uri, response_type = GOOGLE.response_type, scope = this.getScope() } = {}) {
+    return `https://accounts.google.com/o/oauth2/v2/auth?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=${response_type}&scope=${scope}&`
   }
 
-  getFormHTML() {
-    this.children.form.addEventListener('send', (data) => this.onFormSend(data))
-    return this.children.form
+  getScope() {
+    return [Youtube, YoutubeUpload, YoutubeForceSSL].join(' ')
   }
 
-  onFormSend({ value: { endpoint = new EndpointModel(), query: queryParams } } = {}) {
-    const url = new URL(endpoint.url)
-    Object.keys(queryParams).map((q) => url.searchParams.set(q, queryParams[q]))
-    this.sendRequest(new RequestModel(endpoint.name, endpoint.method, url.toString(), [], queryParams))
+  onChannelsListClick() {
+    alert('Channels List')
   }
 
-  sendRequest(request = new RequestModel()) {
-    fetch(request.getUrl(), { headers: request.headers, body: request.body, method: request.method })
-      .then((json) => this.addMessage(new SuccessMessageModel(request, new ResponseModel(json))))
-      .catch((err) => this.addMessage(new ErrorMessageModel(request, new ErrorResponseModel(err))))
-  }
-
-  getMessagesComponent() {
-    return this.children.messages
-  }
-
-  addMessage(message = new MessageModel()) {
-    this.state.messages.push(message)
-    this.children.messages.dispatch('message', message)
+  onVideosListClick() {
+    alert('Videos List')
   }
 }
