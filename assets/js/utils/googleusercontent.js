@@ -1,4 +1,4 @@
-export const api_key = ''
+import api_key from './googleusercontent/api_key.js'
 
 export const scope = 'https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtubepartner https://www.googleapis.com/auth/youtube.force-ssl'
 
@@ -6,7 +6,7 @@ export const discovery = 'https://www.googleapis.com/discovery/v1/apis/youtube/v
 
 export const response_type = 'token'
 
-export const client_id = ''
+import client_id from './googleusercontent/client_id.js'
 
 export const project_id = 'brtmvdl'
 
@@ -22,4 +22,4 @@ export const javascript_origins = ['http://localhost:8080']
 
 export const redirect_uri = redirect_uris.find((url) => (new URL(window.location)).host == (new URL(url)).host)
 
-export const GOOGLE = { scope, response_type, client_id, project_id, auth_uri, token_uri, auth_provider_x509_cert_url, redirect_uri }
+export default { scope, response_type, client_id, project_id, auth_uri, token_uri, auth_provider_x509_cert_url, redirect_uri }

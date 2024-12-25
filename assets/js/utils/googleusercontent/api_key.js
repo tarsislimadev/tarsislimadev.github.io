@@ -1,1 +1,1 @@
-export const API_KEY = ''
+export default ''
