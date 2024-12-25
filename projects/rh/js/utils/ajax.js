@@ -1,6 +1,6 @@
 import * as CONFIG from './config.js'
 
-class Response {
+class XMLHttpResponse {
   status = 'ok'
   message = null
   data = {}
@@ -28,12 +28,12 @@ class Response {
   }
 }
 
-class SuccessResponse extends Response { }
+class SuccessResponse extends XMLHttpResponse { }
 
-class ErrorResponse extends Response { }
+class ErrorResponse extends XMLHttpResponse { }
 
 export const request = (method = 'GET', paths = [], data = {}) => new Promise((res, rej) => {
-  const url = [CONFIG.servers['default'].url, ...paths].join('/')
+  const url = [CONFIG.servers['default'].url, ...paths, 'index.json'].join('/')
 
   const xhr = new XMLHttpRequest()
   xhr.open(method, url, true)
@@ -51,3 +51,5 @@ export const request = (method = 'GET', paths = [], data = {}) => new Promise((r
 })
 
 export const post = (paths = [], data = {}) => request('POST', paths, data)
+
+export const get = (paths = []) => request('GET', paths)
