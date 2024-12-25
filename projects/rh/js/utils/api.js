@@ -4,7 +4,7 @@ export const usersRegister = ({ email, password }) => Ajax.post(['users', 'regis
 
 export const usersLogin = ({ email, password }) => Ajax.post(['users', 'login'], { email, password })
 
-export const jobsList = ({ }) => Ajax.post(['jobs'], {})
+export const jobsList = ({ }) => Ajax.get(['jobs'], {})
 
 export const jobsSave = ({
   name, type,
