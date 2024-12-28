@@ -60,8 +60,8 @@ export class Page extends HTML {
 
   getServicesComponent() {
     const html = new HTML()
-    html.append(new ServiceComponent({ image: 'wordpress', title: 'Hospedagem Wordpress 1.0', price: 99.9 }))
-    html.append(new ServiceComponent({ image: 'wordpress', title: 'Hospedagem Wordpress 2.0', price: 199.9 }))
+    html.append(new ServiceComponent({ image: 'wordpress', title: 'Hospedagem Wordpress 1.0', price: 99.9, href: link_wordpress_1 }))
+    // html.append(new ServiceComponent({ image: 'wordpress', title: 'Hospedagem Wordpress 2.0', price: 199.9 }))
     return html
   }
 
