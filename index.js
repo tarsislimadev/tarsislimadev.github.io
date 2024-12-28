@@ -1,5 +1,6 @@
 import { HTML, nImage, nFlex, nLink, nH1 } from './assets/js/libs/frontend/index.js'
 import { ImageComponent } from './assets/js/components/image.component.js'
+import { ServiceComponent } from './assets/js/components/service.component.js'
 import * as socials from './assets/js/utils/socials.js'
 
 export class Page extends HTML {
@@ -16,6 +17,8 @@ export class Page extends HTML {
     html.append(new ImageComponent({ src: './assets/img/me.png' }))
     html.append(this.getTitlesComponent())
     html.append(this.getLinksComponent())
+    html.append(this.getServicesComponent())
+    html.append(this.getProductsComponent())
     return html
   }
 
@@ -51,5 +54,17 @@ export class Page extends HTML {
     image.alt(name)
     link.append(image)
     return link
+  }
+
+  getServicesComponent() {
+    const html = new HTML()
+    html.append(new ServiceComponent({ image: 'wordpress', title: 'Hospedagem Wordpress 1.0', price: 99.9 }))
+    html.append(new ServiceComponent({ image: 'wordpress', title: 'Hospedagem Wordpress 2.0', price: 199.9 }))
+    return html
+  }
+
+  getProductsComponent() {
+    const html = new HTML()
+    return html
   }
 }
