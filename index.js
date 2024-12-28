@@ -3,6 +3,8 @@ import { ImageComponent } from './assets/js/components/image.component.js'
 import { ServiceComponent } from './assets/js/components/service.component.js'
 import * as socials from './assets/js/utils/socials.js'
 
+const link_wordpress_1 = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Z3JADZ5H9NWUJ'
+
 export class Page extends HTML {
   onCreate() {
     super.onCreate()
