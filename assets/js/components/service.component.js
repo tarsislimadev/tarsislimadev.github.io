@@ -1,28 +1,30 @@
 import { HTML, nFlex } from '../../../assets/js/libs/frontend/index.js'
 import { TextComponent } from '../../../assets/js/components/text.component.js'
 import { ImageComponent } from '../../../assets/js/components/image.component.js'
-import { PayPalButtonComponent } from '../../../assets/js/components/paypal.button.component.js'
+import { ButtonComponent } from './button.component.js'
 
 export class ServiceComponent extends HTML {
   state = {
     image: '',
     title: '',
     price: 0,
+    href: '',
   }
 
-  constructor({ image = '', title = '', price = 0 } = {}) {
+  constructor({ image = '', title = '', price = 0, href = '' } = {}) {
     super()
 
     this.state.image = image
     this.state.title = title
     this.state.price = price
+    this.state.href = href
   }
 
   onCreate() {
     super.onCreate()
     this.setStyles()
     this.append(this.getFlex())
-    this.append(new PayPalButtonComponent({ price: this.state.price }))
+    this.append(new ButtonComponent({ text: `Assinar por R$ ${this.state.price}/mes`, onclick: () => (window.location = this.state.href) }))
   }
 
   setStyles() {
