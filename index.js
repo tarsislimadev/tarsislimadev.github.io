@@ -1,4 +1,4 @@
-import { HTML, nImage, nFlex, nLink, nH1 } from './assets/js/libs/frontend/index.js'
+import { HTML, nImage, nFlex, nLink, nH1 } from './assets/js/libs/afrontend/index.js'
 import { ImageComponent } from './assets/js/components/image.component.js'
 import { ServiceComponent } from './assets/js/components/service.component.js'
 import * as socials from './assets/js/utils/socials.js'

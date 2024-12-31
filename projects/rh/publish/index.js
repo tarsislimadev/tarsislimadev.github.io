@@ -1,4 +1,4 @@
-import { HTML, nInputTextGroup, nFlex, nButton, nTextAreaGroup } from '@brtmvdl/frontend'
+import { HTML, nInputTextGroup, nFlex, nButton, nTextAreaGroup } from  '../../assets/js/libs/afrontend/index.js'
 import { TopComponent } from '../js/components/top.js'
 import * as API from '../js/utils/api.js'
 import * as Flow from '../js/utils/flow.js'

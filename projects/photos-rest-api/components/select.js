@@ -1,4 +1,4 @@
-import * as FRONTEND from '../../../assets/js/libs/frontend/index.js'
+import * as FRONTEND from '../../../assets/js/libs/afrontend/index.js'
 
 export class nSelect extends FRONTEND.nSelect {
   onCreate() {

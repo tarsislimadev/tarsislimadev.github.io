@@ -1,4 +1,4 @@
-import { HTML, nFlex, nInput, nButton } from '../../../assets/js/libs/frontend/index.js'
+import { HTML, nFlex, nInput, nButton } from '../../../assets/js/libs/afrontend/index.js'
 import { TwoColumnsComponent } from '../../../assets/js/components/two.columns.component.js'
 
 export class SendComponent extends HTML {

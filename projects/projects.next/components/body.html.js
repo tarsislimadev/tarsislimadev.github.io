@@ -1,4 +1,4 @@
-import { HTML } from '../../../assets/js/libs/frontend/index.js'
+import { HTML } from '../../../assets/js/libs/afrontend/index.js'
 import { ProjectModel } from '../models/project.model.js'
 import { ProjectHTML } from './project.html.js'
 

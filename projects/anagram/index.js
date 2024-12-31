@@ -1,4 +1,4 @@
-import { HTML, nFlex } from '../../assets/js/libs/frontend/index.js'
+import { HTML, nFlex } from '../../assets/js/libs/afrontend/index.js'
 import { createNewPeer } from '../../assets/js/utils/peer.js'
 
 const et = new EventTarget()

@@ -1,4 +1,4 @@
-import { HTML } from '../../assets/js/libs/frontend/index.js'
+import { HTML } from '../../assets/js/libs/afrontend/index.js'
 import { AmountInputComponent, CoinSelectComponent, PriceComponent, DatetimeComponent, BuyButtonComponent, HistoryComponent } from './components/index.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import * as Local from '../../assets/js/utils/local.js'

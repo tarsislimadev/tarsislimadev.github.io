@@ -1,4 +1,4 @@
-import { HTML, nFlex, nH1, nButton } from '../../assets/js/libs/frontend/index.js'
+import { HTML, nFlex, nH1, nButton } from '../../assets/js/libs/afrontend/index.js'
 
 class nText extends HTML { }
 

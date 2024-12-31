@@ -1,4 +1,4 @@
-import { HTML, nImage } from '../../../assets/js/libs/frontend/index.js'
+import { HTML, nImage } from '../../../assets/js/libs/afrontend/index.js'
 
 export class ImageComponent extends nImage {
   getName() { return 'image-component' }

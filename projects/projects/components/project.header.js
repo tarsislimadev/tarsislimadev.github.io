@@ -1,4 +1,4 @@
-import { HTML, COLORS, nFlex, nInput, nSelect } from '../../../assets/js/libs/frontend/index.js'
+import { HTML, COLORS, nFlex, nInput, nSelect } from '../../../assets/js/libs/afrontend/index.js'
 
 import { CONTRACTS } from '../utils/constansts.js'
 

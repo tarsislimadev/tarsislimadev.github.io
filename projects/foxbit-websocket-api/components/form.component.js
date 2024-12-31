@@ -1,4 +1,4 @@
-import { HTML } from '../../../assets/js/libs/frontend/index.js'
+import { HTML } from '../../../assets/js/libs/afrontend/index.js'
 import { SelectComponent } from '../../../assets/js/components/select.component.js'
 import { ButtonComponent } from '../../../assets/js/components/button.component.js'
 import { getEndpointsList, getInputEndpointsList } from '../lists/endpoints.list.js'

@@ -1,4 +1,4 @@
-import { HTML, nH1, nFlex } from '../../../assets/js/libs/frontend/index.js'
+import { HTML, nH1, nFlex } from '../../../assets/js/libs/afrontend/index.js'
 import { SelectComponent } from '../../../assets/js/components/select.component.js'
 import { TextComponent } from '../../../assets/js/components/text.component.js'
 import { getIntervalList } from '../utils/lists/interval.list.js'

@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from  '../../assets/js/libs/afrontend/index.js'
 import * as LOCAL from '../js/utils/local.js'
 
 export class Session extends HTML {

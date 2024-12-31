@@ -1,4 +1,4 @@
-import { HTML, nInputTextGroup, nButton } from '../../assets/js/libs/frontend/index.js'
+import { HTML, nInputTextGroup, nButton } from '../../assets/js/libs/afrontend/index.js'
 
 import { FormComponent } from '../../assets/js/components/form.component.js'
 

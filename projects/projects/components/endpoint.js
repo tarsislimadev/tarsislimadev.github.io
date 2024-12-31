@@ -1,4 +1,4 @@
-import { HTML, nFlex, nInputNumber, nInputText } from '../../../assets/js/libs/frontend/index.js'
+import { HTML, nFlex, nInputNumber, nInputText } from '../../../assets/js/libs/afrontend/index.js'
 
 import { EndPointModel } from '../models/endpoint.js'
 

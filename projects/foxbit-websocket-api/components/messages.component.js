@@ -1,4 +1,4 @@
-import { HTML } from '../../../assets/js/libs/frontend/index.js'
+import { HTML } from '../../../assets/js/libs/afrontend/index.js'
 import { MessageCardComponent } from '../../../assets/js/components/message.card.component.js'
 import { MessageModel } from '../../../assets/js/models/message.model.js'
 

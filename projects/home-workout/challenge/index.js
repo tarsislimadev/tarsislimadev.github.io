@@ -1,4 +1,4 @@
-import { HTML, nButton, nFlex, nH1, nHr } from '../../assets/js/libs/frontend/index.js'
+import { HTML, nButton, nFlex, nH1, nHr } from '../../assets/js/libs/afrontend/index.js'
 import * as API from '../utils/api.js'
 
 import { padLeft } from './../../../assets/js/utils/str.js'

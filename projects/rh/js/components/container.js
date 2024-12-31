@@ -1,4 +1,4 @@
-import { HTML, nFlex } from '@brtmvdl/frontend'
+import { HTML, nFlex } from  '../../assets/js/libs/afrontend/index.js'
 
 class LeftBar extends HTML {
   onCreate() {

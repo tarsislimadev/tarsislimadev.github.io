@@ -1,4 +1,4 @@
-import { HTML, nH1 } from '../../assets/js/libs/frontend/index.js'
+import { HTML, nH1 } from '../../assets/js/libs/afrontend/index.js'
 
 class Question extends HTML {
   constructor({ question = [], answers = [], right = 0 } = {}) {

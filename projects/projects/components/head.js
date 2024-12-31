@@ -1,4 +1,4 @@
-import { HTML, nFlex } from '../../../assets/js/libs/frontend/index.js'
+import { HTML, nFlex } from '../../../assets/js/libs/afrontend/index.js'
 
 export class Head extends HTML {
   children = {

@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from  '../../assets/js/libs/afrontend/index.js'
 
 export class Title extends HTML {
   title = null

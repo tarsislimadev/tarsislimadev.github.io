@@ -1,4 +1,4 @@
-import { HTML, nTable, nTr, nTd } from '../../../assets/js/libs/frontend/index.js'
+import { HTML, nTable, nTr, nTd } from '../../../assets/js/libs/afrontend/index.js'
 
 export class TableComponent extends nTable {
   constructor(data = [], headers = []) {

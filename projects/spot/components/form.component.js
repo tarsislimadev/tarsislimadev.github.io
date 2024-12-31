@@ -1,4 +1,4 @@
-import { HTML, nSelect, nButton } from '../../../assets/js/libs/frontend/index.js'
+import { HTML, nSelect, nButton } from '../../../assets/js/libs/afrontend/index.js'
 import { getProductList } from '../utils/lists.js'
 
 export class FormComponent extends HTML {

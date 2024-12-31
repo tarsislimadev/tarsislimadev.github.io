@@ -1,4 +1,4 @@
-import { HTML } from '../../../assets/js/libs/frontend/index.js'
+import { HTML } from '../../../assets/js/libs/afrontend/index.js'
 import { ImageComponent } from './image.component.js'
 import { LinkComponent } from './link.component.js'
 import { stepName } from '../utils/functions.js'

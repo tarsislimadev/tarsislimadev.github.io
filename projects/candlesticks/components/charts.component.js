@@ -1,4 +1,4 @@
-import { HTML } from '../../../assets/js/libs/frontend/index.js'
+import { HTML } from '../../../assets/js/libs/afrontend/index.js'
 import { getSymbolList } from '../utils/lists/symbol.list.js'
 import { getIntervalList } from '../utils/lists/interval.list.js'
 

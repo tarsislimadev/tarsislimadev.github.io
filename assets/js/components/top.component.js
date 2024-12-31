@@ -1,4 +1,4 @@
-import { HTML, nImage, nFlex } from '../../../assets/js/libs/frontend/index.js'
+import { HTML, nImage, nFlex } from '../../../assets/js/libs/afrontend/index.js'
 import { LinkComponent } from './link.component.js'
 import { ButtonComponent } from './button.component.js'
 

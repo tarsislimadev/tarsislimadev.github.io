@@ -1,4 +1,4 @@
-import { HTML, nLink } from '../libs/frontend/index.js'
+import { HTML, nLink } from '../libs/afrontend/index.js'
 
 export class LinkComponent extends nLink {
   getName() { return 'link-component' }

@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from  '../../assets/js/libs/afrontend/index.js'
 import { TopComponent } from './js/components/top.js'
 import { JobItem } from './js/components/job-item.js'
 import * as API from './js/utils/api.js'

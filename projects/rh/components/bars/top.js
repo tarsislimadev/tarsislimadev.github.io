@@ -1,4 +1,4 @@
-import { HTML, nFlex, nLink } from '@brtmvdl/frontend'
+import { HTML, nFlex, nLink } from  '../../assets/js/libs/afrontend/index.js'
 
 export class TopBar extends HTML {
   onCreate() {

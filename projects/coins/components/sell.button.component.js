@@ -1,4 +1,4 @@
-import { HTML, nButton } from '../../../assets/js/libs/frontend/index.js'
+import { HTML, nButton } from '../../../assets/js/libs/afrontend/index.js'
 import * as Local from '../../../assets/js/utils/local.js'
 
 export class SellButtonComponent extends nButton {

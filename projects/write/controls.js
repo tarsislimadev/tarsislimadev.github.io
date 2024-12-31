@@ -1,4 +1,4 @@
-import { HTML } from '../../assets/js/libs/frontend/index.js'
+import { HTML } from '../../assets/js/libs/afrontend/index.js'
 import { Peer } from '../../assets/js/libs/peerjs/index.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'

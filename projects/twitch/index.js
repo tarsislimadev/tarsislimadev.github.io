@@ -1,4 +1,4 @@
-import { HTML, nFlex, nButton, nInputTextGroup } from '../../assets/js/libs/frontend/index.js'
+import { HTML, nFlex, nButton, nInputTextGroup } from '../../assets/js/libs/afrontend/index.js'
 import { TitleComponent } from './components/title.js'
 import { MessageComponent } from './components/message.js'
 import { MessageModel } from './models/message.js'

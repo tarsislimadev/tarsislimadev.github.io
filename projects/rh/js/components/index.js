@@ -1,4 +1,4 @@
-import { HTML, nInput, nButton, nFlex, nInputTextGroup, nImage, nLink, nHr } from '@brtmvdl/frontend'
+import { HTML, nInput, nButton, nFlex, nInputTextGroup, nImage, nLink, nHr } from  '../../assets/js/libs/afrontend/index.js'
 import * as COLORS from '../utils/colors.js'
 
 export class nInput extends nInput {

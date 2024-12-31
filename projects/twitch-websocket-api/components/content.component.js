@@ -1,4 +1,4 @@
-import { HTML } from '../../../assets/js/libs/frontend/index.js'
+import { HTML } from '../../../assets/js/libs/afrontend/index.js'
 import { TextComponent } from '../../../assets/js/components/text.component.js'
 import * as str from '../../../assets/js/utils/str.js'
 

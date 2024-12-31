@@ -1,4 +1,4 @@
-import { HTML, nLink, nImage } from '../../../assets/js/libs/frontend/index.js'
+import { HTML, nLink, nImage } from '../../../assets/js/libs/afrontend/index.js'
 
 export class ImageLinkComponent extends HTML {
   state = {

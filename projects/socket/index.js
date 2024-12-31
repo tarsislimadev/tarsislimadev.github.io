@@ -1,4 +1,4 @@
-import { HTML } from '../../assets/js/libs/frontend/index.js'
+import { HTML } from '../../assets/js/libs/afrontend/index.js'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { MessagesComponent } from './components/content.component.js'

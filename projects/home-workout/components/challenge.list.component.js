@@ -1,4 +1,4 @@
-import { HTML } from '../../../assets/js/libs/frontend/index.js'
+import { HTML } from '../../../assets/js/libs/afrontend/index.js'
 import { padLeft, secondsToMinutes } from '../../../assets/js/utils/str.js'
 
 export class ChallengeListComponent extends HTML {

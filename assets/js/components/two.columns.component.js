@@ -1,4 +1,4 @@
-import { HTML, nFlex } from '../libs/frontend/index.js'
+import { HTML, nFlex } from '../libs/afrontend/index.js'
 
 import { getWidth, getHeight } from '../../../assets/js/utils/window.js'
 

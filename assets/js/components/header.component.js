@@ -1,4 +1,4 @@
-import { HTML, nFlex } from '../libs/frontend/index.js'
+import { HTML, nFlex } from '../libs/afrontend/index.js'
 import { LinkComponent } from './link.component.js'
 
 import * as LOCAL from '../../../assets/js/utils/local.js'

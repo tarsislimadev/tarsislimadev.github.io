@@ -1,4 +1,4 @@
-import { HTML, nTd } from '../../../assets/js/libs/frontend/index.js'
+import { HTML, nTd } from '../../../assets/js/libs/afrontend/index.js'
 
 export class nTd2 extends nTd {
   onCreate() {

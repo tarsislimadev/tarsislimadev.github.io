@@ -1,4 +1,4 @@
-import { HTML, nH1, nInput, nFlex } from '../../assets/js/libs/frontend/index.js'
+import { HTML, nH1, nInput, nFlex } from '../../assets/js/libs/afrontend/index.js'
 
 class nError extends HTML { }
 

@@ -1,4 +1,4 @@
-import { HTML, nInput } from '../../assets/js/libs/frontend/index.js'
+import { HTML, nInput } from '../../assets/js/libs/afrontend/index.js'
 import { getParams } from './params.js'
 
 export class InputComponent extends HTML {

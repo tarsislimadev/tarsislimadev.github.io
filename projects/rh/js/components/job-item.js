@@ -1,4 +1,4 @@
-import { HTML, nSpan, nFlex, nHr } from '@brtmvdl/frontend'
+import { HTML, nSpan, nFlex, nHr } from  '../../assets/js/libs/afrontend/index.js'
 
 class nSpanExtended extends nSpan {
   hasContainer() {

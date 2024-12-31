@@ -1,4 +1,4 @@
-import { HTML, nLink, nFlex } from '@brtmvdl/frontend'
+import { HTML, nLink, nFlex } from  '../../assets/js/libs/afrontend/index.js'
 
 class LogoComponent extends HTML {
   onCreate() {

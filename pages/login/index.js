@@ -1,4 +1,4 @@
-import { HTML, nInput } from '../../assets/js/libs/frontend/index.js'
+import { HTML, nInput } from '../../assets/js/libs/afrontend/index.js'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { FormComponent } from '../../assets/js/components/form.component.js'

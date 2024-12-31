@@ -1,4 +1,4 @@
-import { HTML, nFlex } from '../../../assets/js/libs/frontend/index.js'
+import { HTML, nFlex } from '../../../assets/js/libs/afrontend/index.js'
 import { FormComponent } from './form.component.js'
 import { MessagesComponent } from './messages.component.js'
 

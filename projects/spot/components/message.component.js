@@ -1,4 +1,4 @@
-import { HTML, nSelect, nButton } from '../../../assets/js/libs/frontend/index.js'
+import { HTML, nSelect, nButton } from '../../../assets/js/libs/afrontend/index.js'
 import { MessageModel } from '../models/message.model.js'
 import { TextComponent } from '../components/text.component.js'
 

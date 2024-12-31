@@ -1,4 +1,4 @@
-import { HTML } from '../libs/frontend/index.js'
+import { HTML } from '../libs/afrontend/index.js'
 
 export class TextComponent extends HTML {
   getName() { return 'text-component' }

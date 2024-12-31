@@ -1,4 +1,4 @@
-import { HTML } from '../../../assets/js/libs/frontend/index.js'
+import { HTML } from '../../../assets/js/libs/afrontend/index.js'
 import { HeaderComponent } from './header.component.js'
 import { FooterComponent } from './footer.component.js'
 

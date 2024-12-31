@@ -1,4 +1,4 @@
-import { HTML } from '../../../assets/js/libs/frontend/index.js'
+import { HTML } from '../../../assets/js/libs/afrontend/index.js'
 
 import { Unique } from './unique.js'
 import { Yearly } from './yearly.js'

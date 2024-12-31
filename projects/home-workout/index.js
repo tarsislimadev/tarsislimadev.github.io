@@ -1,4 +1,4 @@
-import { HTML, nFlex, nH1, nLink, nH2 } from '../../assets/js/libs/frontend/index.js'
+import { HTML, nFlex, nH1, nLink, nH2 } from '../../assets/js/libs/afrontend/index.js'
 import { ChallengeListComponent } from './components/challenge.list.component.js'
 import * as API from './utils/api.js'
 

@@ -1,4 +1,4 @@
-import { HTML, nButton } from '../../../assets/js/libs/frontend/index.js'
+import { HTML, nButton } from '../../../assets/js/libs/afrontend/index.js'
 
 export class ButtonComponent extends nButton {
   state = {

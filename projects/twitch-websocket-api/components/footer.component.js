@@ -1,4 +1,4 @@
-import { HTML, nFlex, nInput, nButton } from '../../../assets/js/libs/frontend/index.js'
+import { HTML, nFlex, nInput, nButton } from '../../../assets/js/libs/afrontend/index.js'
 
 export class FooterComponent extends HTML {
   children = {

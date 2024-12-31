@@ -1,4 +1,4 @@
-import { HTML, nFlex, nLink, nH1, nButton } from '../../../assets/js/libs/frontend/index.js'
+import { HTML, nFlex, nLink, nH1, nButton } from '../../../assets/js/libs/afrontend/index.js'
 
 export class HeaderComponent extends HTML {
   onCreate() {

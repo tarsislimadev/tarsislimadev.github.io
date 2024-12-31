@@ -1,4 +1,4 @@
-import { HTML, nFlex } from '../../assets/js/libs/frontend/index.js'
+import { HTML, nFlex } from '../../assets/js/libs/afrontend/index.js'
 import { HeaderComponent } from '../../assets/js/components/header.component.js'
 import { EndpointsComponent } from '../../assets/js/components/endpoints.component.js'
 import { MessagesComponent } from '../../assets/js/components/messages.component.js'

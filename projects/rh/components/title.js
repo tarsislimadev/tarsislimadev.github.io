@@ -1,4 +1,4 @@
-import { HTML, nLink } from '@brtmvdl/frontend'
+import { HTML, nLink } from  '../../assets/js/libs/afrontend/index.js'
 
 export class Title extends HTML {
   state = {
