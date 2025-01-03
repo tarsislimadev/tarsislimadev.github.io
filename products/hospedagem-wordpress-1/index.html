@@ -14,7 +14,7 @@
   
   <h1>Hospedagem Wordpress 1.0</h1>
 
-  <img src="./image.png" alt="" />
+  <img id="img" src="./image.png" alt="" />
 
   <p>Hospedagem Wordpress 1.0</p>
 
@@ -23,8 +23,10 @@
   <script type="module">
     import { HTML } from '../../assets/js/libs/afrontend/index.js'
     import { Page } from './index.js'
+
     HTML.fromElement(document.body).setStyle('margin', '0rem')
     HTML.fromId('app').append(new Page())
+    HTML.fromId('img').setStyle('max-width', '5rem')
   </script>
 </body>
 
