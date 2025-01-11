@@ -2,9 +2,9 @@ import { PaddingComponent } from '../../assets/js/components/padding.component.j
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 
-import Youtube from '../../assets/js/utils/googleusercontent/scopes/youtube.js'
-import YoutubeUpload from '../../assets/js/utils/googleusercontent/scopes/youtube.upload.js'
-import YoutubeForceSSL from '../../assets/js/utils/googleusercontent/scopes/youtube.force-ssl.js'
+import Youtube from '../../assets/js/config/googleusercontent/scopes/youtube.js'
+import YoutubeUpload from '../../assets/js/config/googleusercontent/scopes/youtube.upload.js'
+import YoutubeForceSSL from '../../assets/js/config/googleusercontent/scopes/youtube.force-ssl.js'
 
 import * as GOOGLE from '../../assets/js/utils/googleusercontent.js'
 

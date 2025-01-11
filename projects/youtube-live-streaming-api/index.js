@@ -2,7 +2,7 @@ import { PaddingComponent } from '../../assets/js/components/padding.component.j
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
-import { client_id } from '../../assets/js/utils/googleusercontent/client_id.js'
+import { client_id } from '../../assets/js/config/googleusercontent/client_id.js'
 
 export class Page extends PaddingComponent {
   children = {

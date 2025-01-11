@@ -2,10 +2,10 @@ import { HTML } from '../../assets/js/libs/afrontend/index.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 
-import { CLIENT_ID } from '../../assets/js/utils/googleusercontent/client_id.js'
-import { API_KEY } from '../../assets/js/utils/googleusercontent/api_key.js'
-import DISCOVERY_DOC from '../../assets/js/utils/googleusercontent/discovery/gmail.js'
-import SCOPES from '../../assets/js/utils/googleusercontent/scopes/gmail.readonly.js'
+import { CLIENT_ID } from '../../assets/js/config/googleusercontent/client_id.js'
+import { API_KEY } from '../../assets/js/config/googleusercontent/api_key.js'
+import DISCOVERY_DOC from '../../assets/js/config/googleusercontent/discovery/gmail.js'
+import SCOPES from '../../assets/js/config/googleusercontent/scopes/gmail.readonly.js'
 
 export class Page extends HTML {
   children = {
