@@ -1,1 +1,1 @@
-export default 'AIzaSyAdEUEpTK6ASpttnO6XXuDJTlzpXMdk-WU'
+export const apiKey = 'AIzaSyAdEUEpTK6ASpttnO6XXuDJTlzpXMdk-WU'

@@ -1,1 +1,1 @@
-export default 'tarsislimadev'
+export const projectId = 'tarsislimadev'

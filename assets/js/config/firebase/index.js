@@ -1,7 +1,7 @@
-export * as apiKey from './apiKey.js'
+export * from './apiKey.js'
 
-export * as databaseURL from './databaseURL.js'
+export * from './databaseURL.js'
 
-export * as projectId from './projectId.js'
+export * from './projectId.js'
 
-export * as appId from './appId.js'
+export * from './appId.js'
