@@ -1,7 +1,7 @@
-export const apiKey = 'AIzaSyAdEUEpTK6ASpttnO6XXuDJTlzpXMdk-WU'
+export * as apiKey from './apiKey.js'
 
-export const databaseURL = 'https://tarsislimadev-default-rtdb.firebaseio.com'
+export * as databaseURL from './databaseURL.js'
 
-export const projectId = 'tarsislimadev'
+export * as projectId from './projectId.js'
 
-export const appId = '1:546714325016:web:23ac669c44df761204336d'
+export * as appId from './appId.js'
