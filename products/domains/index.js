@@ -54,9 +54,9 @@ export class Page extends PaddingComponent {
     const domain = this.children.domain_input.children.input.getValue()
     const suffix = this.children.suffix_input.children.input.getValue()
     const datetime = Date.now().toString()
-    const data1 = { domain, suffix, datetime }
+    const data1 = { domain, suffix, datetime, location: window.location.toString() }
 
-    const ref1 = ref(this.state.database, 'domains/' + datetime + suffix)
+    const ref1 = ref(this.state.database, 'domains/' + domain + suffix)
 
     set(ref1, data1).then(() => {
       console.log('Document successfully written!')
