@@ -10,7 +10,7 @@ import * as firebase from '../../assets/js/config/firebase/index.js'
 export class Page extends PaddingComponent {
   children = {
     domain_input: new InputComponent({ label: 'domain' }),
-    suffix_input: new SelectComponent({ label: 'suffix', options: [['.com', '_com'], ['.com.br', '_com_br']] }),
+    suffix_input: new SelectComponent({ label: 'suffix', options: [['_com', '.com'], ['_com_br', '.com.br']] }),
     send_button: new ButtonComponent({ text: 'send', onclick: () => this.onSendButtonClick() })
   }
 
