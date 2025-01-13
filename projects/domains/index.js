@@ -6,6 +6,7 @@ import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { SelectComponent } from '../../assets/js/components/select.component.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
 import * as firebase from '../../assets/js/config/firebase/index.js'
+import * as RDAP from '../../assets/js/apis/rdap.js'
 
 export class Page extends PaddingComponent {
   children = {
@@ -47,19 +48,22 @@ export class Page extends PaddingComponent {
   }
 
   onSendButtonClick() {
-    this.saveData()
-  }
-
-  saveData() {
     const domain = this.children.domain_input.children.input.getValue()
     const suffix = this.children.suffix_input.children.input.getValue()
-    const datetime = Date.now().toString()
-    const data1 = { domain, suffix, datetime, location: window.location.toString() }
+    this.findDomain(domain, suffix)
+      .then(json => console.log({ json }))
+      .catch(err => console.error(err))
+  }
+
+  async findDomain(domain, suffix, datetime = Date.now().toString()) {
+    const json = await RDAP.domain(domain + suffix.replace('_', '.'))
+
+    const data1 = { domain, suffix, json, datetime, location: window.location.toString() }
 
     const ref1 = ref(this.state.database, 'domains/' + datetime)
 
-    set(ref1, data1).then(() => {
-      console.log('Document successfully written!')
-    })
+    await set(ref1, data1)
+
+    return json
   }
 }
