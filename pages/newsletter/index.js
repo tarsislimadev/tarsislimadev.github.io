@@ -4,8 +4,6 @@ import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 
-import * as GOOGLE from '../../assets/js/utils/googleusercontent.js'
-
 export class Page extends PaddingComponent {
   children = {
     email_input: new InputComponent({ label: 'e-mail' }),
