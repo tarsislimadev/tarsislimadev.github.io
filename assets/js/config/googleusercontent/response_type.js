@@ -1,1 +1,1 @@
-export default 'token'
+export default 'code'
