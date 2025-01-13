@@ -3,9 +3,27 @@ import { PaddingComponent } from '../../assets/js/components/padding.component.j
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { FormComponent } from '../../assets/js/components/form.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
-import * as GOOGLE from '../../assets/js/utils/googleusercontent.js'
+
+import GOOGLE from '../../assets/js/config/googleusercontent/index.js'
 import * as LOCAL from '../../assets/js/utils/local.js'
 import * as FLOW from '../../assets/js/utils/flow.js'
+
+class nInputHidden extends nInput {
+  state = { key: null, value: '' }
+
+  constructor({ key, value = '' } = {}) {
+    super()
+    this.state.key = key
+    this.state.value = value
+  }
+
+  onCreate() {
+    super.onCreate()
+    this.setAttr('type', 'hidden')
+    this.setAttr('name', this.state.key)
+    this.setValue(this.state.value)
+  }
+}
 
 export class Page extends PaddingComponent {
   children = {
@@ -54,20 +72,16 @@ export class Page extends PaddingComponent {
     this.children.google_form.setAttr('method', 'GET')
     this.children.google_form.setAttr('action', GOOGLE.auth_uri)
 
-    Object.keys(GOOGLE).filter((key) => (typeof GOOGLE[key]) === 'string').map((key) => {
-      const input = new nInput()
-      input.setAttr('type', 'hidden')
-      input.setAttr('name', key)
-      input.setValue(this.getGoogleValue(key))
-      this.children.google_form.append(input)
+    // this.children.google_form.append(new nInputHidden('scope', this.getGetScopesByURL()))
+
+    Object.keys(GOOGLE).map((key) => {
+      this.children.google_form.append(new nInputHidden(key, GOOGLE[key]))
     })
 
     return this.children.google_form
   }
 
-  getGoogleValue(key) {
-    const value = GOOGLE[key]
-    if (key == 'redirect_uri') return FLOW.getCurrentURL()
-    return value
+  getGetScopesByURL() {
+    return (new URL(window.location)).searchParams.get('scopes')?.toString().split(',').join(' ')
   }
 }
