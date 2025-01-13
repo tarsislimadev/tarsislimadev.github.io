@@ -1,4 +1,4 @@
-import * as GOOGLE from './googleusercontent.js'
+import GOOGLE from '../../../assets/js/config/googleusercontent/index.js'
 
 import { request } from './ajax.js'
 
