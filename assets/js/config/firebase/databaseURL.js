@@ -1,1 +1,1 @@
-export const databaseURL = 'https://tarsislimadev-default-rtdb.firebaseio.com'
+export default 'https://tarsislimadev-default-rtdb.firebaseio.com'
