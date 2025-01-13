@@ -56,7 +56,7 @@ export class Page extends PaddingComponent {
   }
 
   async findDomain(domain, suffix, datetime = Date.now().toString()) {
-    const json = await RDAP.domain(domain + suffix.replace('_', '.'))
+    const json = await RDAP.domain(domain + suffix.replaceAll('_', '.'))
 
     const data1 = { domain, suffix, json, datetime, location: window.location.toString() }
 
