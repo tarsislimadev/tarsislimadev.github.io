@@ -5,7 +5,6 @@ import { createNewPeer } from '../../assets/js/utils/peer.js'
 import * as COLORS from '../../assets/js/utils/colors.js'
 
 const scene = new THREE.Scene()
-
 scene.add(new THREE.GridHelper(+100.0, +100.0, COLORS.WHITE))
 
 const camera = createCamera()
@@ -29,6 +28,10 @@ const params = {
   front: () => camera.position.z += -0.1,
   back: () => camera.position.z += +0.1,
 }
+
+const keys = { q: 'up', e: 'down', w: 'front', s: 'back', a: 'left', d: 'right' }
+
+window.addEventListener('keypress', ({ key }) => params[keys[key]]?.())
 
 const peer = createNewPeer('airplane', true)
 
