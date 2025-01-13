@@ -9,7 +9,7 @@ import { ErrorSocketMessageModel } from '../../assets/js/models/error.socket.mes
 import { CloseSocketMessageModel } from '../../assets/js/models/close.socket.message.model.js'
 import { OpenSocketMessageModel } from '../../assets/js/models/open.socket.message.model.js'
 import { MessageModel } from '../../assets/js/models/message.model.js'
-import * as BINANCE from '../../assets/js/apis/binance.js'
+import { BinanceWebSocket } from '../../assets/js/apis/binance.js'
 
 export class Page extends PaddingComponent {
   state = {
@@ -23,7 +23,7 @@ export class Page extends PaddingComponent {
   }
 
   createSocketConnection() {
-    const socket = new WebSocket(BINANCE.websocket.url)
+    const socket = new BinanceWebSocket()
     socket.addEventListener('open', (data) => this.onSocketOpen(data))
     socket.addEventListener('message', (data) => this.onSocketMessage(data))
     socket.addEventListener('error', (data) => this.onSocketError(data))
