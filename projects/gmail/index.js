@@ -2,9 +2,8 @@ import { HTML } from '../../assets/js/libs/afrontend/index.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 
-import { CLIENT_ID } from '../../assets/js/config/googleusercontent/client_id.js'
-import { API_KEY } from '../../assets/js/config/googleusercontent/api_key.js'
-import DISCOVERY_DOC from '../../assets/js/config/googleusercontent/discovery/gmail.js'
+import GOOGLE from '../../assets/js/config/googleusercontent/index.js'
+import * as DISCOVERY_DOC from '../../assets/js/config/googleusercontent/discovery/gmail.js'
 import SCOPES from '../../assets/js/config/googleusercontent/scopes/gmail.readonly.js'
 
 export class Page extends HTML {
@@ -51,7 +50,7 @@ export class Page extends HTML {
     console.log('initializeGapiClient')
 
     this.state.tokenClient = google.accounts.oauth2.initTokenClient({
-      client_id: CLIENT_ID,
+      client_id: GOOGLE.client_id,
       scope: SCOPES,
       callback: () => console.log('gisLoaded initTokenClient'),
     })
@@ -72,7 +71,7 @@ export class Page extends HTML {
     }
 
     await gapi.client.init({
-      apiKey: API_KEY,
+      apiKey: GOOGLE.api_key,
       discoveryDocs: [DISCOVERY_DOC],
     })
 
