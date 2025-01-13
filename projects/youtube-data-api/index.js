@@ -6,7 +6,7 @@ import Youtube from '../../assets/js/config/googleusercontent/scopes/youtube.js'
 import YoutubeUpload from '../../assets/js/config/googleusercontent/scopes/youtube.upload.js'
 import YoutubeForceSSL from '../../assets/js/config/googleusercontent/scopes/youtube.force-ssl.js'
 
-import * as GOOGLE from '../../assets/js/utils/googleusercontent.js'
+import GOOGLE from '../../assets/js/config/googleusercontent/index.js'
 
 export class Page extends PaddingComponent {
   onCreate() {
