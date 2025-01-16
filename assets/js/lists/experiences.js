@@ -1,5 +1,15 @@
 export default Array.from([
   {
+    "id": "abackend",
+    "tags": [],
+    "step": 1
+  },
+  {
+    "id": "afrontend",
+    "tags": [],
+    "step": 1
+  },
+  {
     "id": "airplane",
     "tags": [],
     "step": 1
@@ -55,11 +65,6 @@ export default Array.from([
     "step": 1
   },
   {
-    "id": "calculator",
-    "tags": [],
-    "step": 1
-  },
-  {
     "id": "candlesticks",
     "tags": [],
     "step": 1
@@ -100,6 +105,11 @@ export default Array.from([
     "step": 1
   },
   {
+    "id": "domains",
+    "tags": [],
+    "step": 1
+  },
+  {
     "id": "elevenlabs-rest-api",
     "tags": [],
     "step": 1
@@ -111,6 +121,11 @@ export default Array.from([
   },
   {
     "id": "facebook-rest-api",
+    "tags": [],
+    "step": 1
+  },
+  {
+    "id": "forca",
     "tags": [],
     "step": 1
   },
@@ -190,11 +205,6 @@ export default Array.from([
     "step": 1
   },
   {
-    "id": "math.latest",
-    "tags": [],
-    "step": 1
-  },
-  {
     "id": "meetings",
     "tags": [],
     "step": 1
@@ -264,6 +274,11 @@ export default Array.from([
     "tags": [],
     "step": 1
   },
+  // {
+  //   "id": "piano-paypal",
+  //   "tags": [],
+  //   "step": 1
+  // },
   {
     "id": "planow",
     "tags": [],
@@ -281,6 +296,11 @@ export default Array.from([
   },
   {
     "id": "requestidlecallback",
+    "tags": [],
+    "step": 1
+  },
+  {
+    "id": "rh",
     "tags": [],
     "step": 1
   },
@@ -321,6 +341,11 @@ export default Array.from([
   },
   {
     "id": "string-interpolation",
+    "tags": [],
+    "step": 1
+  },
+  {
+    "id": "subtitleedit",
     "tags": [],
     "step": 1
   },
@@ -386,11 +411,6 @@ export default Array.from([
   },
   {
     "id": "youtube-data-api",
-    "tags": [],
-    "step": 1
-  },
-  {
-    "id": "youtube-live-streaming-api",
     "tags": [],
     "step": 1
   },
