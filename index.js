@@ -1,31 +1,19 @@
-import { HTML, nFlex } from '../assets/js/libs/afrontend/index.js'
+import { HTML } from '../assets/js/libs/afrontend/index.js'
 import { ProjectThumbnailComponent } from './assets/js/components/project.thumbnail.component.js'
 import { PaddingComponent } from './assets/js/components/padding.component.js'
-import { LinkComponent } from './assets/js/components/link.component.js'
 import { TextComponent } from './assets/js/components/text.component.js'
 import experiences from './assets/js/lists/experiences.js'
 
 export class Page extends PaddingComponent {
-  onCreate() {
-    super.onCreate()
-    this.append(this.getBody())
-  }
-
-  getBody() {
-    const html = new HTML()
-
-    html.append(new TextComponent({ text: 'social' }))
-    const social = new nFlex()
-    social.append(new LinkComponent({ text: 'email', href: 'mailto:br.tmvdl@gmail.com' }))
-    social.append(new LinkComponent({ text: 'linkedin', href: 'https://www.linkedin.com/in/tarsislimadev/' }))
-    social.append(new LinkComponent({ text: 'github', href: 'https://github.com/tarsislimadev' }))
-    html.append(social)
-
-    html.append(new TextComponent({ text: 'projects' }))
+  onCreate2() {
+    this.append(new TextComponent({ text: 'projects' }))
     const projects = new HTML()
     Array.from(experiences).filter(({ step }) => step >= 3).map(({ id }) => projects.append(new ProjectThumbnailComponent({ id })))
-    html.append(projects)
+    this.append(projects)
 
-    return html
+    this.append(new TextComponent({ text: 'posts' }))
+    const posts = new HTML()
+    Array.from(experiences).filter(({ step }) => step >= 3).map(({ id }) => posts.append(new ProjectThumbnailComponent({ id })))
+    this.append(posts)
   }
 }
