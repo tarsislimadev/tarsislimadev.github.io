@@ -1,16 +1,14 @@
 import { HTML, nFlex } from '../libs/afrontend/index.js'
 import { LinkComponent } from './link.component.js'
-
 import * as LOCAL from '../../../assets/js/utils/local.js'
 
 export class HeaderComponent extends HTML {
   props = {
     links: Array.from([
+      ['github', '/pages/github/',],
+      ['linkedin', '/pages/linkedin/',],
+      ['youtube', '/pages/youtube/',],
       LOCAL.get(['access_token']) ? ['logout', '/pages/logout/'] : ['login', '/pages/login/'],
-      ['products', '/products/'],
-      ['projects', '/projects/'],
-      ['blog', '/blog/'],
-      LOCAL.get(['cart']) ? ['cart', '/cart/'] : ['donate', '/pages/donate/'],
     ])
   }
 
