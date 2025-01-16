@@ -1,3 +1,3 @@
-import { ContainerComponent } from './container.component.js'
+import { HTML } from '../../../assets/js/libs/afrontend/index.js'
 
-export class FooterComponent extends ContainerComponent { }
+export class FooterComponent extends HTML { }
