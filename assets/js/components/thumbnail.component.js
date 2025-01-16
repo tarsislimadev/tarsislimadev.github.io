@@ -1,9 +1,9 @@
-import { HTML } from '../../../assets/js/libs/afrontend/index.js'
+import { HTML } from '../libs/afrontend/index.js'
 import { ImageComponent } from './image.component.js'
 import { LinkComponent } from './link.component.js'
 import { stepName } from '../utils/functions.js'
 
-export class ProjectThumbnailComponent extends HTML {
+export class ThumbnailComponent extends HTML {
   state = { id: null, tags: null, step: null, }
 
   constructor({ id, tags, step } = {}) {
