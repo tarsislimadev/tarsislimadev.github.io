@@ -5,7 +5,7 @@ import { PaddingComponent } from '../../assets/js/components/padding.component.j
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { SelectComponent } from '../../assets/js/components/select.component.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
-import * as firebase from '../../assets/js/config/firebase/index.js'
+import firebase from '../../assets/js/config/firebase/index.js'
 import * as RDAP from '../../assets/js/apis/rdap.js'
 
 export class Page extends PaddingComponent {
@@ -30,6 +30,8 @@ export class Page extends PaddingComponent {
   }
 
   init() {
+    // console.log({ firebase: firebase.toString() })
+
     this.state.app = initializeApp(firebase)
     this.state.db = getFirestore(this.state.app)
     this.state.database = getDatabase(this.state.app)

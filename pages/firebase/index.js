@@ -4,7 +4,7 @@ import { getDatabase, ref, set } from '../../assets/js/apis/firebase/database/in
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
-import * as firebase from '../../assets/js/config/firebase/index.js'
+import firebase from '../../assets/js/config/firebase/index.js'
 
 export class Page extends PaddingComponent {
   children = {
