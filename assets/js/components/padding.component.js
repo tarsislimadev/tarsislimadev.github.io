@@ -12,7 +12,7 @@ export class PaddingComponent extends HTML {
   }
 
   setStyles() {
-    this.setStyles('padding', 'calc(1rem / 4)')
+    this.setStyle('padding', 'calc(1rem / 4)')
     this.setStyle('margin', '0 auto')
   }
 
