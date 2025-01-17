@@ -3,8 +3,8 @@ import { TwoColumnsComponent } from '../../assets/js/components/two.columns.comp
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
-
-import { GOOGLE, discovery } from '../../assets/js/utils/googleusercontent.js'
+import discovery from '../../assets/js/config/googleusercontent/discovery/youtube.js'
+import GOOGLE from '../../assets/js/config/googleusercontent/index.js'
 import { datetime2str } from '../../assets/js/utils/datetime.js'
 import * as API from '../../assets/js/utils/api.js'
 import { API_KEY } from './config.js'
