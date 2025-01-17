@@ -1,4 +1,5 @@
 import { HTML } from '../../assets/js/libs/afrontend/index.js'
+import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 
@@ -6,7 +7,7 @@ import GOOGLE from '../../assets/js/config/googleusercontent/index.js'
 import * as DISCOVERY_DOC from '../../assets/js/config/googleusercontent/discovery/gmail.js'
 import SCOPES from '../../assets/js/config/googleusercontent/scopes/gmail.readonly.js'
 
-export class Page extends HTML {
+export class Page extends PaddingComponent {
   children = {
     content: new HTML(),
     authorize_button: new ButtonComponent({ text: 'authorize', onclick: () => this.onAuthorizeButtonClick() }),
@@ -35,7 +36,6 @@ export class Page extends HTML {
 
   setEvents() {
     window.addEventListener('load', () => console.log('window loaded'))
-
     window.addEventListener('googleapi2', () => this.onGoogleApiLoaded())
     window.addEventListener('gsiclient2', () => this.onGsiClientLoaded())
   }
