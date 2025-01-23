@@ -11,6 +11,8 @@ import { OpenSocketMessageModel } from '../../assets/js/models/open.socket.messa
 import { MessageModel } from '../../assets/js/models/message.model.js'
 import { BinanceWebSocket } from '../../assets/js/apis/binance.js'
 
+import BINANCE from '../../assets/js/config/binance/index.js'
+
 export class Page extends PaddingComponent {
   state = {
     socket: this.createSocketConnection(),
