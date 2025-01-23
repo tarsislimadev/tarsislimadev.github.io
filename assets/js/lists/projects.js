@@ -30,11 +30,6 @@ export default Array.from([
     "step": 1
   },
   {
-    "id": "backend",
-    "tags": [],
-    "step": 1
-  },
-  {
     "id": "binance-app",
     "tags": [],
     "step": 1
@@ -131,11 +126,6 @@ export default Array.from([
   },
   {
     "id": "foxbit-websocket-api",
-    "tags": [],
-    "step": 1
-  },
-  {
-    "id": "frontend",
     "tags": [],
     "step": 1
   },
