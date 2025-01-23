@@ -3,13 +3,17 @@ import { LinkComponent } from './link.component.js'
 import { ImageComponent } from './image.component.js'
 
 export class ImageLinkComponent extends HTML {
-  src = ''
-  href = ''
+  state = {
+    src: '',
+    href: '',
+    text: '',
+  }
 
-  constructor({ src = '', href = '#' } = {}) {
+  constructor({ src = '', href = '#', text = '' } = {}) {
     super()
-    this.src = src
-    this.href = href
+    this.state.src = src
+    this.state.href = href
+    this.state.text = text
   }
 
   getName() { return 'image-link-component' }
@@ -20,14 +24,14 @@ export class ImageLinkComponent extends HTML {
   }
 
   getLink() {
-    const link = new LinkComponent({ href: this.href })
+    const link = new LinkComponent({ href: this.state.href, text: this.state.text })
     link.append(this.getImage())
     return link
   }
 
   getImage() {
-    const image = new ImageComponent({ src: this.src, alt: this.href })
-    image.setAttr('src', this.src)
+    const image = new ImageComponent({ src: this.state.src, alt: this.state.text })
+    image.setAttr('src', this.state.src)
     return image
   }
 }
