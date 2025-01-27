@@ -1,3 +1,4 @@
+import { HTML } from '../../assets/js/libs/afrontend/index.js'
 import { initializeApp } from '../../assets/js/apis/firebase/app/index.js'
 import { getFirestore } from '../../assets/js/apis/firebase/firestore/index.js'
 import { getDatabase, ref, set } from '../../assets/js/apis/firebase/database/index.js'
@@ -7,22 +8,31 @@ import { InputComponent } from '../../assets/js/components/input.component.js'
 import firebase from '../../assets/js/config/firebase/index.js'
 import * as RDAP from '../../assets/js/apis/rdap.js'
 
+class nPre extends HTML {
+  getName() { return 'pre' }
+
+  getTagName() { return 'pre' }
+}
+
 export class Page extends PaddingComponent {
   children = {
     domain_input: new InputComponent({ label: 'domain' }),
-    send_button: new ButtonComponent({ text: 'send', onclick: () => this.onSendButtonClick() })
+    send_button: new ButtonComponent({ text: 'send', onclick: () => this.onSendButtonClick() }),
+    info: new nPre()
   }
 
   state = {
     app: null,
     db: null,
     database: null,
+    json: null,
   }
 
   onCreate() {
     super.onCreate()
     this.append(this.getDomainInputComponent())
     this.append(this.getSendButtonComponent())
+    this.append(this.getInfoText())
     this.init()
   }
 
@@ -33,6 +43,7 @@ export class Page extends PaddingComponent {
   }
 
   getDomainInputComponent() {
+    this.children.domain_input.addEventListener('keypress', ({ key }) => key == 'Enter' && this.findDomain())
     return this.children.domain_input
   }
 
@@ -41,17 +52,23 @@ export class Page extends PaddingComponent {
   }
 
   onSendButtonClick() {
-    const domain = this.children.domain_input.children.input.getValue()
-    this.findDomain(domain)
-      .then(json => console.log({ json }))
-      .catch(err => console.error(err))
+    this.findDomain()
   }
 
-  async findDomain(domain, datetime = Date.now().toString()) {
-    const json = await RDAP.domain(domain)
-    const data1 = { domain, json, datetime, location: window.location.toString() }
+  writeInfo(info = {}) {
+    this.children.info.setText(JSON.stringify(info, null, 4))
+  }
+
+  findDomain(domain = this.children.domain_input.children.input.getValue(), datetime = Date.now().toString()) {
     const ref1 = ref(this.state.database, 'domains/' + datetime)
-    await set(ref1, data1)
-    return { json }
+    RDAP.domain(domain)
+      .then((json) => this.state.json = json)
+      .then(() => set(ref1, { domain, json: this.state.json, datetime, location: window.location.toString() }))
+      .then(() => this.writeInfo(this.state.json))
+      .catch((err) => this.writeInfo(err))
+  }
+
+  getInfoText() {
+    return this.children.info
   }
 }
