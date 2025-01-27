@@ -28,13 +28,13 @@ export class Page extends PaddingComponent {
 
   onFacebookLoginButtonClick() {
     const config_id = 1
-    const scope = 'email,user_likes,publish_actions,publish_to_grwoups,pages_manage_metadata,pages_manage_posts,pages_manage_read_engagement,pages_show_list'
+    const scope = 'email,user_likes'
     FB.login((data) => this.onFacebookLogin(data), { config_id, scope })
   }
 
   onFacebookLogin(data) {
     this.appendResponse('Login', data)
-    Local.set(['facebook.accessToken'], data.authResponse.accessToken)
+    Local.set(['facebook.access_token'], data.authResponse.accessToken)
   }
 
   onFacebookGetLoginStatusButtonClick() {
@@ -47,7 +47,7 @@ export class Page extends PaddingComponent {
   }
 
   onFacebookLogoutButtonClick() {
-    const access_token = Local.get(['facebook.accessToken'])
+    const access_token = Local.get(['facebook.access_token'])
     FB.logout((data) => this.appendResponse('Logout', data), { access_token })
   }
 
