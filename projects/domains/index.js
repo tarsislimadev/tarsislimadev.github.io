@@ -34,6 +34,7 @@ export class Page extends PaddingComponent {
     this.append(this.getSendButtonComponent())
     this.append(this.getInfoText())
     this.init()
+    this.setValues()
   }
 
   init() {
@@ -70,5 +71,9 @@ export class Page extends PaddingComponent {
 
   getInfoText() {
     return this.children.info
+  }
+
+  setValues() {
+    this.children.domain_input.children.input.setValue((new URL(window.location)).searchParams.get('id'))
   }
 }
