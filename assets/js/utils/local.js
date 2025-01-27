@@ -19,3 +19,5 @@ export const add = (key, value = {}) => {
   list.push(value)
   set(key, list)
 }
+
+export const clear = () => localStorage.clear()
