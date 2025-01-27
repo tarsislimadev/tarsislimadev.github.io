@@ -37,21 +37,37 @@ export class Page extends PaddingComponent {
   onCreate() {
     super.onCreate()
     if (this.hasAccessToken()) {
-      LOCAL.set(['access_token'], this.getAccessToken())
       FLOW.goTo('/?access_token=1')
     } else {
       this.append(new TextComponent({ text: 'login' }))
       this.append(this.getButtons())
       this.append(this.getGoogleForm())
+      this.setTokens()
     }
   }
 
   hasAccessToken() {
-    return !!this.getAccessToken()
+    return LOCAL.get(['google.access_token'], null) ||
+      LOCAL.get(['facebook.access_token'], null) ||
+      LOCAL.get(['linkedin.access_token'], null)
   }
 
-  getAccessToken() {
-    return (new URL(window.location)).searchParams.get('code')
+  setTokens() {
+    this.setGoogleToken()
+    this.setFacebookToken()
+    this.setLinkedInToken()
+  }
+
+  setGoogleToken(token = (new URL(window.location)).searchParams.get('code')) {
+    LOCAL.set(['google.access_token'], token)
+  }
+
+  setFacebookToken(token) {
+    console.log('set facebook Token')
+  }
+
+  setLinkedInToken(token) {
+    console.log('set linkedIn Token')
   }
 
   getButtons() {
