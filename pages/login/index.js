@@ -72,16 +72,13 @@ export class Page extends PaddingComponent {
 
   getButtons() {
     const html = new HTML()
-    html.append(this.getGoogleLoginButton())
+    html.append(new ButtonComponent({ text: 'google', onclick: () => this.children.google_form.submit() }))
+    html.append(new ButtonComponent({ text: 'facebook', onclick: () => this.onFacebookLoginButtonClick() }))
     return html
   }
 
-  getGoogleLoginButton() {
-    return this.createButton('google', () => this.children.google_form.submit())
-  }
-
-  createButton(text, onclick = (() => { })) {
-    return new ButtonComponent({ text, onclick })
+  onFacebookLoginButtonClick() {
+    console.log('on Facebook Login Button Click')
   }
 
   getGoogleForm() {
