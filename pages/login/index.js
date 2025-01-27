@@ -74,6 +74,7 @@ export class Page extends PaddingComponent {
     const html = new HTML()
     html.append(new ButtonComponent({ text: 'google', onclick: () => this.children.google_form.submit() }))
     html.append(new ButtonComponent({ text: 'facebook', onclick: () => this.onFacebookLoginButtonClick() }))
+    html.append(new ButtonComponent({ text: 'clear all', onclick: () => LOCAL.clear() }))
     return html
   }
 
