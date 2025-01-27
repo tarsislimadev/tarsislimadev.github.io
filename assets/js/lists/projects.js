@@ -102,7 +102,7 @@ export default Array.from([
   {
     "id": "domains",
     "tags": [],
-    "step": 1
+    "step": 3
   },
   {
     "id": "elevenlabs-rest-api",
