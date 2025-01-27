@@ -1,6 +1,6 @@
 import GOOGLE from '../../../assets/js/config/googleusercontent/index.js'
 
-import { request } from './ajax.js'
+import { request, simple_request } from './ajax.js'
 
 import * as LOCAL from '../../../assets/js/utils/local.js'
 
@@ -16,7 +16,7 @@ export const urls = {
 
 const getGmailHeader = () => ({ 'Authorization': `Bearer ${LOCAL.get(['google.access_token'])}` })
 
-const getFacebookHeaders = () => ({ 'Authorization': `Bearer ${LOCAL.get(['facebook.access_token'])}` })
+const getFacebookHeaders = (headers = {}) => ({ ...headers, 'Authorization': `Bearer ${LOCAL.get(['facebook.access_token'])}` })
 
 export const rest = {
   musixmatch: {
@@ -45,7 +45,7 @@ export const rest = {
   },
   graph_facebook: {
     v22_0: {
-      call: (method, path, params = {}, headers = {}) => request(method, url('https://graph.facebook.com/v22.0/' + path, params), null, getFacebookHeaders(headers)),
+      call: (method, path, search = {}, body = null, headers = {}) => simple_request({ headers: getFacebookHeaders(headers), method, protocol: 'https:', hostname: 'graph.facebook.com', pathname: `/v22.0/${path}`, search, body })
     }
   }
 }
