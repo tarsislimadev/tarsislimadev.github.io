@@ -45,7 +45,7 @@ export const rest = {
   },
   graph_facebook: {
     v22_0: {
-      placeId: (place_id) => request('GET', `https://graph.facebook.com/v22.0/${place_id}`, null, getFacebookHeaders())
+      call: (method, path, params = {}, headers = {}) => request(method, url('https://graph.facebook.com/v22.0/' + path, params), null, getFacebookHeaders(headers)),
     }
   }
 }
