@@ -2,6 +2,8 @@ import GOOGLE from '../../../assets/js/config/googleusercontent/index.js'
 
 import { request } from './ajax.js'
 
+import * as LOCAL from '../../../assets/js/utils/local.js'
+
 const url = (url, query = {}) => {
   const nUrl = new URL(url)
   Object.keys(query).map((q) => nUrl.searchParams.set(q, query[q]))
@@ -11,6 +13,8 @@ const url = (url, query = {}) => {
 export const urls = {
   youtube: (pathname, params = {}) => url('https://www.googleapis.com/youtube/v3/' + pathname, params)
 }
+
+const getGmailHeader = () => ({ 'Authorization': `Bearer ${LOCAL.get(['access_token'])}` })
 
 export const rest = {
   musixmatch: {
@@ -27,6 +31,13 @@ export const rest = {
     v3: {
       liveBroadcasts: {
         insert: (params = {}, body = {}) => request('POST', urls.youtube('liveBroadcasts', params), body, { Authorization: `Bearer ${GOOGLE.api_key}` }),
+      }
+    }
+  },
+  gmail: {
+    v1: {
+      users: {
+        getProfile: () => request('GET', 'https://gmail.googleapis.com/gmail/v1/users/me/profile', null, getGmailHeader())
       }
     }
   }
