@@ -3,15 +3,13 @@ import { PaddingComponent } from '../../assets/js/components/padding.component.j
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 
-import GOOGLE from '../../assets/js/config/googleusercontent/index.js'
-import * as DISCOVERY_DOC from '../../assets/js/config/googleusercontent/discovery/gmail.js'
-import SCOPES from '../../assets/js/config/googleusercontent/scopes/gmail.readonly.js'
+import * as LOCAL from '../../assets/js/utils/local.js'
+
+import { rest } from '../../assets/js/utils/api.js'
 
 export class Page extends PaddingComponent {
   children = {
     content: new HTML(),
-    authorize_button: new ButtonComponent({ text: 'authorize', onclick: () => this.onAuthorizeButtonClick() }),
-    signout_button: new ButtonComponent({ text: 'signout', onclick: () => this.onSignoutButtonClick() }),
   }
 
   state = {
@@ -23,115 +21,25 @@ export class Page extends PaddingComponent {
   onCreate() {
     super.onCreate()
     this.setEvents()
-    this.append(new TextComponent({ text: 'gmail api' }))
-    this.append(this.getAuthorizeButton())
-    this.append(this.getSignoutButton())
-  }
-
-  maybeEnableButtons() {
-    if (this.state.gapiInited && this.state.gisInited) {
-      this.children.authorize_button.setStyle('visibility', 'visible')
-    }
+    this.append(new TextComponent({ text: 'Gmail API v1' }))
+    this.append(new ButtonComponent({ text: 'List labels', onclick: () => this.listLabels() }))
+    this.append(this.children.content)
   }
 
   setEvents() {
-    window.addEventListener('load', () => console.log('window loaded'))
-    window.addEventListener('googleapi2', () => this.onGoogleApiLoaded())
-    window.addEventListener('gsiclient2', () => this.onGsiClientLoaded())
+    window.addEventListener('gsiclient', console.log)
   }
 
-  onGoogleApiLoaded() {
-    console.log('onGoogleApiLoaded')
-
-    gapi.load('client', () => this.initializeGapiClient())
+  getAccessToken() {
+    const access_token = LOCAL.get(['access_token'])
+    console.log({ access_token })
+    return access_token
   }
 
-  initializeGapiClient() {
-    console.log('initializeGapiClient')
-
-    this.state.tokenClient = google.accounts.oauth2.initTokenClient({
-      client_id: GOOGLE.client_id,
-      scope: SCOPES,
-      callback: () => console.log('gisLoaded initTokenClient'),
-    })
-
-    this.state.gisInited = true
-
-    this.maybeEnableButtons()
-  }
-
-  async onGsiClientLoaded() {
-    console.log('onGsiClientLoaded')
-
-    console.log('gapi.client', gapi.client)
-
-    if (!gapi.client) {
-      setTimeout(() => this.onGsiClientLoaded(), 1000)
-      return
-    }
-
-    await gapi.client.init({
-      apiKey: GOOGLE.api_key,
-      discoveryDocs: [DISCOVERY_DOC],
-    })
-
-    this.state.gapiInited = true
-
-    this.maybeEnableButtons()
-  }
-
-  getAuthorizeButton() {
-    this.children.authorize_button.setStyle('visibility', 'hidden')
-    return this.children.authorize_button
-  }
-
-  onAuthorizeButtonClick() {
-    this.state.tokenClient.callback = async (resp) => {
-      if (resp.error !== undefined) throw (resp)
-      this.children.signout_button.setStyle('visibility', 'visible')
-      this.children.authorize_button.setText('Refresh')
-      await this.listLabels()
-    }
-
-    const prompt = gapi.client.getToken() === null ? 'consent' : ''
-
-    this.state.tokenClient.requestAccessToken({ prompt })
-  }
-
-  getSignoutButton() {
-    this.children.signout_button.setStyle('visibility', 'hidden')
-    return this.children.signout_button
-  }
-
-  onSignoutButtonClick() {
-    const token = gapi.client.getToken()
-    if (token !== null) {
-      google.accounts.oauth2.revoke(token.access_token)
-      gapi.client.setToken('')
-      this.children.content.setText('')
-      this.children.authorize_button.setText('Authorize')
-      this.children.signout_button.setStyle('visibility', 'hidden')
-    }
-  }
-
-  async listLabels() {
-    let response
-    try {
-      response = await gapi.client.gmail.users.labels.list({ 'userId': 'me' })
-    } catch (err) {
-      this.children.content.setText(err.message)
-      return
-    }
-
-    const labels = response.result.labels
-
-    if (!labels || labels.length == 0) {
-      this.children.content.setText('No labels found.')
-      return
-    }
-
-    this.children.content.setText(
-      labels.reduce((str, label) => `${str}${label.name}\n`, 'Labels:\n')
-    )
+  listLabels() {
+    rest.gmail.v1.users.getProfile().then(console.log)
+    // gapi.client.gmail.users.labels.list({ 'userId': 'me' })
+    //   .then((res) => console.log(res))
+    //   .catch((err) => console.error(err))
   }
 }
