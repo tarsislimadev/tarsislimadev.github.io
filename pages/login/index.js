@@ -47,11 +47,11 @@ export class Page extends PaddingComponent {
   }
 
   hasAccessToken() {
-    return this.state.hash_params.has('access_token')
+    return !!this.getAccessToken()
   }
 
   getAccessToken() {
-    return this.state.hash_params.get('access_token')
+    return (new URL(window.location)).searchParams.get('code')
   }
 
   getButtons() {
