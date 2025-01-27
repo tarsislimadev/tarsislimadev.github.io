@@ -84,6 +84,6 @@ export class Page extends PaddingComponent {
   getGetScopesByURL() {
     const arr = ['https://www.googleapis.com/auth/gmail.readonly']
 
-    return arr.concat(new URL(window.location)).searchParams.get('scopes')?.toString().split(',').join(' ')
+    return arr.concat((new URL(window.location)).searchParams.get('scopes')?.toString().split(',')).join(' ')
   }
 }
