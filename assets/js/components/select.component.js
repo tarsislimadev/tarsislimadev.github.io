@@ -9,7 +9,7 @@ export class SelectComponent extends HTML {
     error: new HTML(),
   }
 
-  constructor({ label = '', options = [['empty', null]] } = {}) {
+  constructor({ label = '', options = [] } = {}) {
     super()
     this.state.label = label
     this.state.options = options
