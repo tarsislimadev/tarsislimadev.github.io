@@ -31,7 +31,7 @@ export class Page extends PaddingComponent {
   }
 
   getAccessToken() {
-    const access_token = LOCAL.get(['access_token'])
+    const access_token = LOCAL.get(['google.access_token'])
     console.log({ access_token })
     return access_token
   }
