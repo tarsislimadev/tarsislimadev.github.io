@@ -16,6 +16,8 @@ export const urls = {
 
 const getGmailHeader = () => ({ 'Authorization': `Bearer ${LOCAL.get(['google.access_token'])}` })
 
+const getFacebookHeaders = () => ({ 'Authorization': `Bearer ${LOCAL.get(['facebook.access_token'])}` })
+
 export const rest = {
   musixmatch: {
     v1: {
@@ -39,6 +41,11 @@ export const rest = {
       users: {
         getProfile: () => request('GET', 'https://gmail.googleapis.com/gmail/v1/users/me/profile', null, getGmailHeader())
       }
+    }
+  },
+  graph_facebook: {
+    v22_0: {
+      placeId: (place_id) => request('GET', `https://graph.facebook.com/v22.0/${place_id}`, null, getFacebookHeaders())
     }
   }
 }
