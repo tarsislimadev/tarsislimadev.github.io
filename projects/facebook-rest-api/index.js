@@ -43,7 +43,7 @@ export class Page extends PaddingComponent {
 
   onFormSend(data) {
     console.log('on form send', { data })
-    API.rest.graph_facebook.v22_0.call(data.endpoint.method, data.endpoint.url, data.query)
+    API.rest.graph_facebook.v22_0.call()
       .then((res) => console.log(res))
       .catch((err) => console.error(err))
   }
