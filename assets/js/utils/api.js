@@ -14,7 +14,7 @@ export const urls = {
   youtube: (pathname, params = {}) => url('https://www.googleapis.com/youtube/v3/' + pathname, params)
 }
 
-const getGmailHeader = () => ({ 'Authorization': `Bearer ${LOCAL.get(['access_token'])}` })
+const getGmailHeader = () => ({ 'Authorization': `Bearer ${LOCAL.get(['google.access_token'])}` })
 
 export const rest = {
   musixmatch: {
