@@ -1,8 +1,9 @@
-import { HTML, nButton } from '../../assets/js/libs/afrontend/index.js'
+import { HTML } from '../../assets/js/libs/afrontend/index.js'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import * as Local from '../../assets/js/utils/local.js'
+import { rest } from '../../assets/js/utils/api.js'
 
 export class Page extends PaddingComponent {
   children = {
@@ -23,6 +24,7 @@ export class Page extends PaddingComponent {
     this.append(new ButtonComponent({ text: 'Get Login Status', onclick: () => this.onFacebookGetLoginStatusButtonClick() }))
     this.append(new ButtonComponent({ text: 'Publish a Status Message', onclick: () => this.onFacebookPublishStatusMessageButtonClick() }))
     this.append(new ButtonComponent({ text: 'Logout', onclick: () => this.onFacebookLogoutButtonClick() }))
+    this.append(new ButtonComponent({ text: 'A place', onclick: () => this.onFacebookPlaceButtonClick() }))
     return html
   }
 
@@ -59,5 +61,11 @@ export class Page extends PaddingComponent {
 
   getResponses() {
     return this.children.responses
+  }
+
+  onFacebookPlaceButtonClick() {
+    rest.graph_facebook.v22_0.placeId()
+      .then((res) => console.log({res}))
+      .catch((err) => console.error(err))
   }
 }

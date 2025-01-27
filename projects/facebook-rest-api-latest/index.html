@@ -26,17 +26,12 @@
   </script>
 
   <div id="app"></div>
-  <script type="module">
+
+<script type="module">
     import { HTML } from '../../assets/js/libs/afrontend/index.js'
     import { Page } from './index.js'
-
-    // window.fbAsyncInit = () => ([
-      // FB.init({ appId: '1132850457706291', cookie: true, xfbml: true, version: 'v19.0' }),
-      // FB.AppEvents.logPageView()
-    // ])
-
-    HTML.fromElement(document.body).append(new Page())
-    HTML.fromId('app').setStyle('margin', '0rem')
+    HTML.fromId('app').append(new Page())
+    HTML.fromElement(document.body).setStyle('margin', '0rem')
   </script>
 </body>
 
