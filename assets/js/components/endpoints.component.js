@@ -41,8 +41,8 @@ export class EndpointsComponent extends HTML {
   }
 
   getEndpointInputs(endpoint = this.children.select.getValue()) {
-    const { query } = this.getEndpoint(endpoint)
-    return Array.from(query).map((q) => (this.children.inputs.getComponent(q)))
+    const { params,  query } = this.getEndpoint(endpoint)
+    return Array.from(params).concat(query).map((q) => (this.children.inputs.getComponent(q)))
   }
 
   getForm() {
@@ -52,7 +52,8 @@ export class EndpointsComponent extends HTML {
   onSendButtonClick() {
     const endpoint = this.getEndpoint()
     const query = this.getEndpointQuery()
-    this.dispatch('send', { endpoint, query })
+    const params = this.getEndpointParams()
+    this.dispatch('send', { endpoint, query, params })
   }
 
   getEndpoint(endpoint = this.children.select.getValue()) {
@@ -62,6 +63,11 @@ export class EndpointsComponent extends HTML {
   getEndpointQuery(endpoint = this.children.select.getValue()) {
     const { query } = this.getEndpoint(endpoint)
     return Array.from(query).reduce((params, q) => ({ ...params, [q]: this.children.inputs.getValue(q) }), {})
+  }
+
+  getEndpointParams(endpoint = this.children.select.getValue()) {
+    const { params } = this.getEndpoint(endpoint)
+    return Array.from(params).reduce((params, q) => ({ ...params, [q]: this.children.inputs.getValue(q) }), {})
   }
 
 }
