@@ -74,7 +74,7 @@ export class Page extends PaddingComponent {
 
     this.children.google_form.append(new nInputHidden({ key: 'scope', value: this.getGetScopesByURL() }))
 
-    Object.keys(GOOGLE).map((key) => {
+    Array.from(['api_key', 'auth_provider_x509_cert_url', 'auth_uri', 'client_id', 'project_id', 'redirect_uri', 'response_type', 'token_uri',]).map((key) => {
       this.children.google_form.append(new nInputHidden({ key, value: new String(GOOGLE[key]) }))
     })
 
