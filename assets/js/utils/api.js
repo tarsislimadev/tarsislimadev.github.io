@@ -39,7 +39,7 @@ export const rest = {
   gmail: {
     v1: {
       users: {
-        getProfile: () => request('GET', 'https://gmail.googleapis.com/gmail/v1/users/me/profile', null, getGmailHeader())
+        getProfile: (userId = 'me') => request('GET', `https://gmail.googleapis.com/gmail/v1/users/${userId}/labels`, null, getGmailHeader())
       }
     }
   },
