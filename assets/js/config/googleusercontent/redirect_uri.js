@@ -1,1 +1,1 @@
-export default 'https://tarsislimadev.github.io/pages/login/'
+export default window.location.protocol + '//' + window.location.host + '/pages/login/'
