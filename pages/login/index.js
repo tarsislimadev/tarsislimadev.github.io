@@ -53,6 +53,7 @@ export class Page extends PaddingComponent {
   }
 
   setTokens() {
+    LOCAL.set(['access_token'], 0)
     this.setGoogleToken()
     this.setFacebookToken()
     this.setLinkedInToken()
@@ -60,14 +61,17 @@ export class Page extends PaddingComponent {
 
   setGoogleToken(token = (new URL(window.location)).searchParams.get('code')) {
     LOCAL.set(['google.access_token'], token)
+    if (token) LOCAL.set(['access_token'], 1)
   }
 
   setFacebookToken(token) {
     console.log('set facebook Token')
+    if (token) LOCAL.set(['access_token'], 1)
   }
 
   setLinkedInToken(token) {
     console.log('set linkedIn Token')
+    if (token) LOCAL.set(['access_token'], 1)
   }
 
   getButtons() {
