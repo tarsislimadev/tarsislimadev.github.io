@@ -24,12 +24,22 @@ export class Page extends PaddingComponent {
   }
 
   listLabels() {
-    gapi.client.setToken({
-      access_token: LOCAL.get(['google.access_token']),
-      expires_in: 3600,
-      scope: 'https://www.googleapis.com/auth/gmail.readonly',
-      token_type: 'Bearer',
+    gapi.load('client', () => {
+      gapi.client.setToken({
+        access_token: LOCAL.get(['google.access_token']),
+        expires_in: 3600,
+        scope: 'https://www.googleapis.com/auth/gmail.readonly',
+        token_type: 'Bearer',
+      })
+
+      gapi.client.load('gmail', 'v1', () => {
+        console.log('Gmail API loaded')
+        this.listLabelsRequest()
+      })
     })
+  }
+
+  listLabelsRequest() {
     gapi.client.gmail.users.labels.list({ 'userId': 'me' })
       .then((res) => {
         console.log(res)
