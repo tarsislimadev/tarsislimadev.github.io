@@ -1,0 +1,1 @@
+console.log('locations app')
