@@ -5,9 +5,7 @@ import { TextComponent } from '../../assets/js/components/text.component.js'
 
 import * as LOCAL from '../../assets/js/utils/local.js'
 
-import * as GOOGLE from '../../assets/js/config/googleusercontent/_index.js'
-
-import { rest } from '../../assets/js/utils/api.js'
+const GOOGLE_APIKEY = "AIzaSyAR46mxrxBd99WmuuUYeICC9b_9krV6n8E"
 
 export class Page extends PaddingComponent {
   children = {
@@ -30,26 +28,33 @@ export class Page extends PaddingComponent {
   }
 
   setEvents() {
-    window.addEventListener('gsiclient', console.log)
+    window.addEventListener('googleplatform', () => {
+      gapi.signin2.render('google-signin-button', {
+        'onsuccess': console.log,
+        'onfailure': console.error,
+        'scope': 'https://www.googleapis.com/auth/gmail.readonly',
+      })
+    })
   }
 
   getAccessToken() {
     throw new Error('getAccessToken not implemented')
   }
 
-  googleInit() {
-    gapi.client.init({
-      apiKey: GOOGLE.API_KEY,
-      clientId: GOOGLE.CLIENT_ID,
-      discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest'],
-      scope: 'https://www.googleapis.com/auth/gmail.readonly',
-    }).then(() => {
-      console.log('GAPI initialized')
-      this.state.gapiInited = true
-      this.getAccessToken()
-    }
-    ).catch((err) => {
-      console.error('Error initializing GAPI', err)
+  googleInit(access_token = LOCAL.get(['google.access_token'])) {
+    gapi.load('client', () => {
+      gapi.client.init({
+        apiKey: GOOGLE_APIKEY,
+        clientId: LOCAL.get(['google.client_id']),
+        discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest'],
+        scope: 'https://www.googleapis.com/auth/gmail.readonly',
+      }).then(() => {
+        this.state.gapiInited = true
+        this.children.content.setText('GAPI initialized')
+        console.log('GAPI initialized')
+        this.children.content.setText(JSON.stringify(gapi.client))
+        // this.children.content.setText(JSON.stringify(gapi.client.gmail.users.labels.get))
+      })
     })
   }
 

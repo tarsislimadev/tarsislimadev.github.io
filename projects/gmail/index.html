@@ -18,9 +18,9 @@
     HTML.fromId('app').append(new Page())
   </script>
   <script>
-    window.addEventListener('googleplatform', () => setTimeout(() => window.dispatchEvent(new Event('googleplatform2')), 1000))
-    window.addEventListener('googleapi', () => setTimeout(() => window.dispatchEvent(new Event('googleapi2')), 1000))
-    window.addEventListener('gsiclient', () => setTimeout(() => window.dispatchEvent(new Event('gsiclient2')), 1000))
+    window.addEventListener('googleplatform', () => console.log('googleplatform'))
+    window.addEventListener('googleapi', () => console.log('googleapi'))
+    window.addEventListener('gsiclient', () => console.log('gsiclient'))
   </script>
   <script async defer src="https://apis.google.com/js/platform.js" onload="window.dispatchEvent(new Event('googleplatform'))"></script>
   <script async defer src="https://apis.google.com/js/api.js" onload="window.dispatchEvent(new Event('googleapi'))"></script>
