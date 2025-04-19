@@ -5,21 +5,21 @@
   <title>Calc</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="../css/styles.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
   <div id="app"></div>
 
-  <script src="../js/nElement.js"></script>
-  <script>
-    const app = nElement.fromId('app')
+  <script type="module">
+    import { HTML, nH1, nFlex, nButton } from '../../assets/js/libs/afrontend/index.js'
+
+    const app = HTML.fromId('app')
 
     const title = new nH1()
     title.setText('Calc')
     app.append(title)
 
-    const calc = new nElement()
+    const calc = new HTML()
     calc.setStyle('font-size', '3rem')
     app.append(calc)
 
@@ -43,7 +43,7 @@
         .map((n) => {
           const buttonEl = new nButton()
           buttonEl.setText(n)
-          buttonEl.on('click', () => {
+          buttonEl.addEventListener('click', () => {
             if (firstPart + secondPart === n) {
               buttonEl.setStyle('background-color', '#000000')
               buttonEl.setStyle('color', '#ffffff')
