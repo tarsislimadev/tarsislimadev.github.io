@@ -5,37 +5,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>gmail api</title>
-  <meta name="google-adsense-account" content="ca-pub-8803365396237758">
-  <meta name="google-signin-client_id" content="546714325016-nh69i09stsco59thl7od8ou7p6dlhedd.apps.googleusercontent.com" />
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8803365396237758" crossorigin="anonymous"></script>
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <script src="https://apis.google.com/js/api.js" async defer></script>
 </head>
 
 <body>
-  <div id="header"></div>
-
-  <div id="g_id_onload" data-client_id="546714325016-nh69i09stsco59thl7od8ou7p6dlhedd.apps.googleusercontent.com" data-callback="handleCredentialResponse"></div>
-  <div class="g_id_signin" data-type="standard"></div>
-
   <div id="app"></div>
-
   <script type="module">
     import { HTML } from '../../assets/js/libs/afrontend/index.js'
-    HTML.fromElement(document.body).setStyle('margin', '0rem')
-
-    import { HeaderComponent } from '../../assets/js/components/header.component.js'
-    import { TextComponent } from '../../assets/js/components/text.component.js'
-    HTML.fromId('header').append(new HeaderComponent())
-    HTML.fromId('header').append(new TextComponent({ text: 'Gmail API' }))
-
     import { Page } from './index.js'
-    const page = new Page()
-    HTML.fromId('app').append(page)
-
-    window.handleCredentialResponse = ({ clientId, client_id, credential, select_by, }) =>
-      page.dispatch('googleCredential', { clientId, client_id, credential, select_by, })  
-
+    HTML.fromElement(document.body).setStyle('margin', '0rem')
+    HTML.fromId('app').append(new Page())
   </script>
 </body>
 
