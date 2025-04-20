@@ -5,7 +5,10 @@ import { TextComponent } from '../../assets/js/components/text.component.js'
 
 import * as LOCAL from '../../assets/js/utils/local.js'
 
-export class Page extends PaddingComponent {
+import apiKey from '../../assets/js/config/googleusercontent/api_key.js'
+import clientId from '../../assets/js/config/googleusercontent/client_id.js'
+
+export class Page extends HTML {
   children = {
     content: new HTML(),
   }
@@ -18,36 +21,62 @@ export class Page extends PaddingComponent {
 
   onCreate() {
     super.onCreate()
-    this.append(new TextComponent({ text: 'Gmail API v1' }))
+    this.setEvents()
     this.append(new ButtonComponent({ text: 'List labels', onclick: () => this.listLabels() }))
     this.append(this.children.content)
   }
 
+  setEvents() {
+    const self = this
+    this.addEventListener('googleCredential', ({ value }) => {
+      console.log('googleCredential', value)
+      self.state.tokenClient = value.credential
+    })
+  }
+
   listLabels() {
     gapi.load('client', () => {
-      gapi.client.setToken({
-        access_token: LOCAL.get(['google.access_token']),
-        expires_in: 3600,
-        scope: 'https://www.googleapis.com/auth/gmail.readonly',
-        token_type: 'Bearer',
-      })
-
-      gapi.client.load('gmail', 'v1', () => {
-        console.log('Gmail API loaded')
-        this.listLabelsRequest()
+      gapi.client.init({
+        clientId,
+        discoveryDocs: [
+          'https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest',
+        ],
+        scope: [
+          'https://mail.google.com/',
+          'https://www.googleapis.com/auth/gmail.modify',
+          'https://www.googleapis.com/auth/gmail.readonly',
+          'https://www.googleapis.com/auth/gmail.labels',
+          'https://www.googleapis.com/auth/gmail.metadata'
+        ].join(' '),
+      }).then(() => {
+        this.state.gapiInited = true
+        this.getGmailUsersLabelsList()
       })
     })
   }
 
-  listLabelsRequest() {
-    gapi.client.gmail.users.labels.list({ 'userId': 'me' })
-      .then((res) => {
-        console.log(res)
-        this.children.content.setText(JSON.stringify(res))
+  getGmailUsersLabelsList() {
+    gapi.load('client')
+    gapi.client.setApiKey(apiKey)
+    gapi.client.setToken({
+      access_token: this.state.tokenClient,
+    }).then(() => {
+      gapi.client.load('gmail', 'v1', () => {
+        console.log('Gmail API loaded')
+
+        gapi.client.gmail.users.labels.list({ 'userId': 'me' })
+          .then((res) => {
+            console.log(res)
+            this.children.content.setText(JSON.stringify(res))
+          })
+          .catch((err) => {
+            console.error(err)
+            this.children.content.setText(JSON.stringify(err))
+          })
       })
-      .catch((err) => {
-        console.error(err)
-        this.children.content.setText(JSON.stringify(err))
-      })
+    }).catch((err) => {
+      console.error(err)
+      this.children.content.setText(JSON.stringify(err))
+    })
   }
 }
