@@ -1,1 +1,1 @@
-export default ''
+export default 'AIzaSyA0CuQpZOmcMnRrafbL7fYAmXNRU4xwoc4'
