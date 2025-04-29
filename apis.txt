@@ -1,0 +1,16 @@
+binance-websocket-api
+elevenlabs-rest-api
+facebook-rest-api
+facebook-rest-api-latest
+foxbit-websocket-api
+gemini-rest-api
+github-rest-api
+musixmatch-rest-api
+newsapi
+photos-rest-api
+screen-capture-api
+screen-capture-rest-api
+twitch-websocket-api
+twitter-rest-api
+voicerss-rest-api
+youtube-data-api
