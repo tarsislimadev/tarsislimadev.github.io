@@ -7,7 +7,9 @@
 ## projects
 
 [x] binance websocket api
+
 [x] voice rss api
+
 [-] elevenlabs rest api
 
 ## license
