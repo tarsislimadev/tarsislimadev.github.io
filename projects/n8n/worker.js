@@ -1,15 +1,21 @@
 const state = {
+  symbol: 'USDTBRL',
   running: false,
   ids: [],
 }
 
+const request = () => fetch(`https://api2.binance.com/api/v3/klines?symbol=${state.symbol}&interval=1m&limit=1`)
+  .then(res => res.json())
+  .then(([[time, price]]) => `${state.symbol} is ${price} at ${time}`)
+  .then(text => self.postMessage(text.toString()))
+  .catch(err => console.error(err))
+
 const run = () => {
+  request()
+
   const id = setInterval(() => {
-    if (state.running) fetch('https://api2.binance.com/api/v3/klines?symbol=USDTBRL&interval=1m&limit=10')
-      .then(res => res.json())
-      .then(json => self.postMessage(json.toString()))
-      .catch(err => console.error(err))
-  }, 1000)
+    if (state.running) request()
+  }, 1000 * 60 * 5)
 
   state.ids.push(id)
 

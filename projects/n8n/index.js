@@ -2,6 +2,7 @@ import { HTML } from '../../assets/js/libs/afrontend/index.js'
 import { PageComponent } from '../../assets/js/components/page.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { InputFileComponent } from '../../assets/js/components/input.file.component.js'
+import { TextComponent } from '../../assets/js/components/text.component.js'
 
 class MyInputFileComponent extends InputFileComponent {
   onCreate() {
@@ -25,12 +26,23 @@ export class Page extends PageComponent {
     file: new MyInputFileComponent({ label: 'Import workflow' }),
     name: new HTML(),
     nodes: new HTML(),
-    run: new ButtonComponent({ text: 'run', onclick: () => this.postMessage({ message: 'run' }) }),
-    stop: new ButtonComponent({ text: 'stop', onclick: () => this.postMessage({ message: 'stop' }) }),
+    texts: new HTML(),
+    run: new ButtonComponent({ text: 'start', onclick: () => this.onStartButtonClick() }),
+    stop: new ButtonComponent({ text: 'stop', onclick: () => this.onStopButtonClick() }),
   }
 
   state = {
     worker: new Worker('./worker.js'),
+  }
+
+  onStartButtonClick() {
+    this.children.texts.append(new TextComponent({ text: 'run' }))
+    this.postMessage({ message: 'run' })
+  }
+
+  onStopButtonClick() {
+    this.children.texts.append(new TextComponent({ text: 'stop' }))
+    this.postMessage({ message: 'stop' })
   }
 
   onCreate() {
@@ -39,6 +51,7 @@ export class Page extends PageComponent {
     //
     this.append(this.children.run)
     this.append(this.children.stop)
+    this.append(this.children.texts)
     //
     this.append(this.children.name)
     this.append(this.children.nodes)
@@ -50,8 +63,14 @@ export class Page extends PageComponent {
   }
 
   setWorker() {
-    this.state.worker.addEventListener('message', ({ data }) => console.log('Message from worker', { data }))
-    setTimeout(() => this.postMessage({ message: 'run' }), 1000)
+    this.state.worker.addEventListener('message', ({ data }) => this.onWorkerMessage(data))
+  }
+
+  onWorkerMessage(message) {
+    this.children.texts.append(new TextComponent({ text: message }))
+    Notification.requestPermission()
+      .then(() => new Notification('n8n', { body: message }))
+      .catch((err) => this.children.texts.append(new TextComponent({ text: message })))
   }
 
   getFileComponent() {
