@@ -1,0 +1,3 @@
+- import JSON files from n8n
+- run workflows tasks in background (offline with workers)
+- responsive design
