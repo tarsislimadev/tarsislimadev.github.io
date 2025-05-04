@@ -4,6 +4,8 @@ const state = {
   ids: [],
 }
 
+setInterval(() => self.postMessage((new Date).toString()), 1000)
+
 const request = () => fetch(`https://api2.binance.com/api/v3/klines?symbol=${state.symbol}&interval=1m&limit=1`)
   .then(res => res.json())
   .then(([[time, price]]) => `${state.symbol} is ${price} at ${time}`)
