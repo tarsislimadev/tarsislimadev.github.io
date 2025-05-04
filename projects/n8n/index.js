@@ -32,7 +32,8 @@ export class Page extends PageComponent {
   }
 
   state = {
-    worker: new Worker('./worker.js'),
+    fired: (new Worker('./worker.js')).terminate(),
+    worker: new Worker('./worker.20250504.js'),
   }
 
   onStartButtonClick() {
@@ -67,10 +68,12 @@ export class Page extends PageComponent {
   }
 
   onWorkerMessage(message) {
-    this.children.texts.append(new TextComponent({ text: message }))
-    Notification.requestPermission()
-      .then(() => new Notification('n8n', { body: message }))
-      .catch((err) => this.children.texts.append(new TextComponent({ text: message })))
+    if (message) {
+      this.children.texts.append(new TextComponent({ text: message }))
+      Notification.requestPermission()
+        .then(() => new Notification('n8n', { body: message }))
+        .catch((err) => this.children.texts.append(new TextComponent({ text: message })))
+    }
   }
 
   getFileComponent() {
