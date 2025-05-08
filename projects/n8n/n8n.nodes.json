@@ -1,0 +1,368 @@
+{
+  "name": "Price was that",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 10
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "95aa13bc-bc82-4acb-ba40-e3881bf6dd85",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1XNLioVAi1aUaGgSFPXvUtayVz5JsNdFHExOmNm8RExg",
+          "mode": "list",
+          "cachedResultName": "BINANCE",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1XNLioVAi1aUaGgSFPXvUtayVz5JsNdFHExOmNm8RExg/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1XNLioVAi1aUaGgSFPXvUtayVz5JsNdFHExOmNm8RExg/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "time": "={{ $('Binance uiKlines').last().json[0] }}",
+            "price": "={{ $('Binance uiKlines').last().json[1] }}",
+            "coin": "={{ $('Coin and Limit').last().json.coin }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "price",
+              "displayName": "price",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "time",
+              "displayName": "time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "points",
+              "displayName": "points",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "coin",
+              "displayName": "coin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1320,
+        0
+      ],
+      "id": "6c64cbca-5de4-484b-9042-643a8532604e",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "bx33Mb5ACCHqXCiY",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c4277be5-c0b0-49e1-9eca-1def575cdacd",
+              "name": "text",
+              "value": "={{ $('Price, Min and Max').item.json.price }}\n{{ $('Price, Min and Max').item.json.min }}\n{{ $('Price, Min and Max').item.json.max }}\nWill you buy?",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1560,
+        0
+      ],
+      "id": "0be83c60-b26d-47f2-8de3-f7fe5cf19d9a",
+      "name": "Final Text"
+    },
+    {
+      "parameters": {
+        "url": "=https://api2.binance.com/api/v3/uiKlines?symbol={{ $json.coin }}&interval=1m&limit={{ $json.limit }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        440,
+        0
+      ],
+      "id": "8209c81a-c8a9-4168-8e38-94b849e56a72",
+      "name": "Binance uiKlines"
+    },
+    {
+      "parameters": {
+        "jsCode": "const AMERICA_SAO_PAULO = -1 * 3 * 1000 * 60 * 60 \n\nreturn $('Binance uiKlines').all().map(({json: [time, price]}) => ({ price, time })).map(({ price, time }) => ({\n  price, time, hour: ((a = new Date(time + AMERICA_SAO_PAULO)) => `${a.getHours()}:${a.getMinutes()}`)()\n}))"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        0
+      ],
+      "id": "6f36c115-1b62-4d9f-af6a-1d420c0569d4",
+      "name": "Price, Time and Hour"
+    },
+    {
+      "parameters": {
+        "jsCode": "const all = $input.all()\nlet min = {price:Infinity}\nlet max = {price:-Infinity}\n\nall.map(({json:cur}) => {\n  min = (+cur.price < +min.price ? cur : min)\n  max = (+cur.price > +max.price ? cur : max)\n}, [{}, {}])\n\nreturn [{min, max}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        880,
+        0
+      ],
+      "id": "eb7aefa5-9679-4dd1-8afd-7adceb2d1a93",
+      "name": "Min and Max"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "57d02dff-80e7-4b44-a2f2-c2d84da2b90e",
+              "name": "=min",
+              "value": "=Minimum was {{ $json.min.price.toNumber() }} at {{ $json.min.hour }}",
+              "type": "string"
+            },
+            {
+              "id": "2c7debfc-be63-46f9-aa02-0e217a10e2ea",
+              "name": "price",
+              "value": "={{ $('Coin and Limit').first().json.coin }} is {{ $('Binance uiKlines').last().json[1].toNumber() }} at {{ $('Price, Time and Hour').last().json.hour }}",
+              "type": "string"
+            },
+            {
+              "id": "e3d3df90-9ee0-42bc-8761-54977de450ee",
+              "name": "max",
+              "value": "=Maximum was {{ $json.max.price.toNumber() }} at {{ $json.max.hour }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1100,
+        0
+      ],
+      "id": "c6aeb43f-2766-45d5-b972-4c41f4848b34",
+      "name": "Price, Min and Max"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"coin\": \"USDTBRL\",\n  \"limit\": 600\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        0
+      ],
+      "id": "298e11fc-3c3b-4c19-829c-75c542ef6472",
+      "name": "Coin and Limit"
+    },
+    {
+      "parameters": {
+        "chatId": "=1861544396",
+        "text": "={{ $json.text }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1800,
+        0
+      ],
+      "id": "e055239c-6dd1-4d0f-84f9-48e7e267665a",
+      "name": "Price was that",
+      "webhookId": "2dd46ab7-46ff-4808-96b1-e39f5c7be758",
+      "credentials": {
+        "telegramApi": {
+          "id": "IDwNNrYq0eze8Rla",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        2060,
+        0
+      ],
+      "id": "a46dbe69-8509-4bba-84b8-0ca1cc344f9a",
+      "name": "No Operation, do nothing"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Coin and Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Final Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Final Text": {
+      "main": [
+        [
+          {
+            "node": "Price was that",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Binance uiKlines": {
+      "main": [
+        [
+          {
+            "node": "Price, Time and Hour",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Price, Time and Hour": {
+      "main": [
+        [
+          {
+            "node": "Min and Max",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Min and Max": {
+      "main": [
+        [
+          {
+            "node": "Price, Min and Max",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Price, Min and Max": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Coin and Limit": {
+      "main": [
+        [
+          {
+            "node": "Binance uiKlines",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Price was that": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "e52e1c7a-0c87-4c60-8e55-af4886735136",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "aa8d445be70cccea10e7a2db9870ce3269a9e10b5aa9d9ce359c510808c6724b"
+  },
+  "id": "g1WtkaKj3WUg0hKs",
+  "tags": []
+}
