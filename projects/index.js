@@ -1,11 +1,11 @@
 import { HTML } from '../assets/js/libs/afrontend/index.js'
-import { ThumbnailComponent } from './assets/js/components/thumbnail.component.js'
-import { PaddingComponent } from './assets/js/components/padding.component.js'
-import { TextComponent } from './assets/js/components/text.component.js'
+import { ThumbnailComponent } from '../assets/js/components/thumbnail.component.js'
+import { PaddingComponent } from '../assets/js/components/padding.component.js'
+import { TextComponent } from '../assets/js/components/text.component.js'
 
-import projects from './assets/js/lists/projects.js'
-import products from './assets/js/lists/products.js'
-import posts from './assets/js/lists/posts.js'
+import projects from '../assets/js/lists/projects.js'
+import products from '../assets/js/lists/products.js'
+import posts from '../assets/js/lists/posts.js'
 
 class ProjectThumbnailComponent extends ThumbnailComponent { }
 class ProductThumbnailComponent extends ThumbnailComponent { }
