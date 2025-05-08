@@ -63,4 +63,8 @@ export class InputComponent extends HTML {
   getValue() {
     return this.children.input.getValue()
   }
+
+  setValue(value = '') {
+    this.children.input.setValue(value)
+  }
 }
