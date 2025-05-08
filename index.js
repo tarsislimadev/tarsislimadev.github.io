@@ -1,4 +1,5 @@
 import { HTML } from './assets/js/libs/afrontend/index.js'
+import { FirebaseDatabasePageComponent } from './assets/js/components/firebase.database.page.component.js'
 import { TwoColumnsComponent } from './assets/js/components/two.columns.component.js'
 import { SeparatorComponent } from './assets/js/components/separator.component.js'
 import { ButtonComponent } from './assets/js/components/button.component.js'
@@ -8,7 +9,14 @@ import { ImageComponent } from './assets/js/components/image.component.js'
 import { TextComponent } from './assets/js/components/text.component.js'
 import OWNER from './assets/js/owner.js'
 
-export class Page extends HTML {
+export class Page extends FirebaseDatabasePageComponent {
+  children = {
+    name: new InputComponent({ placeholder: 'Nome' }),
+    email: new InputComponent({ placeholder: 'E-mail' }),
+    whatsapp: new InputComponent({ placeholder: 'WhatsApp' }),
+    send_button: new ButtonComponent({ text: 'Enviar', onclick: () => this.onSendButtonComponentClick() }),
+  }
+
   onCreate() {
     super.onCreate()
     this.setStyles()
@@ -29,11 +37,48 @@ export class Page extends HTML {
     html.append(new TextComponent({ text: OWNER.description }))
     html.append(new SeparatorComponent({}))
     html.append(new TextComponent({ text: 'Entre em contato' }))
-    html.append(new InputComponent({ type: 'text', placeholder: 'Nome' }))
-    html.append(new InputComponent({ type: 'text', placeholder: 'E-mail' }))
-    html.append(new InputComponent({ type: 'text', placeholder: 'WhatsApp' }))
-    html.append(new ButtonComponent({ text: 'Enviar', onclick: () => alert('Mensagem enviada!') }))
+    html.append(this.getNameInputComponent())
+    html.append(this.getEmailInputComponent())
+    html.append(this.getWhatsAppInputComponent())
+    html.append(this.getSendButtonComponent())
     return html
+  }
+
+  getNameInputComponent() {
+    return this.children.name
+  }
+
+  getEmailInputComponent() {
+    return this.children.email
+  }
+
+  getWhatsAppInputComponent() {
+    return this.children.whatsapp
+  }
+
+  getSendButtonComponent() {
+    return this.children.send_button
+  }
+
+  onSendButtonComponentClick() {
+    const name = this.children.name.getValue()
+    const email = this.children.email.getValue()
+    const whatsapp = this.children.whatsapp.getValue()
+
+    if (!name || !email || !whatsapp) {
+      alert('Preencha todos os campos')
+      return
+    }
+
+    this.save({ name, email, whatsapp }).then(() => {
+      this.children.name.setValue('')
+      this.children.email.setValue('')
+      this.children.whatsapp.setValue('')
+      alert('Mensagem enviada com sucesso!')
+    }).catch((err) => {
+      console.error(err)
+      alert('Erro ao enviar os dados')
+    })
   }
 
   getHTML2() {
