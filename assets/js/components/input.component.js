@@ -9,9 +9,9 @@ export class InputComponent extends HTML {
   }
 
   children = {
-    label: new HTML(),
-    input: new nInput(),
-    error: new HTML(),
+    label: this.createLabel(),
+    input: this.createInput(),
+    error: this.createError(),
   }
 
   constructor({ label = '', value = '', type = 'text', placeholder = '' } = {}) {
@@ -21,6 +21,12 @@ export class InputComponent extends HTML {
     this.state.type = type
     this.state.placeholder = label || placeholder
   }
+
+  createLabel() { return new HTML() }
+
+  createInput() { return new nInput() }
+
+  createError() { return new HTML() }
 
   onCreate() {
     super.onCreate()
