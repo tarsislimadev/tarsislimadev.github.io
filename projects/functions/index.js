@@ -6,6 +6,13 @@ import { PageComponent } from '../../assets/js/components/page.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { LinkComponent } from '../../assets/js/components/link.component.js'
 
+class ErrorComponent extends TextComponent {
+  onCreate() {
+    super.onCreate()
+    this.setStyle('color', 'red')
+  }
+}
+
 class FormComponent extends HTML {
   children = {
     values: new HTML(),
@@ -67,7 +74,7 @@ export class Page extends PageComponent {
   }
 
   state = {
-    values: null,
+    values: [],
     function: '',
   }
 
@@ -87,7 +94,7 @@ export class Page extends PageComponent {
 
   getFormComponent() {
     this.children.form.addEventListener('save', ({ value }) => {
-      this.state.values = value
+      this.state.values = Array.from(value)
       console.log('values', this.state.values)
       this.update()
     })
@@ -120,12 +127,20 @@ export class Page extends PageComponent {
   run() {
     const { function: func, values } = this.state
     const fn = eval(`(${values.map((_, i) => String.fromCharCode(i + 97)).join(',')}) => {
-      // let result
-      ${func}
-      // return result
+${func}
 }`)
-    const result = fn.apply(null, values)
-    this.children.result.setText(result)
-    console.log('result', result)
+
+    this.children.result.clear()
+    try {
+      const result = fn(...values)
+      if (result instanceof Promise) {
+        result.then(res => this.children.result.append(new TextComponent({ text: res })))
+        return
+      }
+      this.children.result.append(new TextComponent({ text: result }))
+    } catch (e) {
+      this.children.result.append(new ErrorComponent({ text: e.message }))
+      console.error(e)
+    }
   }
 }
