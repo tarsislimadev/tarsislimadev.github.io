@@ -2,6 +2,7 @@ import { HTML, nFlex } from '../../assets/js/libs/afrontend/index.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { TextareaComponent } from '../../assets/js/components/textarea.component.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
+import { FirebaseDatabasePageComponent } from '../../assets/js/components/firebase.database.page.component.js'
 import { PageComponent } from '../../assets/js/components/page.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { LinkComponent } from '../../assets/js/components/link.component.js'
@@ -66,7 +67,7 @@ class FunctionComponent extends HTML {
   }
 }
 
-export class Page extends PageComponent {
+export class Page extends FirebaseDatabasePageComponent {
   children = {
     form: new FormComponent(),
     function: new FunctionComponent(),
@@ -77,6 +78,8 @@ export class Page extends PageComponent {
     values: [],
     function: '',
   }
+
+  getDirectory() { return 'functions' }
 
   onCreate() {
     super.onCreate()
@@ -95,7 +98,6 @@ export class Page extends PageComponent {
   getFormComponent() {
     this.children.form.addEventListener('save', ({ value }) => {
       this.state.values = Array.from(value)
-      console.log('values', this.state.values)
       this.update()
     })
     return this.children.form
@@ -104,7 +106,7 @@ export class Page extends PageComponent {
   getFunctionComponent() {
     this.children.function.addEventListener('save', ({ value }) => {
       this.state.function = value
-      console.log('function', this.state.function)
+      this.save({ fn: value })
       this.update()
     })
     this.children.function.addEventListener('run', () => this.onRunClick())
@@ -116,11 +118,10 @@ export class Page extends PageComponent {
   }
 
   update() {
-    alert('update')
+    alert('updated')
   }
 
   onRunClick() {
-    console.log('run', this.state)
     this.run()
   }
 
