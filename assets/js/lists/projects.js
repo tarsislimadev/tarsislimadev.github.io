@@ -130,6 +130,11 @@ export default Array.from([
     "step": 1
   },
   {
+    "id": "functions",
+    "tags": [],
+    "step": 2
+  },
+  {
     "id": "gemini-rest-api",
     "tags": [],
     "step": 1
