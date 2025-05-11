@@ -1,0 +1,1 @@
+- [ ] Save a function with its arguments to run for each time in workers on browser
