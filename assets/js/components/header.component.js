@@ -5,6 +5,7 @@ import * as LOCAL from '../../../assets/js/utils/local.js'
 export class HeaderComponent extends HTML {
   props = {
     links: Array.from([
+      ['projects', '/projects/',],
       ['github', '/pages/github/',],
       ['linkedin', '/pages/linkedin/',],
       ['youtube', '/pages/youtube/',],
