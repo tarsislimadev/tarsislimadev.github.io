@@ -75,6 +75,7 @@ export class Page extends FirebaseDatabasePageComponent {
   }
 
   state = {
+    name: '',
     values: [],
     function: '',
   }
@@ -98,7 +99,6 @@ export class Page extends FirebaseDatabasePageComponent {
   getFormComponent() {
     this.children.form.addEventListener('save', ({ value }) => {
       this.state.values = Array.from(value)
-      this.update()
     })
     return this.children.form
   }
@@ -106,8 +106,7 @@ export class Page extends FirebaseDatabasePageComponent {
   getFunctionComponent() {
     this.children.function.addEventListener('save', ({ value }) => {
       this.state.function = value
-      this.save({ fn: value })
-      this.update()
+      this.save(this.state).then(() => alert('saved'))
     })
     this.children.function.addEventListener('run', () => this.onRunClick())
     return this.children.function
@@ -117,16 +116,11 @@ export class Page extends FirebaseDatabasePageComponent {
     return this.children.result
   }
 
-  update() {
-    alert('updated')
-  }
-
   onRunClick() {
     this.run()
   }
 
-  run() {
-    const { function: func, values } = this.state
+  run({ function: func, values } = this.state) {
     const fn = eval(`(${values.map((_, i) => String.fromCharCode(i + 97)).join(',')}) => {
 ${func}
 }`)
