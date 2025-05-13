@@ -250,6 +250,11 @@ export default Array.from([
     "step": 1
   },
   {
+    "id": "payments",
+    "tags": [],
+    "step": 1
+  },
+  {
     "id": "paypal",
     "tags": [],
     "step": 1
