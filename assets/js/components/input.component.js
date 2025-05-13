@@ -8,11 +8,9 @@ export class InputComponent extends HTML {
     placeholder: '',
   }
 
-  children = {
-    label: this.createLabel(),
-    input: this.createInput(),
-    error: this.createError(),
-  }
+  label = this.createLabel()
+  input = this.createInput()
+  error = this.createError()
 
   constructor({ label = '', value = '', type = 'text', placeholder = '' } = {}) {
     super()
@@ -38,8 +36,8 @@ export class InputComponent extends HTML {
   getLabelText(text = this.state.label?.toString()) { return text }
 
   getLabel(text = this.getLabelText()) {
-    if (text) this.children.label.setText(text)
-    return this.children.label
+    if (text) this.label.setText(text)
+    return this.label
   }
 
   getPlaceholderText(text = this.state.placeholder?.toString()) { return text }
@@ -51,26 +49,26 @@ export class InputComponent extends HTML {
   getAccepts(accepts = '') { return accepts }
 
   getInput() {
-    this.children.input.setPlaceholder(this.getPlaceholderText())
-    this.children.input.setValue(this.getValueText())
-    this.children.input.setAttr('type', this.getTypeText())
-    this.children.input.setAttr('accepts', this.getAccepts())
-    this.children.input.setStyle('margin', '0rem 0rem calc(1rem / 4) 0rem')
-    this.children.input.setStyle('padding', 'calc(1rem / 4)')
-    this.children.input.setStyle('box-sizing', 'border-box')
-    this.children.input.setStyle('width', '100%')
-    return this.children.input
+    this.input.setPlaceholder(this.getPlaceholderText())
+    this.input.setValue(this.getValueText())
+    this.input.setAttr('type', this.getTypeText())
+    this.input.setAttr('accepts', this.getAccepts())
+    this.input.setStyle('margin', '0rem 0rem calc(1rem / 4) 0rem')
+    this.input.setStyle('padding', 'calc(1rem / 4)')
+    this.input.setStyle('box-sizing', 'border-box')
+    this.input.setStyle('width', '100%')
+    return this.input
   }
 
   getError() {
-    return this.children.error
+    return this.error
   }
 
   getValue() {
-    return this.children.input.getValue()
+    return this.input.getValue()
   }
 
   setValue(value = '') {
-    this.children.input.setValue(value)
+    this.input.setValue(value)
   }
 }

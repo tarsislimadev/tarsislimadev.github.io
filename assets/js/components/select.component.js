@@ -26,7 +26,7 @@ export class SelectComponent extends HTML {
   }
 
   setEvents() {
-    this.children.input.addEventListener('change', () => this.dispatch('change'))
+    this.input.addEventListener('change', () => this.dispatch('change'))
   }
 
   getLabel() {
@@ -37,11 +37,11 @@ export class SelectComponent extends HTML {
   }
 
   getInput() {
-    this.children.input.setStyle('margin', '0rem 0rem calc(1rem / 4) 0rem')
-    this.children.input.setStyle('padding', 'calc(1rem / 4)')
-    this.children.input.setStyle('box-sizing', 'border-box')
-    this.children.input.setStyle('width', '100%')
-    return this.children.input
+    this.input.setStyle('margin', '0rem 0rem calc(1rem / 4) 0rem')
+    this.input.setStyle('padding', 'calc(1rem / 4)')
+    this.input.setStyle('box-sizing', 'border-box')
+    this.input.setStyle('width', '100%')
+    return this.input
   }
 
   getError() {
@@ -53,7 +53,7 @@ export class SelectComponent extends HTML {
   }
 
   addOption(key, value = '') {
-    this.children.input.addOption(key, value)
+    this.input.addOption(key, value)
     return this
   }
 }
