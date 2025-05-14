@@ -1,89 +1,61 @@
-import { HTML } from '../../assets/js/libs/afrontend/index.js'
+import { HTML, nFlex } from '../../assets/js/libs/afrontend/index.js'
 import { PageComponent } from '../../assets/js/components/page.component.js'
-import { ButtonComponent } from '../../assets/js/components/button.component.js'
-import { InputFileComponent } from '../../assets/js/components/input.file.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
+import { ButtonComponent } from '../../assets/js/components/button.component.js'
+import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
 
-class MyInputFileComponent extends InputFileComponent {
-  onCreate() {
-    super.onCreate()
-
-    const self = this
-
-    self.addEventListener('change', (event) => {
-      const file = event.target.files[0]
-      if (file) {
-        const reader = new FileReader()
-        reader.onload = ({ target: { result: content } }) => self.dispatch('filecontent', content)
-        reader.readAsText(file)
-      }
-    })
-  }
-}
+import { LogsComponent } from './logs.component.js'
+import { NodesComponent } from './nodes.component.js'
+import { nodes, getNodeByTypeId } from './functions/index.js'
 
 export class Page extends PageComponent {
-  children = {
-    file: new MyInputFileComponent({ label: 'Import workflow' }),
-    name: new HTML(),
-    nodes: new HTML(),
-    texts: new HTML(),
-    run: new ButtonComponent({ text: 'start', onclick: () => this.onStartButtonClick() }),
-    stop: new ButtonComponent({ text: 'stop', onclick: () => this.onStopButtonClick() }),
-  }
-
-  state = {
-    fired: (new Worker('./worker.js')).terminate(),
-    worker: new Worker('./worker.20250504.js'),
-  }
-
-  onStartButtonClick() {
-    this.children.texts.append(new TextComponent({ text: 'run' }))
-    this.postMessage({ message: 'run' })
-  }
-
-  onStopButtonClick() {
-    this.children.texts.append(new TextComponent({ text: 'stop' }))
-    this.postMessage({ message: 'stop' })
-  }
+  nodes = new NodesComponent()
+  logs = new LogsComponent()
 
   onCreate() {
     super.onCreate()
-    this.append(this.getFileComponent())
-    //
-    this.append(this.children.run)
-    this.append(this.children.stop)
-    this.append(this.children.texts)
-    //
-    this.append(this.children.name)
-    this.append(this.children.nodes)
-    this.setWorker()
+    this.append(new TwoColumnsComponent({ html1: this.getLeft(), html2: this.getRight() }))
+    this.setEvents()
   }
 
-  postMessage({ message } = {}) {
-    this.state.worker.postMessage(JSON.stringify({ message }))
+  getLeft() {
+    const html = new HTML()
+    html.append(this.getNodesList())
+    html.append(this.getButtons())
+    return html
   }
 
-  setWorker() {
-    this.state.worker.addEventListener('message', ({ data }) => this.onWorkerMessage(data))
+  getNodesList() {
+    const list = new HTML()
+    list.append(new TextComponent({ text: 'Add New Nodes' }))
+    Array.from(Object.keys(nodes)).map((type) => {
+      const node = getNodeByTypeId(type)
+      const button = new ButtonComponent({ text: node.name, onclick: () => this.dispatch('addnode', node.type) })
+      list.append(button)
+    })
+    return list
   }
 
-  onWorkerMessage(message) {
-    if (message) {
-      this.children.texts.append(new TextComponent({ text: message }))
-      Notification.requestPermission()
-        .then(() => new Notification('n8n', { body: message }))
-        .catch((err) => this.children.texts.append(new TextComponent({ text: message })))
-    }
+  getButtons() {
+    const buttons = new nFlex()
+    buttons.append(new ButtonComponent({ text: 'Start', onclick: () => console.log('start') }))
+    buttons.append(new ButtonComponent({ text: 'Stop', onclick: () => console.log('stop') }))
+    return buttons
   }
 
-  getFileComponent() {
-    this.children.file.addEventListener('filecontent', ({ value: content }) => this.onUpdateWorlflows(JSON.parse(content)))
-    return this.children.file
+  getRight() {
+    const html = new HTML()
+    html.append(this.nodes)
+    html.append(this.logs)
+    return html
   }
 
-  onUpdateWorlflows(workflow) {
-    this.children.file.clear()
-    this.children.name.setText(workflow.name)
-    this.children.nodes.setText(workflow.nodes.map(({ type }) => type).join(' | '))
+  setEvents() {
+    this.addEventListener('addnode', ({ value }) => this.onAddNode(value))
+  }
+
+  onAddNode(value) {
+    this.nodes.appendNode(getNodeByTypeId(value))
+    this.nodes.update()
   }
 }
