@@ -17,7 +17,7 @@ export class NodesComponent extends HTML {
   update() {
     this.html.clear()
     Array.from(this.nodes).map((node) => {
-      this.html.append(new TextComponent({ text: node.name + ' v' + node.typeVersion }))
+      this.html.append(node.getComponent())
     })
   }
 
