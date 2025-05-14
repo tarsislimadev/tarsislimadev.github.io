@@ -1,3 +1,6 @@
-- import JSON files from n8n
+- write UML-like diagrams
+- import JSON workflow files from n8n into diagrams
 - run workflows tasks in background (offline with workers)
 - responsive design
+- owner nodes (Schedule Trigger, Set, HTTP Request, Code, "NoOp", ...)
+- many APIs (Google Sheets, Telegram, ...)
