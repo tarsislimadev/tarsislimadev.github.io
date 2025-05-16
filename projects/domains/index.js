@@ -15,11 +15,9 @@ class nPre extends HTML {
 }
 
 export class Page extends PaddingComponent {
-  children = {
-    domain_input: new InputComponent({ label: 'domain' }),
-    send_button: new ButtonComponent({ text: 'send', onclick: () => this.onSendButtonClick() }),
-    info: new nPre()
-  }
+  domain_input = new InputComponent({ label: 'domain' })
+  send_button = new ButtonComponent({ text: 'send', onclick: () => this.onSendButtonClick() })
+  info = new nPre()
 
   state = {
     app: null,
@@ -44,12 +42,12 @@ export class Page extends PaddingComponent {
   }
 
   getDomainInputComponent() {
-    this.children.domain_input.addEventListener('keypress', ({ key }) => key == 'Enter' && this.findDomain())
-    return this.children.domain_input
+    this.domain_input.addEventListener('keypress', ({ key }) => key == 'Enter' && this.findDomain())
+    return this.domain_input
   }
 
   getSendButtonComponent() {
-    return this.children.send_button
+    return this.send_button
   }
 
   onSendButtonClick() {
@@ -57,10 +55,10 @@ export class Page extends PaddingComponent {
   }
 
   writeInfo(info = {}) {
-    this.children.info.setText(JSON.stringify(info, null, 4))
+    this.info.setText(JSON.stringify(info, null, 4))
   }
 
-  findDomain(domain = this.children.domain_input.children.input.getValue(), datetime = Date.now().toString()) {
+  findDomain(domain = this.domain_input.input.getValue(), datetime = Date.now().toString()) {
     const ref1 = ref(this.state.database, 'domains/' + datetime)
     RDAP.domain(domain)
       .then((json) => this.state.json = json)
@@ -70,10 +68,10 @@ export class Page extends PaddingComponent {
   }
 
   getInfoText() {
-    return this.children.info
+    return this.info
   }
 
   setValues() {
-    this.children.domain_input.children.input.setValue((new URL(window.location)).searchParams.get('id'))
+    this.domain_input.input.setValue((new URL(window.location)).searchParams.get('id'))
   }
 }
