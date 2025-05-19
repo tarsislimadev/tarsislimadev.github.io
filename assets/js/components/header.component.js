@@ -4,7 +4,11 @@ import * as LOCAL from '../../../assets/js/utils/local.js'
 
 export class HeaderComponent extends HTML {
   props = {
+    subdomains: {
+      store: 'https://loja.tarsislima.com/',
+    },
     links: Array.from([
+      ['store'],
       ['projects', '/projects/',],
       ['github', '/pages/github/',],
       ['linkedin', '/pages/linkedin/',],
@@ -28,7 +32,7 @@ export class HeaderComponent extends HTML {
   getRight() {
     const html = new nFlex()
     Array.from(this.props.links)
-      .map(([text, href = '']) => new LinkComponent({ text, href }))
+      .map(([key, value = null]) => new LinkComponent({ text: key, href: value || this.props.subdomains[key] }))
       .map((link) => link.setContainerStyle('margin-left', 'calc(1rem / 4)'))
       .map((link) => html.append(link))
     return html
