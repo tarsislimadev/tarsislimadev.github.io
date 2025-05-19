@@ -23,8 +23,14 @@ export class FirebaseDatabasePageComponent extends PageComponent {
     return 'index'
   }
 
+  set(...args) { set(...args) }
+
+  getRef(item = Date.now()) {
+    return ref(this.firebase.database, this.getDirectory())
+  }
+
   save(data, ref1 = ref(this.firebase.database, this.getDirectory() + '/' + Date.now())) {
-    return set(ref1, { data })
+    return set(ref1, data)
   }
 
   list() {
