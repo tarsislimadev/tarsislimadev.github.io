@@ -5,10 +5,10 @@ import * as LOCAL from '../../../assets/js/utils/local.js'
 export class HeaderComponent extends HTML {
   props = {
     subdomains: {
-      store: 'https://loja.tarsislima.com/',
+      products: 'https://loja.tarsislima.com/',
     },
     links: Array.from([
-      ['store'],
+      ['products'],
       ['projects', '/projects/',],
       ['github', '/pages/github/',],
       ['linkedin', '/pages/linkedin/',],
