@@ -34,6 +34,6 @@ export class ThumbnailComponent extends HTML {
 
   getTitle() {
     const text = `${this.state.id} (${stepName(this.state.step)})`
-    return new LinkComponent({ href: this.getUrl('index.html'), text })
+    return new LinkComponent({ href: this.getUrl('index.html'), title: text, text })
   }
 }
