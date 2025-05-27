@@ -1,16 +1,8 @@
 import { HTML, nFlex, nSpan } from '../libs/afrontend/index.js'
+import { NoContainerLinkComponent } from './no.container.link.component.js'
 import { LinkComponent } from './link.component.js'
 import * as LOCAL from '../../../assets/js/utils/local.js'
 import * as CONFIG from '../../../assets/js/utils/config.js'
-
-class NoContainerLinkComponent extends LinkComponent {
-  hasContainer() { return false }
-
-  onCreate() {
-    super.onCreate()
-    this.setStyle('margin-left', '0.5rem')
-  }
-}
 
 export class HeaderComponent extends HTML {
   props = {
