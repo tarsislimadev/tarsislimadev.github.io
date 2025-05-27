@@ -1,11 +1,11 @@
 import { HTML } from '../../assets/js/libs/afrontend/index.js'
-import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { PageComponent } from '../../assets/js/components/page.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { getParams } from '../../assets/js/utils/url.js'
 
-export class Page extends PaddingComponent {
+export class Page extends PageComponent {
   children = {
     weight: new InputComponent({ label: 'weight (kg)', value: 80, type: 'number' }),
     height: new InputComponent({ label: 'height (m)', value: 1.8, type: 'number' }),

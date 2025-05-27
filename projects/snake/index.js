@@ -1,5 +1,5 @@
 import { HTML } from '../../assets/js/libs/afrontend/index.js'
-import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { PageComponent } from '../../assets/js/components/page.component.js'
 import { CanvasComponent } from '../../assets/js/components/canvas.component.js'
 import { ImageComponent } from '../../assets/js/components/image.component.js'
 import { createNewPeer, getControlsUrl } from '../../assets/js/utils/peer.js'
@@ -8,7 +8,7 @@ import { LinkComponent } from '../../assets/js/components/link.component.js'
 import { qrcode } from '../../assets/js/utils/functions.js'
 import { random } from '../../assets/js/utils/math.js'
 
-export class Page extends PaddingComponent {
+export class Page extends PageComponent {
   children = {
     canvas: new CanvasComponent(),
     qrcode: new HTML(),

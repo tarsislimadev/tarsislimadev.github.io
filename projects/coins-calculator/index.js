@@ -1,11 +1,11 @@
 import { HTML, nFlex, nSpan } from '../../assets/js/libs/afrontend/index.js'
-import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { PageComponent } from '../../assets/js/components/page.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { LinkComponent } from '../../assets/js/components/link.component.js'
 
-export class Page extends PaddingComponent {
+export class Page extends PageComponent {
   children = {
     symbol: new InputComponent({ placeholder: 'symbol' }),
     buy_quantity_input: new InputComponent({ placeholder: 'quantity', type: 'number' }),

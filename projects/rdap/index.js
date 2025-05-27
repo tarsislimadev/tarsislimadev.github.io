@@ -1,7 +1,7 @@
 import { HTML } from '../../assets/js/libs/afrontend/index.js'
 import { KeyValuePairComponent } from '../../assets/js/components/key.value.pair.component.js'
 import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
-import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { PageComponent } from '../../assets/js/components/page.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { LinkComponent } from '../../assets/js/components/link.component.js'
 import { MessagesComponent } from './components/messages.component.js'
@@ -41,7 +41,7 @@ class ResponseComponent extends HTML {
   }
 }
 
-export class Page extends PaddingComponent {
+export class Page extends PageComponent {
   children = {
     form: new FormComponent(),
     messages: new MessagesComponent(),

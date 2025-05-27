@@ -1,9 +1,9 @@
 import { HTML } from '../../assets/js/libs/afrontend/index.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { FormComponent } from './components/form.component.js'
-import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { PageComponent } from '../../assets/js/components/page.component.js'
 
-export class Page extends PaddingComponent {
+export class Page extends PageComponent {
   children = {
     form: new FormComponent(),
     results: new HTML(),

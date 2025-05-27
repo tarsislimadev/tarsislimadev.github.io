@@ -1,14 +1,14 @@
 import { HTML } from '../../assets/js/libs/afrontend/index.js'
 import { Peer } from '../../assets/js/libs/peerjs/index.js'
 import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
-import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { PageComponent } from '../../assets/js/components/page.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { LinkComponent } from '../../assets/js/components/link.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { InputComponent } from './components/input.component.js'
 import { createURL, getURLSearchParam } from '../../assets/js/utils/url.js'
 
-export class Page extends PaddingComponent {
+export class Page extends PageComponent {
   children = {
     peer_id: new LinkComponent({ text: 'chat ' }),
     messages: new HTML(),

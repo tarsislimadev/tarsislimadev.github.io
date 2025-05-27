@@ -1,11 +1,11 @@
 import { HTML, nLink } from '../../assets/js/libs/afrontend/index.js'
-import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { PageComponent } from '../../assets/js/components/page.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { LinkComponent } from '../../assets/js/components/link.component.js'
 import { padLeft } from '../../assets/js/utils/str.js'
 
-export class Page extends PaddingComponent {
+export class Page extends PageComponent {
   state = {
     is_playing: false,
     media_recorder: null,

@@ -2,11 +2,11 @@ import { HTML, nH1, nFlex } from '../../assets/js/libs/afrontend/index.js'
 import { TextComponent } from '../../../../assets/js/components/text.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
-import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { PageComponent } from '../../assets/js/components/page.component.js'
 import { datetime2str } from '../../assets/js/utils/str.js'
 import * as Local from '../../assets/js/utils/local.js'
 
-export class Page extends PaddingComponent {
+export class Page extends PageComponent {
   children = {
     input: new InputComponent({ placeholder: 'what am i doing?' }),
     button: new ButtonComponent({ text: 'save', onclick: () => this.onButtonClick() }),

@@ -1,12 +1,12 @@
 import { HTML, nFlex } from '../../assets/js/libs/afrontend/index.js'
-import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { PageComponent } from '../../assets/js/components/page.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import * as config from './config.js'
 
 import { loadScript } from '../../assets/js/libs/paypal/index.js'
 
-export class Page extends PaddingComponent {
+export class Page extends PageComponent {
   state = {
     amount: 100,
   }

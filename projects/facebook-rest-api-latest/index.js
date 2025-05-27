@@ -1,11 +1,11 @@
 import { HTML } from '../../assets/js/libs/afrontend/index.js'
-import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { PageComponent } from '../../assets/js/components/page.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import * as Local from '../../assets/js/utils/local.js'
 import { rest } from '../../assets/js/utils/api.js'
 
-export class Page extends PaddingComponent {
+export class Page extends PageComponent {
   children = {
     title: new HTML(),
     responses: new HTML(),

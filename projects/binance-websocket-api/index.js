@@ -1,5 +1,5 @@
 import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
-import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { PageComponent } from '../../assets/js/components/page.component.js'
 import { LinkComponent } from '../../assets/js/components/link.component.js'
 import { MessagesComponent } from './components/messages.component.js'
 import { FormComponent } from './components/form.component.js'
@@ -13,7 +13,7 @@ import { BinanceWebSocket } from '../../assets/js/apis/binance.js'
 
 import BINANCE from '../../assets/js/config/binance/index.js'
 
-export class Page extends PaddingComponent {
+export class Page extends PageComponent {
   state = {
     socket: this.createSocketConnection(),
     messages: [],

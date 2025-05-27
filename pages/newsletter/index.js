@@ -1,10 +1,10 @@
 import { HTML, nInput } from '../../assets/js/libs/afrontend/index.js'
-import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { PageComponent } from '../../assets/js/components/page.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 
-export class Page extends PaddingComponent {
+export class Page extends PageComponent {
   children = {
     email_input: new InputComponent({ label: 'e-mail' }),
     send_button: new ButtonComponent({ text: 'send', onclick: () => this.onSendButonClick() }),

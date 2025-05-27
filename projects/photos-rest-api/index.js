@@ -2,12 +2,12 @@ import { HTML } from '../../assets/js/libs/afrontend/index.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
 import { ImageLinkComponent } from '../../assets/js/components/image.link.component.js'
-import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { PageComponent } from '../../assets/js/components/page.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
 import { MessageModel } from './models/message.model.js'
 
-export class Page extends PaddingComponent {
+export class Page extends PageComponent {
   children = {
     ip: new HTML(),
     messages: new HTML(),

@@ -1,12 +1,12 @@
 import { initializeApp } from '../../assets/js/apis/firebase/app/index.js'
 import { getFirestore, collection, getDocs } from '../../assets/js/apis/firebase/firestore/index.js'
 import { getDatabase, ref, set } from '../../assets/js/apis/firebase/database/index.js'
-import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { PageComponent } from '../../assets/js/components/page.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
 import firebase from '../../assets/js/config/firebase/index.js'
 
-export class Page extends PaddingComponent {
+export class Page extends PageComponent {
   children = {
     email_input: new InputComponent({ label: 'e-mail' }),
     send_button: new ButtonComponent({ text: 'send', onclick: () => this.onSendButtonClick() })

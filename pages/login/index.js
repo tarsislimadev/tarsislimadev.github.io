@@ -1,5 +1,5 @@
 import { HTML, nInput } from '../../assets/js/libs/afrontend/index.js'
-import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { PageComponent } from '../../assets/js/components/page.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { FormComponent } from '../../assets/js/components/form.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
@@ -25,7 +25,7 @@ class nInputHidden extends nInput {
   }
 }
 
-export class Page extends PaddingComponent {
+export class Page extends PageComponent {
   children = {
     google_form: new FormComponent(),
   }

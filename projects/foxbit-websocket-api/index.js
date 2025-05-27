@@ -1,5 +1,5 @@
 import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
-import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { PageComponent } from '../../assets/js/components/page.component.js'
 import { LinkComponent } from '../../assets/js/components/link.component.js'
 import { MessagesComponent } from './components/messages.component.js'
 import { FormComponent } from './components/form.component.js'
@@ -10,7 +10,7 @@ import { CloseSocketMessageModel } from '../../assets/js/models/close.socket.mes
 import { OpenSocketMessageModel } from '../../assets/js/models/open.socket.message.model.js'
 import { MessageModel } from '../../assets/js/models/message.model.js'
 
-export class Page extends PaddingComponent {
+export class Page extends PageComponent {
   state = {
     socket: this.createSocketConnection(),
   }

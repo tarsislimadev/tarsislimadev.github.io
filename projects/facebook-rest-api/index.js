@@ -3,14 +3,14 @@ import { TextComponent } from '../../assets/js/components/text.component.js'
 import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
 import { ImageLinkComponent } from '../../assets/js/components/image.link.component.js'
 import { EndpointsComponent } from '../../assets/js/components/endpoints.component.js'
-import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { PageComponent } from '../../assets/js/components/page.component.js'
 import { InputsComponent } from './components/inputs.component.js'
 import { TextModel } from '../../assets/js/models/text.model.js'
 import * as API from '../../assets/js/utils/api.js'
 
 import { getRequestModelList } from './lists.js'
 
-export class Page extends PaddingComponent {
+export class Page extends PageComponent {
   children = {
     form: new EndpointsComponent(getRequestModelList(), new InputsComponent()),
     messages: new HTML(),

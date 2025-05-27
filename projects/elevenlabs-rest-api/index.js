@@ -1,6 +1,6 @@
 import { HTML } from '../../assets/js/libs/afrontend/index.js'
 import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
-import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { PageComponent } from '../../assets/js/components/page.component.js'
 import { LinkComponent } from '../../assets/js/components/link.component.js'
 import { SelectComponent } from './components/select.component.js'
 import { InputsComponent } from './components/inputs.component.js'
@@ -19,7 +19,7 @@ class FormComponent extends HTML {
 class MessagesComponent extends HTML {
 }
 
-export class Page extends PaddingComponent {
+export class Page extends PageComponent {
   children = {
     form: new FormComponent(),
     messages: new MessagesComponent(),

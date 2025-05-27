@@ -1,11 +1,11 @@
 import { HTML, nH2, nLink, nButton } from '../../assets/js/libs/afrontend/index.js'
-import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { PageComponent } from '../../assets/js/components/page.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import * as config from './config.js'
 
 // https://learn.microsoft.com/en-us/linkedin/shared/authentication/authorization-code-flow?tabs=HTTPS1
 
-export class Page extends PaddingComponent {
+export class Page extends PageComponent {
   children = {
     texts: new HTML(),
   }

@@ -3,10 +3,10 @@ import { Peer } from '../../assets/js/libs/peerjs/index.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
-import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { PageComponent } from '../../assets/js/components/page.component.js'
 import { getURLSearchParam } from '../../assets/js/utils/url.js'
 
-export class Page extends PaddingComponent {
+export class Page extends PageComponent {
   state = {
     peer: new Peer(),
     conn: null,

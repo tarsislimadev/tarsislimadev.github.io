@@ -1,9 +1,9 @@
 import { HTML } from '../../assets/js/libs/afrontend/index.js'
-import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { PageComponent } from '../../assets/js/components/page.component.js'
 import { Head } from './components/head.js'
 import { Body } from './components/body.js'
 
-export class Page extends PaddingComponent {
+export class Page extends PageComponent {
   children = {
     header: new Head(),
     body: new Body(),

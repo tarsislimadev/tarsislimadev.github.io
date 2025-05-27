@@ -1,6 +1,6 @@
 import { HTML, nFlex } from '../../assets/js/libs/afrontend/index.js'
 
-import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { PageComponent } from '../../assets/js/components/page.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { TableComponent } from '../../assets/js/components/table.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
@@ -13,7 +13,7 @@ import * as Local from '../../assets/js/utils/local.js'
 
 import { getSymbolsList } from './lists/symbols.list.js'
 
-export class Page extends PaddingComponent {
+export class Page extends PageComponent {
   state = {
     symbols: getSymbolsList(),
     values: [],

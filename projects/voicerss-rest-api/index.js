@@ -3,7 +3,7 @@ import { TextComponent } from '../../assets/js/components/text.component.js'
 import { AudioMessageComponent } from './components/audio.message.component.js'
 import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
 import { ImageLinkComponent } from '../../assets/js/components/image.link.component.js'
-import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { PageComponent } from '../../assets/js/components/page.component.js'
 import { SelectComponent } from '../../assets/js/components/select.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
@@ -13,7 +13,7 @@ import { AudioMessageModel } from './models/audio.message.model.js'
 import { MessageModel } from './models/message.model.js'
 import { getLanguages } from './languages.js'
 
-export class Page extends PaddingComponent {
+export class Page extends PageComponent {
   children = {
     ip: new HTML(),
     src_input: new InputComponent({ label: 'src', value: 'project ' + Date.now().toString() }),

@@ -1,6 +1,6 @@
 import { HTML, nVideo } from '../../assets/js/libs/afrontend/index.js'
 import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
-import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { PageComponent } from '../../assets/js/components/page.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import discovery from '../../assets/js/config/googleusercontent/discovery/youtube.js'
@@ -9,7 +9,7 @@ import { datetime2str } from '../../assets/js/utils/datetime.js'
 import * as API from '../../assets/js/utils/api.js'
 import { API_KEY } from './config.js'
 
-export class Page extends PaddingComponent {
+export class Page extends PageComponent {
   children = {
     videoElem: new nVideo(),
     log: new HTML(),
