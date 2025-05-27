@@ -5,12 +5,16 @@ import { FooterComponent } from './footer.component.js'
 export class PageComponent extends HTML {
   onCreate() {
     super.onCreate()
-    this.append(new HeaderComponent())
+    if (this.hasHeader()) this.append(new HeaderComponent())
     this.append(this.getBodyComponent())
-    this.append(new FooterComponent())
+    if (this.hasFooter()) this.append(new FooterComponent())
   }
 
   getBodyComponent() {
     return new HTML()
   }
+
+  hasHeader() { return true }
+
+  hasFooter() { return true }
 }
