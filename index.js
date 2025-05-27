@@ -19,16 +19,11 @@ export class Page extends FirebaseDatabasePageComponent {
 
   onCreate() {
     super.onCreate()
-    this.setStyles()
     this.append(new TwoColumnsComponent({
       html1: this.getHTML2(),
       html2: this.getHTML1(),
       widths: ['59%', '40%']
     }))
-  }
-
-  setStyles() {
-    this.setStyle('background-color', '#000000')
   }
 
   getHTML1() {
