@@ -1,6 +1,16 @@
-import { HTML, nFlex } from '../libs/afrontend/index.js'
+import { HTML, nFlex, nSpan } from '../libs/afrontend/index.js'
 import { LinkComponent } from './link.component.js'
 import * as LOCAL from '../../../assets/js/utils/local.js'
+import * as CONFIG from '../../../assets/js/utils/config.js'
+
+class NoContainerLinkComponent extends LinkComponent {
+  hasContainer() { return false }
+
+  onCreate() {
+    super.onCreate()
+    this.setStyle('margin-left', '0.5rem')
+  }
+}
 
 export class HeaderComponent extends HTML {
   props = {
@@ -24,16 +34,21 @@ export class HeaderComponent extends HTML {
 
   getFlex() {
     const flex = new nFlex()
-    flex.append(new LinkComponent({ text: 'tarsis lima', href: '/?' + Date.now() }))
+    flex.append(this.getLeft())
     flex.append(this.getRight())
     return flex
+  }
+
+  getLeft() {
+    const left = new nSpan()
+    left.append(new LinkComponent({ text: CONFIG.NAME, href: CONFIG.PAGES.HOME }))
+    return left
   }
 
   getRight() {
     const html = new nFlex()
     Array.from(this.props.links)
-      .map(([key, value = null]) => new LinkComponent({ text: key, href: value || this.props.subdomains[key] }))
-      .map((link) => link.setContainerStyle('margin-left', 'calc(1rem / 4)'))
+      .map(([key, value = null]) => new NoContainerLinkComponent({ text: key, href: value || this.props.subdomains[key] }))
       .map((link) => html.append(link))
     return html
   }
