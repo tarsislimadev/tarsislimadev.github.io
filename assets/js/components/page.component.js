@@ -3,6 +3,10 @@ import { HeaderComponent } from './header.component.js'
 import { FooterComponent } from './footer.component.js'
 
 export class PageComponent extends HTML {
+  header = new HeaderComponent()
+  body = new HTML()
+  footer = new FooterComponent()
+
   onCreate() {
     super.onCreate()
     this.setStyles()
@@ -17,15 +21,15 @@ export class PageComponent extends HTML {
   }
 
   getHeaderComponent() {
-    return new HeaderComponent()
+    return this.header
   }
 
   getBodyComponent() {
-    return new HTML()
+    return this.body
   }
 
   getFooterComponent() {
-    return new FooterComponent()
+    return this.footer
   }
 
 }
