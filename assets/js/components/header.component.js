@@ -12,9 +12,9 @@ export class HeaderComponent extends HTML {
     links: Array.from([
       ['products'],
       ['projects', '/projects/',],
-      ['github', '/pages/github/',],
-      ['linkedin', '/pages/linkedin/',],
-      ['youtube', '/pages/youtube/',],
+      // ['github', '/pages/github/',],
+      // ['linkedin', '/pages/linkedin/',],
+      // ['youtube', '/pages/youtube/',],
       LOCAL.get(['access_token']) ? ['logout', '/pages/logout/'] : ['login', '/pages/login/'],
     ])
   }
