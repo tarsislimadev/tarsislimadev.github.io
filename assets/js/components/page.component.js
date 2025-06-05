@@ -6,9 +6,9 @@ export class PageComponent extends HTML {
   onCreate() {
     super.onCreate()
     this.setStyles()
-    if (this.hasHeader()) this.append(new HeaderComponent())
+    this.append(this.getHeaderComponent())
     this.append(this.getBodyComponent())
-    if (this.hasFooter()) this.append(new FooterComponent())
+    this.append(this.getFooterComponent())
   }
 
   setStyles() {
@@ -16,11 +16,16 @@ export class PageComponent extends HTML {
     this.setStyle('margin', '0 auto')
   }
 
+  getHeaderComponent() {
+    return new HeaderComponent()
+  }
+
   getBodyComponent() {
     return new HTML()
   }
 
-  hasHeader() { return true }
+  getFooterComponent() {
+    return new FooterComponent()
+  }
 
-  hasFooter() { return true }
 }
