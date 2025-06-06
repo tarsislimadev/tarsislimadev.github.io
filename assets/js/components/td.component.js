@@ -4,7 +4,7 @@ export class TdComponent extends nTd {
   styles = {}
   text = ''
 
-  constructor({ text = '', styles = {} } = {}) {
+  constructor({ text = null, styles = {} } = {}) {
     super()
     this.text = text
     this.styles = styles
@@ -12,7 +12,7 @@ export class TdComponent extends nTd {
 
   onCreate() {
     super.onCreate()
-    this.setText(this.text)
+    if (this.text) this.setText(this.text)
     this.setStyles()
   }
 
