@@ -1,4 +1,4 @@
-import GOOGLE from '../../../assets/js/config/googleusercontent/index.js'
+import { api_key } from '../../../assets/js/config/googleusercontent/index.js'
 
 import { request, simple_request } from './ajax.js'
 
@@ -32,7 +32,19 @@ export const rest = {
   youtube: {
     v3: {
       liveBroadcasts: {
-        insert: (params = {}, body = {}) => request('POST', urls.youtube('liveBroadcasts', params), body, { Authorization: `Bearer ${GOOGLE.api_key}` }),
+        insert: (params = {}, body = {}) => request('POST', urls.youtube('liveBroadcasts', params), body, { Authorization: `Bearer ${api_key}` }),
+      },
+      videos: {
+        list: (query = {}) => request('GET', urls.youtube('videos', { key: api_key, ...query })),
+        mostPopular: () => rest.youtube.v3.videos.list({ chart: 'mostPopular' }),
+        chartUnspecified: () => rest.youtube.v3.videos.list({ chart: 'chartUnspecified' })
+      },
+      captions: {
+        list: (videoId, query = {}) => request('GET', urls.youtube('captions', { key: api_key, videoId, ...query })),
+        download: (id, query = {}) => request('GET', 'captions/' + id, { key: api_key, id, ...query })
+      },
+      search: {
+        list: (query = {}) => request('GET', urls.youtube('search', { key: api_key, ...query }))
       }
     }
   },
