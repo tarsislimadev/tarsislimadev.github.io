@@ -1,39 +1,93 @@
+import { HTML } from '../../assets/js/libs/afrontend/index.js'
 import { PageComponent } from '../../assets/js/components/page.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
+import * as API from '../../assets/js/utils/api.js'
 
-import Youtube from '../../assets/js/config/googleusercontent/scopes/youtube.js'
-import YoutubeUpload from '../../assets/js/config/googleusercontent/scopes/youtube.upload.js'
-import YoutubeForceSSL from '../../assets/js/config/googleusercontent/scopes/youtube.force-ssl.js'
+class CaptionsItemComponent extends HTML {
+  id = null
+  kind = null
 
-import GOOGLE from '../../assets/js/config/googleusercontent/index.js'
+  constructor({ id, kind } = {}) {
+    super()
+    this.id = id
+    this.kind = kind
+  }
+
+  onCreate() {
+    super.onCreate()
+    this.append(new TextComponent({ text: 'ID: ' + this.id }))
+    this.append(new ButtonComponent({ text: 'download caption', onclick: () => this.onDownloadCaptionButtonClick() }))
+  }
+
+  onDownloadCaptionButtonClick() {
+    API.rest.youtube.v3.captions.download(this.id)
+      .then(res => console.log(res.getData()))
+      .catch(console.error)
+  }
+}
+
+class CaptionsListComponent extends HTML {
+  list = null
+
+  constructor(list) {
+    super()
+    this.list = list
+  }
+
+  onCreate() {
+    super.onCreate()
+    Array.from(this.list.items)
+      .map((item) => this.append(new CaptionsItemComponent(item)))
+  }
+}
+
+class VideoItem extends HTML {
+  id = null
+  kind = null
+
+  constructor({ id, kind } = {}) {
+    super()
+    this.id = id
+    this.kind = kind
+  }
+
+  onCreate() {
+    super.onCreate()
+    this.append(new TextComponent({ text: 'ID: ' + this.id }))
+    this.append(new ButtonComponent({ text: 'getCaptions', onclick: () => this.onGetCaptionsButtonClick() }))
+    this.append(this.list)
+  }
+
+  onGetCaptionsButtonClick() {
+    API.rest.youtube.v3.captions.list(this.id)
+      .then(res => this.append(new CaptionsListComponent(res.getData())))
+      .catch(console.error)
+  }
+}
+
+class VideosListComponent extends HTML { }
 
 export class Page extends PageComponent {
+  data = null
+  videos_list = new VideosListComponent()
+
   onCreate() {
     super.onCreate()
     this.append(new TextComponent({ text: 'Youtube Data API' }))
-    this.append(new ButtonComponent({ text: 'login', onclick: () => this.onLoginButtonClick() }))
-    this.append(new ButtonComponent({ text: 'channels:list', onclick: () => this.onChannelsListClick() }))
-    this.append(new ButtonComponent({ text: 'videos:list', onclick: () => this.onVideosListClick() }))
+    this.append(new ButtonComponent({ text: 'list most popular videos', onclick: () => this.onListVideosButtonClick() }))
+    this.append(this.videos_list)
   }
 
-  onLoginButtonClick() {
-    window.location = (this.createGoogleOAuthEndpoint())
+  onListVideosButtonClick() {
+    API.rest.youtube.v3.videos.mostPopular()
+      .then(res => res.getData())
+      .then(data => this.data = data)
+      .then(() => this.renderVideos())
+      .catch(console.error)
   }
 
-  createGoogleOAuthEndpoint({ client_id = GOOGLE.client_id, redirect_uri = GOOGLE.redirect_uri, response_type = GOOGLE.response_type, scope = this.getScope() } = {}) {
-    return `https://accounts.google.com/o/oauth2/v2/auth?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=${response_type}&scope=${scope}&`
-  }
-
-  getScope() {
-    return [Youtube, YoutubeUpload, YoutubeForceSSL].join(' ')
-  }
-
-  onChannelsListClick() {
-    alert('Channels List')
-  }
-
-  onVideosListClick() {
-    alert('Videos List')
+  renderVideos() {
+    Array.from(this.data.items).map((item) => this.videos_list.append(new VideoItem(item)))
   }
 }
