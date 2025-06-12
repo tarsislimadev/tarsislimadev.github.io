@@ -1,1 +1,1 @@
-export default ['https://tarsislimadev.github.io', 'http://localhost:8000']
+export default ['https://github.tarsislima.com']

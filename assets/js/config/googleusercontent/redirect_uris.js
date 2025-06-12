@@ -1,1 +1,1 @@
-export default ['https://tarsislimadev.github.io/pages/login/', 'http://localhost:8000/pages/login/']
+export default ['https://github.tarsislima.com/projects/youtube-data-api/', 'https://github.tarsislima.com/pages/login/']
