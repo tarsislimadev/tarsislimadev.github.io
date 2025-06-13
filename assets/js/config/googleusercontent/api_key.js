@@ -1,1 +1,1 @@
-export default 'AIzaSyDn_c6RnvWDtDtTJItZtFvaNNqESxBI3Q0'
+export default ''
