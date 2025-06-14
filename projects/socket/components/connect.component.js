@@ -2,10 +2,8 @@ import { HTML, nFlex, nInput, nButton } from '../../../assets/js/libs/afrontend/
 import { TwoColumnsComponent } from '../../../assets/js/components/two.columns.component.js'
 
 export class ConnectComponent extends HTML {
-  children = {
-    url: new nInput(),
-    connect: new nButton(),
-  }
+  url = new nInput()
+  connect = new nButton()
 
   onCreate() {
     super.onCreate()
@@ -17,21 +15,21 @@ export class ConnectComponent extends HTML {
   }
 
   getUrlInput() {
-    this.children.url.setStyle('padding', 'calc(1rem / 4)')
-    this.children.url.setStyle('width', '100%')
-    this.children.url.setPlaceholder('url')
-    return this.children.url
+    this.url.setStyle('padding', 'calc(1rem / 4)')
+    this.url.setStyle('width', '100%')
+    this.url.setPlaceholder('url')
+    return this.url
   }
 
   getConnectButton() {
-    this.children.connect.setStyle('padding', 'calc(1rem / 4)')
-    this.children.connect.setStyle('width', '100%')
-    this.children.connect.setText('connect')
-    this.children.connect.addEventListener('click', () => this.onConnectButtonClick())
-    return this.children.connect
+    this.connect.setStyle('padding', 'calc(1rem / 4)')
+    this.connect.setStyle('width', '100%')
+    this.connect.setText('connect')
+    this.connect.addEventListener('click', () => this.onConnectButtonClick())
+    return this.connect
   }
 
   onConnectButtonClick() {
-    this.dispatch('connect', this.children.url.getValue())
+    this.dispatch('connect', this.url.getValue())
   }
 }

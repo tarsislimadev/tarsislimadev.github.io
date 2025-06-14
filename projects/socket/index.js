@@ -13,12 +13,10 @@ import { MessageModel } from '../../assets/js/models/message.model.js'
 class OptionsComponent extends HTML { }
 
 export class Page extends PageComponent {
-  children = {
-    connect: new ConnectComponent(),
-    options: new OptionsComponent(),
-    send: new SendComponent(),
-    messages: new MessagesComponent(),
-  }
+  connect = new ConnectComponent()
+  options = new OptionsComponent()
+  send = new SendComponent()
+  messages = new MessagesComponent()
 
   state = {
     socket: null,
@@ -34,8 +32,8 @@ export class Page extends PageComponent {
   }
 
   getConnectComponent() {
-    this.children.connect.addEventListener('connect', (ev) => this.onConnect(ev))
-    return this.children.connect
+    this.connect.addEventListener('connect', (ev) => this.onConnect(ev))
+    return this.connect
   }
 
   onConnect(ev) {
@@ -63,12 +61,12 @@ export class Page extends PageComponent {
   }
 
   getOptionsComponent() {
-    return this.children.options
+    return this.options
   }
 
   getSendComponent() {
-    this.children.send.addEventListener('send', (ev) => this.onSend(ev))
-    return this.children.send
+    this.send.addEventListener('send', (ev) => this.onSend(ev))
+    return this.send
   }
 
   onSend({ value: data } = {}) {
@@ -77,11 +75,11 @@ export class Page extends PageComponent {
   }
 
   getMessagesComponent() {
-    return this.children.messages
+    return this.messages
   }
 
   dispatchMessage(message = new MessageModel()) {
-    this.children.messages.dispatch('message', message)
+    this.messages.dispatch('message', message)
   }
 
 }
