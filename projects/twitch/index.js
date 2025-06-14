@@ -4,12 +4,10 @@ import { MessageComponent } from './components/message.js'
 import { MessageModel } from './models/message.js'
 
 export class Page extends HTML {
-  children = {
-    nick: new nInputTextGroup(),
-    channel: new nInputTextGroup(),
-    message: new nInputTextGroup(),
-    messages: new HTML(),
-  }
+  nick = new nInputTextGroup()
+  channel = new nInputTextGroup()
+  message = new nInputTextGroup()
+  messages = new HTML()
 
   state = {
     access_token: this.getValueByUrlHash(),
@@ -81,25 +79,25 @@ export class Page extends HTML {
   }
 
   getSendNickMessageButton() {
-    return this.createSendMessageButton('send nick', () => `NICK ${this.children.nick.children.input.getValue()}`)
+    return this.createSendMessageButton('send nick', () => `NICK ${this.nick.input.getValue()}`)
   }
 
   getNickInput() {
-    this.children.nick.children.label.setText('nick')
-    this.children.nick.children.input.setPlaceholder('nick')
-    return this.children.nick
+    this.nick.label.setText('nick')
+    this.nick.input.setPlaceholder('nick')
+    return this.nick
   }
 
   getChannelInput() {
-    this.children.channel.children.label.setText('channel')
-    this.children.channel.children.input.setPlaceholder('channel')
-    return this.children.channel
+    this.channel.label.setText('channel')
+    this.channel.input.setPlaceholder('channel')
+    return this.channel
   }
 
   getMessageInput() {
-    this.children.message.children.label.setText('message')
-    this.children.message.children.input.setPlaceholder('message')
-    return this.children.message
+    this.message.label.setText('message')
+    this.message.input.setPlaceholder('message')
+    return this.message
   }
 
   getSendButton() {
@@ -110,19 +108,19 @@ export class Page extends HTML {
   }
 
   onButtonClick() {
-    const channel = this.children.channel.children.input.getValue()
-    const message = this.children.message.children.input.getValue()
+    const channel = this.channel.input.getValue()
+    const message = this.message.input.getValue()
     this.socketSend(`PRIVMSG #${channel} :${message}`)
-    this.children.message.children.input.setValue('')
+    this.message.input.setValue('')
   }
 
   addMessage(message = new MessageModel()) {
     console.log('addMessage', message)
-    this.children.messages.append(new MessageComponent(message))
+    this.messages.append(new MessageComponent(message))
   }
 
   getMessagesHTML() {
-    return this.children.messages
+    return this.messages
   }
 
   socketSend(message = '') {
