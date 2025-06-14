@@ -9,10 +9,8 @@ import { qrcode } from '../../assets/js/utils/functions.js'
 import { random } from '../../assets/js/utils/math.js'
 
 export class Page extends PageComponent {
-  children = {
-    canvas: new CanvasComponent(),
-    qrcode: new HTML(),
-  }
+  canvas = new CanvasComponent()
+  qrcode = new HTML()
 
   state = {
     peer: this.createNewPeer(),
@@ -61,30 +59,30 @@ export class Page extends PageComponent {
   getSize(n) { return n * 32 }
 
   getCanvas() {
-    this.state.ctx = this.children.canvas.getContext()
-    this.children.canvas.setStyle('box-shadow', '0rem 0rem 1rem 1rem rgba(0, 0, 0, 0.5)')
-    this.children.canvas.setStyle('border', 'calc(1rem / 8) solid rgba(0, 0, 0, 0.5)')
-    this.children.canvas.setContainerStyle('width', `${this.getSize(10)}px`)
-    this.children.canvas.setContainerStyle('margin', '2rem auto')
-    this.children.canvas.setAttr('height', this.getSize(10))
-    this.children.canvas.setAttr('width', this.getSize(10))
-    return this.children.canvas
+    this.state.ctx = this.canvas.getContext()
+    this.canvas.setStyle('box-shadow', '0rem 0rem 1rem 1rem rgba(0, 0, 0, 0.5)')
+    this.canvas.setStyle('border', 'calc(1rem / 8) solid rgba(0, 0, 0, 0.5)')
+    this.canvas.setContainerStyle('width', `${this.getSize(10)}px`)
+    this.canvas.setContainerStyle('margin', '2rem auto')
+    this.canvas.setAttr('height', this.getSize(10))
+    this.canvas.setAttr('width', this.getSize(10))
+    return this.canvas
   }
 
   getQRCode() {
-    this.children.qrcode.setContainerStyle('width', `150px`)
-    this.children.qrcode.setContainerStyle('margin', '0 auto')
-    return this.children.qrcode
+    this.qrcode.setContainerStyle('width', `150px`)
+    this.qrcode.setContainerStyle('margin', '0 auto')
+    return this.qrcode
   }
 
   setQRCode() {
-    this.children.qrcode.clear()
+    this.qrcode.clear()
     const url = getControlsUrl('snake', this.state.peer.id)
     const link = new LinkComponent({ href: url })
     const image = new ImageComponent({ src: qrcode(url) })
     image.setContainerStyle('max-width', '10rem')
     link.append(image)
-    this.children.qrcode.append(link)
+    this.qrcode.append(link)
   }
 
   reset() { this.state.ctx.clearRect(0, 0, this.getSize(10), this.getSize(10)) }
