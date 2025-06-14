@@ -7,10 +7,8 @@ import { InputComponent } from '../../assets/js/components/input.component.js'
 import firebase from '../../assets/js/config/firebase/index.js'
 
 export class Page extends PageComponent {
-  children = {
-    email_input: new InputComponent({ label: 'e-mail' }),
-    send_button: new ButtonComponent({ text: 'send', onclick: () => this.onSendButtonClick() })
-  }
+  email_input = new InputComponent({ label: 'e-mail' })
+  send_button = new ButtonComponent({ text: 'send', onclick: () => this.onSendButtonClick() })
 
   state = {
     app: null,
@@ -32,11 +30,11 @@ export class Page extends PageComponent {
   }
 
   getEmailInputComponent() {
-    return this.children.email_input
+    return this.email_input
   }
 
   getSendButtonComponent() {
-    return this.children.send_button
+    return this.send_button
   }
 
   onSendButtonClick() {
@@ -46,7 +44,7 @@ export class Page extends PageComponent {
   saveData() {
     const datetime = Date.now().toString()
 
-    const data1 = { email: this.children.email_input.children.input.getValue(), datetime }
+    const data1 = { email: this.email_input.input.getValue(), datetime }
 
     const ref1 = ref(this.state.database, 'firebase/' + datetime)
 
