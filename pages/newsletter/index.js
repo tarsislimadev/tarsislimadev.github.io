@@ -5,13 +5,11 @@ import { InputComponent } from '../../assets/js/components/input.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 
 export class Page extends PageComponent {
-  children = {
-    email_input: new InputComponent({ label: 'e-mail' }),
-    send_button: new ButtonComponent({ text: 'send', onclick: () => this.onSendButonClick() }),
-  }
+  email_input = new InputComponent({ label: 'e-mail' })
+  send_button = new ButtonComponent({ text: 'send', onclick: () => this.onSendButonClick() })
 
   onSendButonClick() {
-    alert('send ' + this.children.email_input.getValue())
+    alert('send ' + this.email_input.getValue())
   }
 
   onCreate() {
@@ -30,10 +28,10 @@ export class Page extends PageComponent {
   }
 
   getEmailInputComponent() {
-    return this.children.email_input
+    return this.email_input
   }
 
   getSendButtonComponent() {
-    return this.children.send_button
+    return this.send_button
   }
 }
