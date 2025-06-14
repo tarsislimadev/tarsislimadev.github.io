@@ -11,10 +11,8 @@ import * as API from '../../assets/js/utils/api.js'
 import { getRequestModelList } from './lists.js'
 
 export class Page extends PageComponent {
-  children = {
-    form: new EndpointsComponent(getRequestModelList(), new InputsComponent()),
-    messages: new HTML(),
-  }
+  form = new EndpointsComponent(getRequestModelList(), new InputsComponent())
+  messages = new HTML()
 
   onCreate() {
     super.onCreate()
@@ -37,8 +35,8 @@ export class Page extends PageComponent {
   }
 
   getForm() {
-    this.children.form.addEventListener('send', ({ value }) => this.onFormSend(value))
-    return this.children.form
+    this.form.addEventListener('send', ({ value }) => this.onFormSend(value))
+    return this.form
   }
 
   onFormSend(data) {
@@ -49,11 +47,11 @@ export class Page extends PageComponent {
   }
 
   addMessage(message = new TextModel()) {
-    this.children.messages.append(new TextComponent(message))
+    this.messages.append(new TextComponent(message))
   }
 
   getMessages() {
-    this.children.messages.setStyle('text-align', 'right')
-    return this.children.messages
+    this.messages.setStyle('text-align', 'right')
+    return this.messages
   }
 }
