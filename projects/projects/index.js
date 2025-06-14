@@ -4,24 +4,13 @@ import { Head } from './components/head.js'
 import { Body } from './components/body.js'
 
 export class Page extends PageComponent {
-  children = {
-    header: new Head(),
-    body: new Body(),
-  }
+  header = new Head()
+  body = new Body()
 
   onCreate() {
     super.onCreate()
-    this.append(this.getHeader())
-    this.append(this.getBody())
-  }
-
-  getHeader() {
-    this.children.header.addEventListener('createproject', () => this.children.body.dispatch('createproject'))
-
-    return this.children.header
-  }
-
-  getBody() {
-    return this.children.body
+    this.header.addEventListener('createproject', () => this.body.dispatch('createproject'))
+    this.append(this.header)
+    this.append(this.body)
   }
 }

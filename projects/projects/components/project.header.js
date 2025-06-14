@@ -10,10 +10,8 @@ export class ProjectHeader extends nFlex {
     contract: 1,
   }
 
-  children = {
-    domain: new nInput(),
-    contract: new nSelect(),
-  }
+  domain = new nInput()
+  contract = new nSelect()
 
   onCreate() {
     this.setStyles()
@@ -43,26 +41,26 @@ export class ProjectHeader extends nFlex {
   }
 
   getDomain() {
-    this.children.domain.setText(this.state.domain)
-    this.children.domain.setPlaceholder('domain.com')
-    this.children.domain.setStyle('border', 'none')
+    this.domain.setText(this.state.domain)
+    this.domain.setPlaceholder('domain.com')
+    this.domain.setStyle('border', 'none')
 
-    this.children.domain.addEventListener('input', () => this.state.domain = this.children.domain.getValue())
+    this.domain.addEventListener('input', () => this.state.domain = this.domain.getValue())
 
-    return this.children.domain
+    return this.domain
   }
 
   getContract() {
-    this.children.contract.setValue(10)
+    this.contract.setValue(10)
 
-    CONTRACTS.map(([key, value]) => this.children.contract.addOption(key, value))
+    CONTRACTS.map(([key, value]) => this.contract.addOption(key, value))
 
-    this.children.contract.setStyle('border', 'none')
-    this.children.contract.setStyle('background-color', COLORS.WHITE_1)
+    this.contract.setStyle('border', 'none')
+    this.contract.setStyle('background-color', COLORS.WHITE_1)
 
-    this.children.contract.addEventListener('input', () => this.state.contract = this.children.contract.getValue())
+    this.contract.addEventListener('input', () => this.state.contract = this.contract.getValue())
 
-    return this.children.contract
+    return this.contract
   }
 
   getDelButton() {

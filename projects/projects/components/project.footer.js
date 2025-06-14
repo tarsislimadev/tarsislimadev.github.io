@@ -9,10 +9,8 @@ export class ProjectFooter extends HTML {
     yearly: 0,
   }
 
-  children = {
-    unique: new Unique(),
-    yearly: new Yearly()
-  }
+  unique = new Unique()
+  yearly = new Yearly()
 
   onCreate() {
     this.setStyles()
@@ -26,11 +24,11 @@ export class ProjectFooter extends HTML {
   }
 
   getUnique() {
-    return this.children.unique
+    return this.unique
   }
 
   getYearly() {
-    return this.children.yearly
+    return this.yearly
   }
 
   getPriceText(price = 0, coin = 'R$') {
@@ -38,12 +36,12 @@ export class ProjectFooter extends HTML {
   }
 
   setUnique(unique = 0) {
-    this.children.unique.children.value.setText(this.getPriceText(unique))
+    this.unique.value.setText(this.getPriceText(unique))
     return this
   }
 
   setYearly(yearly = 0) {
-    this.children.yearly.children.value.setText(this.getPriceText(yearly))
+    this.yearly.value.setText(this.getPriceText(yearly))
     return this
   }
 }

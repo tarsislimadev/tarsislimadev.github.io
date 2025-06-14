@@ -7,9 +7,7 @@ export class Body extends HTML {
     projects: [],
   }
 
-  children = {
-    projects: new HTML(),
-  }
+  projects = new HTML()
 
   onCreate() {
     this.setStyles()
@@ -38,15 +36,15 @@ export class Body extends HTML {
   }
 
   onUpdateProjects() {
-    this.children.projects.clear()
+    this.projects.clear()
     this.state.projects.map((p, ix) => {
       const project = new ProjectComponent(p)
-      project.children.header.addEventListener('deleteproject', () => this.deleteProjectById(ix))
-      this.children.projects.append(project)
+      project.header.addEventListener('deleteproject', () => this.deleteProjectById(ix))
+      this.projects.append(project)
     })
   }
 
   getProjects() {
-    return this.children.projects
+    return this.projects
   }
 }

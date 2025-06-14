@@ -1,10 +1,8 @@
 import { HTML, nFlex } from '../../../assets/js/libs/afrontend/index.js'
 
 export class Valuable extends HTML {
-  children = {
-    title: new HTML(),
-    value: new HTML(),
-  }
+  title = new HTML()
+  value = new HTML()
 
   onCreate() {
     this.append(this.getFlex())
@@ -22,9 +20,9 @@ export class Valuable extends HTML {
   }
 
   getTitle() {
-    this.children.title.setText(this.getTitleText())
+    this.title.setText(this.getTitleText())
 
-    return this.children.title
+    return this.title
   }
 
   getValueText(price = 0, coin = 'R$') {
@@ -32,8 +30,8 @@ export class Valuable extends HTML {
   }
 
   getValue() {
-    this.children.value.setText(this.getValueText())
+    this.value.setText(this.getValueText())
 
-    return this.children.value
+    return this.value
   }
 }

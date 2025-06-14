@@ -1,10 +1,8 @@
 import { HTML, nFlex } from '../../../assets/js/libs/afrontend/index.js'
 
 export class Head extends HTML {
-  children = {
-    title: new HTML(),
-    addProject: new HTML(),
-  }
+  title = new HTML()
+  addProject = new HTML()
 
   onCreate() {
     this.setStyles()
@@ -26,14 +24,14 @@ export class Head extends HTML {
   }
 
   getTitle() {
-    this.children.title.setText('projects')
-    return this.children.title
+    this.title.setText('projects')
+    return this.title
   }
 
   getAddProject() {
-    this.children.addProject.setText('create project')
-    this.children.addProject.setStyle('cursor', 'pointer')
-    this.children.addProject.addEventListener('click', () => this.dispatch('createproject'))
-    return this.children.addProject
+    this.addProject.setText('create project')
+    this.addProject.setStyle('cursor', 'pointer')
+    this.addProject.addEventListener('click', () => this.dispatch('createproject'))
+    return this.addProject
   }
 }

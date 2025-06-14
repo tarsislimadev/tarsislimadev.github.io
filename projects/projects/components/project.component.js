@@ -10,11 +10,9 @@ import { ProjectFooter } from './project.footer.js'
 export class ProjectComponent extends HTML {
   state = new ProjectModel()
 
-  children = {
-    header: new ProjectHeader(),
-    endpoints: new HTML(),
-    footer: new ProjectFooter(),
-  }
+  header = new ProjectHeader()
+  endpoints = new HTML()
+  footer = new ProjectFooter()
 
   constructor(state = new ProjectModel()) {
     super()
@@ -27,9 +25,9 @@ export class ProjectComponent extends HTML {
     this.setEvents()
     this.append(this.getHeader())
     this.append(this.getEndPoints())
-    this.append(this.children.footer)
+    this.append(this.footer)
 
-    this.children.header.dispatch('createendpoint')
+    this.header.dispatch('createendpoint')
   }
 
   setStyles() {
@@ -38,11 +36,11 @@ export class ProjectComponent extends HTML {
   }
 
   getHeader() {
-    return this.children.header
+    return this.header
   }
 
   setEvents() {
-    this.children.header.addEventListener('createendpoint', () => this.onCreateEndPoint())
+    this.header.addEventListener('createendpoint', () => this.onCreateEndPoint())
 
     this.addEventListener('updateendpoints', () => this.onUpdateEndPoints())
 
@@ -58,23 +56,23 @@ export class ProjectComponent extends HTML {
 
   onUpdateEndPoints() {
 
-    this.children.endpoints.clear()
+    this.endpoints.clear()
 
     this.state.endpoints.map((ep) => {
       const endpoint = new EndPoint(ep)
       endpoint.addEventListener('updateendpoint', () => this.dispatch('updateendpoints'))
-      this.children.endpoints.append(endpoint)
+      this.endpoints.append(endpoint)
     })
 
     // update values
     this.state.unique = +this.state.endpoints.reduce((h, { hours }) => h + hours, 0)
 
     // update footer
-    this.children.footer.setUnique(this.state.unique)
-    this.children.footer.setYearly(this.state.yearly)
+    this.footer.setUnique(this.state.unique)
+    this.footer.setYearly(this.state.yearly)
   }
 
   getEndPoints() {
-    return this.children.endpoints
+    return this.endpoints
   }
 }
