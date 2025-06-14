@@ -6,9 +6,7 @@ import * as config from './config.js'
 // https://learn.microsoft.com/en-us/linkedin/shared/authentication/authorization-code-flow?tabs=HTTPS1
 
 export class Page extends PageComponent {
-  children = {
-    texts: new HTML(),
-  }
+  texts = new HTML()
 
   onCreate() {
     super.onCreate()
@@ -44,6 +42,6 @@ export class Page extends PageComponent {
   }
 
   getTextsHTML() {
-    return this.children.texts
+    return this.texts
   }
 }
