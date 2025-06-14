@@ -9,12 +9,10 @@ import { InputComponent } from './components/input.component.js'
 import { createURL, getURLSearchParam } from '../../assets/js/utils/url.js'
 
 export class Page extends PageComponent {
-  children = {
-    peer_id: new LinkComponent({ text: 'chat ' }),
-    messages: new HTML(),
-    peer_input: new InputComponent('peer id'),
-    text_input: new InputComponent('text'),
-  }
+  peer_id = new LinkComponent({ text: 'chat ' })
+  messages = new HTML()
+  peer_input = new InputComponent('peer id')
+  text_input = new InputComponent('text')
 
   state = {
     peer: new Peer(this.createId()),
@@ -51,8 +49,8 @@ export class Page extends PageComponent {
   onPeerOpen() {
     const { id } = this.state.peer
     this.addMessage(`${id}: open: ${Date.now()}`)
-    this.children.peer_id.setText('chat ' + id)
-    this.children.peer_id.href(createURL({ search: { id } }))
+    this.peer_id.setText('chat ' + id)
+    this.peer_id.href(createURL({ search: { id } }))
     this.connect(getURLSearchParam('id'))
   }
 
@@ -76,7 +74,7 @@ export class Page extends PageComponent {
   }
 
   getPeerIdHTML() {
-    return this.children.peer_id
+    return this.peer_id
   }
 
   getPeerForm() {
@@ -84,7 +82,7 @@ export class Page extends PageComponent {
   }
 
   getPeerIdInput() {
-    return this.children.peer_input
+    return this.peer_input
   }
 
   getConnectButton() {
@@ -92,7 +90,7 @@ export class Page extends PageComponent {
   }
 
   onConnectButtonClick() {
-    const peer_id = this.children.peer_input.getValue()
+    const peer_id = this.peer_input.getValue()
 
     const conn = this.state.peer.connect(peer_id)
 
@@ -116,8 +114,8 @@ export class Page extends PageComponent {
   }
 
   getMessagesHTML() {
-    this.children.messages.setStyle('padding', 'calc(1rem / 4) 0rem')
-    return this.children.messages
+    this.messages.setStyle('padding', 'calc(1rem / 4) 0rem')
+    return this.messages
   }
 
   getTextForm() {
@@ -125,7 +123,7 @@ export class Page extends PageComponent {
   }
 
   getTextInput() {
-    return this.children.text_input
+    return this.text_input
   }
 
   getSendButton() {
@@ -133,14 +131,14 @@ export class Page extends PageComponent {
   }
 
   onSendButtonClick() {
-    const message = this.children.text_input.getValue()
+    const message = this.text_input.getValue()
     Array.from(this.state.conns).map((conn) => conn.send(message))
     this.addMessage(`${this.state.peer.id}: message: ${message}`)
-    this.children.text_input.setValue('')
+    this.text_input.setValue('')
   }
 
   addMessage(text) {
-    this.children.messages.prepend(new TextComponent({ text }))
+    this.messages.prepend(new TextComponent({ text }))
   }
 
   connect(id) {
