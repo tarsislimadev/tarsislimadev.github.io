@@ -7,13 +7,9 @@ import * as config from './config.js'
 import { loadScript } from '../../assets/js/libs/paypal/index.js'
 
 export class Page extends PageComponent {
-  state = {
-    amount: 100,
-  }
+  state = { amount: 100 }
 
-  children = {
-    error: new TextComponent({}),
-  }
+  error = new TextComponent({})
 
   onCreate() {
     super.onCreate()
@@ -23,7 +19,7 @@ export class Page extends PageComponent {
     this.append(this.getSubtitleHTML())
     this.append(this.getFlex())
     this.append(this.getErrorComponent())
-    this.append(this.children.button)
+    this.append(this.button)
   }
 
   setEvents() {
@@ -40,12 +36,12 @@ export class Page extends PageComponent {
 
   setErrorText(text, error = new Error()) {
     console.error(error)
-    this.children.error.setText(text)
+    this.error.setText(text)
   }
 
   getErrorComponent() {
-    this.children.error.setStyle('color', '#ff0000')
-    return this.children.error
+    this.error.setStyle('color', '#ff0000')
+    return this.error
   }
 
   getTitleHTML() {
