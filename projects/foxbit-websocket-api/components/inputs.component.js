@@ -2,7 +2,7 @@ import * as COMPONENTS from '../../../assets/js/components/inputs.component.js'
 import { InputComponent } from '../../../assets/js/components/input.component.js'
 
 export class InputsComponent extends COMPONENTS.InputsComponent {
-  children = {
+  components = {
     APIKey: new InputComponent({ label: 'APIKey' }),
     Amount: new InputComponent({ label: 'Amount' }),
     Code: new InputComponent({ label: 'Code' }),

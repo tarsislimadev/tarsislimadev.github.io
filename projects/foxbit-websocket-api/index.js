@@ -10,23 +10,23 @@ import { CloseSocketMessageModel } from '../../assets/js/models/close.socket.mes
 import { OpenSocketMessageModel } from '../../assets/js/models/open.socket.message.model.js'
 import { MessageModel } from '../../assets/js/models/message.model.js'
 
+import { ApplicationWebSocket } from '../../assets/js/utils/socket.js'
+
 export class Page extends PageComponent {
   state = {
     socket: this.createSocketConnection(),
   }
 
-  children = {
-    form: new FormComponent(),
-    messages: new MessagesComponent(),
-  }
+  form = new FormComponent()
+  messages = new MessagesComponent()
 
   createSocketConnection() {
-    const socket = new WebSocket('wss://api.foxbit.com.br/')
-    socket.addEventListener('open', (data) => this.onSocketOpen(data))
-    socket.addEventListener('message', (data) => this.onSocketMessage(data))
-    socket.addEventListener('error', (data) => this.onSocketError(data))
-    socket.addEventListener('close', (data) => this.onSocketClose(data))
-    return socket
+    return new ApplicationWebSocket('wss://api.foxbit.com.br/', {
+      onopen: (data) => this.onSocketOpen(data),
+      onmessage: (data) => this.onSocketMessage(data),
+      onerror: (data) => this.onSocketError(data),
+      onclose: (data) => this.onSocketClose(data),
+    })
   }
 
   onSocketOpen(data) {
@@ -55,7 +55,7 @@ export class Page extends PageComponent {
   }
 
   setEvents() {
-    this.children.form.addEventListener('submit', ({ value: data }) => this.onFormSubmit(data))
+    this.form.addEventListener('submit', ({ value: data }) => this.onFormSubmit(data))
   }
 
   onFormSubmit(data) {
@@ -66,14 +66,14 @@ export class Page extends PageComponent {
   }
 
   getFormComponent() {
-    return this.children.form
+    return this.form
   }
 
   getMessagesComponent() {
-    return this.children.messages
+    return this.messages
   }
 
   appendMessage(message = new MessageModel()) {
-    this.children.messages.dispatch('message', message)
+    this.messages.dispatch('message', message)
   }
 }

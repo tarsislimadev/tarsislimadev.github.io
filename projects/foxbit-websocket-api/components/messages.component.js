@@ -6,9 +6,7 @@ import * as inputs from './input.messages.component.js'
 import * as outputs from './output.messages.component.js'
 
 export class MessagesComponent extends HTML {
-  children = {
-    messages: new HTML(),
-  }
+  messages = new HTML()
 
   onCreate() {
     super.onCreate()
@@ -21,7 +19,7 @@ export class MessagesComponent extends HTML {
   }
 
   onMessage(message = new MessageModel()) {
-    this.children.messages.prepend(this.parseMessageComponent(message))
+    this.messages.prepend(this.parseMessageComponent(message))
   }
 
   parseMessageComponent(message = new MessageModel()) {
@@ -54,6 +52,6 @@ export class MessagesComponent extends HTML {
   }
 
   getMessagesComponent() {
-    return this.children.messages
+    return this.messages
   }
 }
