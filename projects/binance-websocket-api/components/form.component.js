@@ -7,10 +7,8 @@ import { InputsComponent } from './inputs.component.js'
 const inputs = new InputsComponent()
 
 export class FormComponent extends HTML {
-  children = {
-    select: new SelectComponent({ options: getInputEndpointsList().map(({ name }) => ([name, name])) }),
-    inputs: new HTML(),
-  }
+  select = new SelectComponent({ options: getInputEndpointsList().map(({ name }) => ([name, name])) })
+  inputs = new HTML()
 
   onCreate() {
     super.onCreate()
@@ -19,7 +17,7 @@ export class FormComponent extends HTML {
   }
 
   getSelectValue() {
-    return this.children.select.getValue()
+    return this.select.getValue()
   }
 
   getEndpointByName(name = this.getSelectValue()) {
@@ -27,19 +25,19 @@ export class FormComponent extends HTML {
   }
 
   onSelectComponentChange() {
-    this.children.inputs.clear()
+    this.inputs.clear()
     const params = this.getEndpointByName()?.params
-    Array.from(params).map((param) => this.children.inputs.append(inputs.getComponent(param)))
+    Array.from(params).map((param) => this.inputs.append(inputs.getComponent(param)))
   }
 
   getSelectComponent() {
-    this.children.select.addEventListener('change', () => this.onSelectComponentChange())
-    return this.children.select
+    this.select.addEventListener('change', () => this.onSelectComponentChange())
+    return this.select
   }
 
   getInputs() {
     const html = new HTML()
-    html.append(this.children.inputs)
+    html.append(this.inputs)
     html.append(new ButtonComponent({ text: 'send', onclick: () => this.onSendButtonClick() }))
     return html
   }

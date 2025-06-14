@@ -3,13 +3,17 @@ import { PageComponent } from '../../assets/js/components/page.component.js'
 import { LinkComponent } from '../../assets/js/components/link.component.js'
 import { MessagesComponent } from './components/messages.component.js'
 import { FormComponent } from './components/form.component.js'
+
 import { InputSocketMessageModel } from './models/input.socket.message.model.js'
 import { OutputSocketMessageModel } from '../../assets/js/models/output.socket.message.model.js'
 import { ErrorSocketMessageModel } from '../../assets/js/models/error.socket.message.model.js'
 import { CloseSocketMessageModel } from '../../assets/js/models/close.socket.message.model.js'
 import { OpenSocketMessageModel } from '../../assets/js/models/open.socket.message.model.js'
 import { MessageModel } from '../../assets/js/models/message.model.js'
-import { BinanceWebSocket } from '../../assets/js/apis/binance.js'
+
+import { ApplicationWebSocket } from '../../assets/js/utils/socket.js'
+
+import { websocket } from '../../assets/js/apis/binance.js'
 
 import BINANCE from '../../assets/js/config/binance/index.js'
 
@@ -19,18 +23,16 @@ export class Page extends PageComponent {
     messages: [],
   }
 
-  children = {
-    form: new FormComponent(),
-    messages: new MessagesComponent(),
-  }
+  form = new FormComponent()
+  messages = new MessagesComponent()
 
   createSocketConnection() {
-    const socket = new BinanceWebSocket()
-    socket.addEventListener('open', (data) => this.onSocketOpen(data))
-    socket.addEventListener('message', (data) => this.onSocketMessage(data))
-    socket.addEventListener('error', (data) => this.onSocketError(data))
-    socket.addEventListener('close', (data) => this.onSocketClose(data))
-    return socket
+    return new ApplicationWebSocket(websocket.url, {
+      onopen: (data) => this.onSocketOpen(data),
+      onmessage: (data) => this.onSocketMessage(data),
+      onerror: (data) => this.onSocketError(data),
+      onclose: (data) => this.onSocketClose(data),
+    })
   }
 
   onSocketOpen(data) {
@@ -68,7 +70,7 @@ export class Page extends PageComponent {
   }
 
   setEvents() {
-    this.children.form.addEventListener('submit', ({ value: data }) => this.onFormSubmit(data))
+    this.form.addEventListener('submit', ({ value: data }) => this.onFormSubmit(data))
   }
 
   onFormSubmit(data) {
@@ -79,15 +81,15 @@ export class Page extends PageComponent {
   }
 
   getFormComponent() {
-    return this.children.form
+    return this.form
   }
 
   getMessagesComponent() {
-    return this.children.messages
+    return this.messages
   }
 
   appendMessage(message = new MessageModel()) {
     this.state.messages.push(message)
-    this.children.messages.dispatch('message', message)
+    this.messages.dispatch('message', message)
   }
 }

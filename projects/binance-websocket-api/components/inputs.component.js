@@ -13,12 +13,12 @@ class TimestampComponent extends InputComponent {
   }
 
   onUpdateButton() {
-    this.children.input.setValue(Date.now())
+    this.input.setValue(Date.now())
   }
 }
 
 export class InputsComponent extends COMPONENTS.InputsComponent {
-  children = {
+  components = {
     limit: new SelectComponent({ label: 'limit', options: [[1, 1], [5, 5], [10, 10], [50, 50], [100, 100],] }),
     symbol: new SelectComponent({ label: 'symbol', options: getSymbolsList().map((s) => ([s, s])) }),
     interval: new SelectComponent({ label: 'interval', options: getIntervalsList().map((s) => ([s, s])) }),
