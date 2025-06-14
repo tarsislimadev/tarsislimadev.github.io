@@ -8,10 +8,8 @@ import { InputComponent } from '../../assets/js/components/input.component.js'
 import { MessageModel } from './models/message.model.js'
 
 export class Page extends PageComponent {
-  children = {
-    ip: new HTML(),
-    messages: new HTML(),
-  }
+  ip = new HTML()
+  messages = new HTML()
 
   onCreate() {
     super.onCreate()
@@ -41,11 +39,11 @@ export class Page extends PageComponent {
   }
 
   addMessage(message = new MessageModel()) {
-    this.children.messages.append(new TextComponent({ text: message.type }))
+    this.messages.append(new TextComponent({ text: message.type }))
   }
 
   getMessages() {
-    this.children.messages.setStyle('text-align', 'right')
-    return this.children.messages
+    this.messages.setStyle('text-align', 'right')
+    return this.messages
   }
 }
