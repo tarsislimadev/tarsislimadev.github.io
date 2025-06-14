@@ -3,9 +3,7 @@ import { TextComponent } from '../../../assets/js/components/text.component.js'
 import { ip } from '../../../assets/js/utils/net.js'
 
 export class HeaderComponent extends HTML {
-  children = {
-    ip: new HTML(),
-  }
+  ip = new HTML()
 
   onCreate() {
     super.onCreate()
@@ -41,11 +39,11 @@ export class HeaderComponent extends HTML {
   }
 
   getIpHTML() {
-    this.children.ip.setStyle('padding', '1rem')
-    return this.children.ip
+    this.ip.setStyle('padding', '1rem')
+    return this.ip
   }
 
   getIp() {
-    ip().then((res) => this.children.ip.setText(res.ip))
+    ip().then((res) => this.ip.setText(res.ip))
   }
 }

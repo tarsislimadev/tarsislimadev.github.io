@@ -2,10 +2,8 @@ import { HTML, nSelect, nButton } from '../../../assets/js/libs/afrontend/index.
 import { getProductList } from '../utils/lists.js'
 
 export class FormComponent extends HTML {
-  children = {
-    select: new nSelect(),
-    inputs: new HTML(),
-  }
+  select = new nSelect()
+  inputs = new HTML()
 
   onCreate() {
     super.onCreate()
@@ -15,22 +13,22 @@ export class FormComponent extends HTML {
   }
 
   getSelect() {
-    Array.from(getProductList()).map((item) => this.children.select.addOption(item, item))
-    this.children.select.addEventListener('change', () => this.onSelectChange())
-    this.children.select.setContainerStyle('padding', '1rem')
-    this.children.select.setStyle('background-color', 'transparent')
-    this.children.select.setStyle('padding', '1rem')
-    this.children.select.setStyle('border', 'none')
-    this.children.select.setStyle('width', '10rem')
-    return this.children.select
+    Array.from(getProductList()).map((item) => this.select.addOption(item, item))
+    this.select.addEventListener('change', () => this.onSelectChange())
+    this.select.setContainerStyle('padding', '1rem')
+    this.select.setStyle('background-color', 'transparent')
+    this.select.setStyle('padding', '1rem')
+    this.select.setStyle('border', 'none')
+    this.select.setStyle('width', '10rem')
+    return this.select
   }
 
   onSelectChange() {
-    this.dispatch('change', this.children.select.getValue())
+    this.dispatch('change', this.select.getValue())
   }
 
   getInputs() {
-    return this.children.inputs
+    return this.inputs
   }
 
   getButton() {
@@ -44,6 +42,6 @@ export class FormComponent extends HTML {
   }
 
   onButtonClick() {
-    this.dispatch('start', this.children.select.getValue())
+    this.dispatch('start', this.select.getValue())
   }
 }

@@ -2,23 +2,23 @@ import { HTML, nFlex } from '../../../assets/js/libs/afrontend/index.js'
 import { FormComponent } from './form.component.js'
 import { MessagesComponent } from './messages.component.js'
 
+import { PublicBitgetWebSocket } from '../../../assets/js/apis/bitget.js'
+
 export class ContentComponent extends HTML {
-  children = {
-    form: new FormComponent(),
-    messages: new MessagesComponent(),
-  }
+  form = new FormComponent()
+  messages = new MessagesComponent()
 
   state = {
     socket: this.getWebSocket()
   }
 
   getWebSocket() {
-    const ws = new WebSocket('wss://ws.bitget.com/v2/ws/public')
-    ws.addEventListener('open', (data) => this.onSocketOpen(data))
-    ws.addEventListener('message', (data) => this.onSocketMessage(data))
-    ws.addEventListener('error', (data) => this.onSocketError(data))
-    ws.addEventListener('close', (data) => this.onSocketClose(data))
-    return ws
+    return PublicBitgetWebSocket({
+      onopen: (data) => this.onSocketOpen(data),
+      onmessage: (data) => this.onSocketMessage(data),
+      onerror: (data) => this.onSocketError(data),
+      onclose: (data) => this.onSocketClose(data),
+    })
   }
 
   onSocketOpen(data) {
@@ -50,15 +50,15 @@ export class ContentComponent extends HTML {
   }
 
   getFormComponent() {
-    this.children.form.addEventListener('start', (ev) => this.onStart(ev))
-    this.children.form.addEventListener('change', (ev) => this.onChange(ev))
-    return this.children.form
+    this.form.addEventListener('start', (ev) => this.onStart(ev))
+    this.form.addEventListener('change', (ev) => this.onChange(ev))
+    return this.form
   }
 
   onStart(ev) {
     const message = { "op": "subscribe", "args": [{ "instType": "SPOT", "channel": "candle1m", "instId": ev.value }] }
     this.state.socket.send(JSON.stringify(message))
-    this.children.messages.dispatch('message', message)
+    this.messages.dispatch('message', message)
   }
 
   onChange(ev) {
@@ -66,6 +66,6 @@ export class ContentComponent extends HTML {
   }
 
   getMessagesComponent() {
-    return this.children.messages
+    return this.messages
   }
 }
