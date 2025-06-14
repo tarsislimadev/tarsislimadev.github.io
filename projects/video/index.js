@@ -8,15 +8,13 @@ import { TextComponent } from '../../assets/js/components/text.component.js'
 import { VideoComponent } from './components/video.component.js'
 
 export class Page extends PageComponent {
-  children = {
-    media_id: new TextComponent({ text: 'media id: ' }),
-    media_button: new ButtonComponent({ text: 'user media', onclick: () => this.onUserMediaButtonClick() }),
-    media: new VideoComponent(),
-    call_id: new InputComponent({ label: 'call id' }),
-    call_button: new ButtonComponent({ text: 'call' }),
-    call: new VideoComponent(),
-    error: new HTML(),
-  }
+  media_id = new TextComponent({ text: 'media id: ' })
+  media_button = new ButtonComponent({ text: 'user media', onclick: () => this.onUserMediaButtonClick() })
+  media = new VideoComponent()
+  call_id = new InputComponent({ label: 'call id' })
+  call_button = new ButtonComponent({ text: 'call' })
+  call = new VideoComponent()
+  error = new HTML()
 
   state = {
     media: null,
@@ -36,12 +34,12 @@ export class Page extends PageComponent {
     this.state.peer.on('open', (data) => this.onPeerOpen(data))
     this.state.peer.on('call', (data) => this.onPeerCall(data))
     // call_button
-    this.children.call_button.on('click', () => this.onCallButtonClick())
+    this.call_button.on('click', () => this.onCallButtonClick())
   }
 
   onPeerOpen(id) {
     console.log('on peer open', { data: id })
-    this.children.media_id.setText('media id: ' + id)
+    this.media_id.setText('media id: ' + id)
   }
 
   onPeerCall(call) {
@@ -49,8 +47,8 @@ export class Page extends PageComponent {
     call.answer(this.state.media)
     call.on('stream', (stream) => {
       console.log('on call stream', { stream })
-      this.children.call.srcObject(this.state.call = stream)
-      this.children.call.play()
+      this.call.srcObject(this.state.call = stream)
+      this.call.play()
     })
   }
 
@@ -58,11 +56,11 @@ export class Page extends PageComponent {
     this.getUserMedia()
     navigator.getUserMedia({ audio: true, video: true }, (stream) => {
       console.log('on user media', { stream })
-      this.children.media.srcObject(this.state.media = stream)
-      this.children.media.play()
+      this.media.srcObject(this.state.media = stream)
+      this.media.play()
     }, (error) => {
-      this.children.error.clear()
-      this.children.error.append(new TextComponent({ text: error.toString() }))
+      this.error.clear()
+      this.error.append(new TextComponent({ text: error.toString() }))
     })
   }
 
@@ -83,25 +81,25 @@ export class Page extends PageComponent {
 
   getLeft() {
     const html = new HTML()
-    html.append(this.children.media_id)
-    html.append(this.children.media_button)
-    html.append(this.children.media)
+    html.append(this.media_id)
+    html.append(this.media_button)
+    html.append(this.media)
     return html
   }
 
   getRight() {
     const html = new HTML()
-    html.append(this.children.call_id)
-    html.append(this.children.call_button)
-    html.append(this.children.call)
+    html.append(this.call_id)
+    html.append(this.call_button)
+    html.append(this.call)
     return html
   }
 
   getErrorComponent() {
-    return this.children.error
+    return this.error
   }
 
-  onCallButtonClick(id = this.children.call_id.getValue(), stream = this.state.media) {
+  onCallButtonClick(id = this.call_id.getValue(), stream = this.state.media) {
     console.log('on Call Button Click', { id })
     this.state.peer.call(id, stream)
   }
