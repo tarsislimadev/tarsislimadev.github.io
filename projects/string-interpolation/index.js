@@ -6,10 +6,8 @@ import { InputComponent } from '../../assets/js/components/input.component.js'
 const DEFAULT_TEXT = '______'
 
 export class Page extends PageComponent {
-  children = {
-    input_text: new InputComponent({ placeholder: 'text' }),
-    text: new TextComponent(),
-  }
+  input_text = new InputComponent({ placeholder: 'text' })
+  text = new TextComponent()
 
   onCreate() {
     super.onCreate()
@@ -31,16 +29,16 @@ export class Page extends PageComponent {
   }
 
   getInputText() {
-    this.children.input_text.children.input.addEventListener('keyup', () => this.updateText())
-    return this.children.input_text
+    this.input_text.input.addEventListener('keyup', () => this.updateText())
+    return this.input_text
   }
 
   updateText() {
-    this.setText(this.children.input_text.getValue())
+    this.setText(this.input_text.getValue())
   }
 
   setText(text = DEFAULT_TEXT) {
-    this.children.text.setText(this.createText(text))
+    this.text.setText(this.createText(text))
   }
 
   createText(text = DEFAULT_TEXT) {
@@ -48,6 +46,6 @@ export class Page extends PageComponent {
   }
 
   getText() {
-    return this.children.text
+    return this.text
   }
 }
