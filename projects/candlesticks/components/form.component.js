@@ -6,11 +6,9 @@ import { getQuantityList } from '../utils/lists/quantity.list.js'
 import { getSymbolList } from '../utils/lists/symbol.list.js'
 
 export class FormComponent extends HTML {
-  children = {
-    quantity: new SelectComponent({ label: 'quantity' }),
-    symbol: new SelectComponent({ label: 'symbol' }),
-    interval: new SelectComponent({ label: 'interval' }),
-  }
+  quantity = new SelectComponent({ label: 'quantity' })
+  symbol = new SelectComponent({ label: 'symbol' })
+  interval = new SelectComponent({ label: 'interval' })
 
   onCreate() {
     super.onCreate()
@@ -18,7 +16,7 @@ export class FormComponent extends HTML {
   }
 
   getSymbol() {
-    return this.children.symbol.getValue()
+    return this.symbol.getValue()
   }
 
   getMenu() {
@@ -30,32 +28,32 @@ export class FormComponent extends HTML {
   }
 
   getSymbolSelect() {
-    getSymbolList().map((symbol) => this.children.symbol.addOption(symbol, symbol))
-    this.children.symbol.addEventListener('change', () => this.update())
-    return this.children.symbol
+    getSymbolList().map((symbol) => this.symbol.addOption(symbol, symbol))
+    this.symbol.addEventListener('change', () => this.update())
+    return this.symbol
   }
 
   getIntervalSelect() {
-    getIntervalList().map((interval) => this.children.interval.addOption(interval, interval))
-    this.children.interval.addEventListener('change', () => this.update())
-    return this.children.interval
+    getIntervalList().map((interval) => this.interval.addOption(interval, interval))
+    this.interval.addEventListener('change', () => this.update())
+    return this.interval
   }
 
   getQuantitySelect() {
-    getQuantityList().map((quantity) => this.children.quantity.addOption(quantity, quantity))
-    this.children.quantity.addEventListener('change', () => this.update())
-    return this.children.quantity
+    getQuantityList().map((quantity) => this.quantity.addOption(quantity, quantity))
+    this.quantity.addEventListener('change', () => this.update())
+    return this.quantity
   }
 
   getQuantity() {
-    return this.children.quantity.getValue()
+    return this.quantity.getValue()
   }
 
   update() {
     this.dispatch('update', {
-      quantity: this.children.quantity.getValue(),
-      symbol: this.children.symbol.getValue(),
-      interval: this.children.interval.getValue(),
+      quantity: this.quantity.getValue(),
+      symbol: this.symbol.getValue(),
+      interval: this.interval.getValue(),
     })
   }
 }

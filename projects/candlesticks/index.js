@@ -8,11 +8,9 @@ import { FormComponent } from './components/form.component.js'
 import * as Local from '../../assets/js/utils/local.js'
 
 export class Page extends PageComponent {
-  children = {
-    form: new FormComponent(),
-    charts: new ChartsComponent(),
-    moves: new MovesComponent(),
-  }
+  form = new FormComponent()
+  charts = new ChartsComponent()
+  moves = new MovesComponent()
 
   onCreate() {
     super.onCreate()
@@ -22,10 +20,10 @@ export class Page extends PageComponent {
   }
 
   setEvents() {
-    this.addEventListener('update', () => this.children.moves.dispatch('update'))
-    this.children.form.addEventListener('update', ({ value: data }) => this.update({ form: data }))
-    this.children.moves.addEventListener('buy', () => this.saveMove({ side: 'buy' }))
-    this.children.moves.addEventListener('sell', () => this.saveMove({ side: 'sell' }))
+    this.addEventListener('update', () => this.moves.dispatch('update'))
+    this.form.addEventListener('update', ({ value: data }) => this.update({ form: data }))
+    this.moves.addEventListener('buy', () => this.saveMove({ side: 'buy' }))
+    this.moves.addEventListener('sell', () => this.saveMove({ side: 'sell' }))
   }
 
   getLeft() {
@@ -33,7 +31,7 @@ export class Page extends PageComponent {
   }
 
   getForm() {
-    return this.children.form
+    return this.form
   }
 
   getRight() {
@@ -44,19 +42,19 @@ export class Page extends PageComponent {
   }
 
   getChartsComponent() {
-    return this.children.charts
+    return this.charts
   }
 
   getMovesComponent() {
-    return this.children.moves
+    return this.moves
   }
 
   saveMove(params = {}) {
     Local.add(['orders'], {
-      symbol: this.children.form.getSymbol(),
+      symbol: this.form.getSymbol(),
       type: 'LIMIT',
-      quantity: this.children.form.getQuantity(),
-      price: this.children.charts.getPrice(),
+      quantity: this.form.getQuantity(),
+      price: this.charts.getPrice(),
       timeInForce: 'GTC',
       timestamp: Date.now(),
       ...params
@@ -65,7 +63,7 @@ export class Page extends PageComponent {
   }
 
   update(data = {}) {
-    this.children.form.dispatch('input', data)
-    this.children.charts.dispatch('input', data)
+    this.form.dispatch('input', data)
+    this.charts.dispatch('input', data)
   }
 }

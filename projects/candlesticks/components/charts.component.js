@@ -3,9 +3,7 @@ import { getSymbolList } from '../utils/lists/symbol.list.js'
 import { getIntervalList } from '../utils/lists/interval.list.js'
 
 export class ChartsComponent extends HTML {
-  children = {
-    charts: new HTML(),
-  }
+  charts = new HTML()
 
   state = {
     klines: [],
@@ -31,8 +29,8 @@ export class ChartsComponent extends HTML {
   }
 
   getChart() {
-    this.children.charts.setStyle('min-height', '600px')
-    return this.children.charts
+    this.charts.setStyle('min-height', '600px')
+    return this.charts
   }
 
   apiGetKlines() {
@@ -58,7 +56,7 @@ export class ChartsComponent extends HTML {
 
   drawChart() {
     const data = google.visualization.arrayToDataTable(this.getData(), true)
-    const chart = new google.visualization.CandlestickChart(this.children.charts.element)
+    const chart = new google.visualization.CandlestickChart(this.charts.element)
     chart.draw(data, { legend: 'none' })
   }
 

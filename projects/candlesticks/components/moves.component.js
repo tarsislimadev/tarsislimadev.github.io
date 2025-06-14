@@ -6,9 +6,7 @@ import { fixDecimals } from '../../../assets/js/utils/math.js'
 import * as Local from '../../../assets/js/utils/local.js'
 
 export class MovesComponent extends HTML {
-  children = {
-    moves: new HTML(),
-  }
+  moves = new HTML()
 
   onCreate() {
     super.onCreate()
@@ -26,14 +24,14 @@ export class MovesComponent extends HTML {
   }
 
   updateMoves() {
-    this.children.moves.clear()
+    this.moves.clear()
     const orders = Array.from(Local.get(['orders'], []))
       .map((order) => {
         order['price'] = +fixDecimals(order['price'])
         return order
       })
     const table = new TableComponent(orders || [])
-    this.children.moves.append(table)
+    this.moves.append(table)
   }
 
   getTwoColumns() {
@@ -45,7 +43,7 @@ export class MovesComponent extends HTML {
   }
 
   getMovesComponent() {
-    return this.children.moves
+    return this.moves
   }
 
   getButtonsComponents() {
