@@ -26,9 +26,7 @@ class nInputHidden extends nInput {
 }
 
 export class Page extends PageComponent {
-  children = {
-    google_form: new FormComponent(),
-  }
+  google_form = new FormComponent()
 
   state = {
     hash_params: new URLSearchParams(window.location.hash.substr('1')),
@@ -72,7 +70,7 @@ export class Page extends PageComponent {
 
   getButtons() {
     const html = new HTML()
-    html.append(new ButtonComponent({ text: 'google', onclick: () => this.children.google_form.submit() }))
+    html.append(new ButtonComponent({ text: 'google', onclick: () => this.google_form.submit() }))
     html.append(new ButtonComponent({ text: 'facebook', onclick: () => this.onFacebookLoginButtonClick() }))
     html.append(new ButtonComponent({ text: 'clear all', onclick: () => LOCAL.clear() }))
     return html
@@ -83,16 +81,16 @@ export class Page extends PageComponent {
   }
 
   getGoogleForm() {
-    this.children.google_form.setAttr('method', 'GET')
-    this.children.google_form.setAttr('action', GOOGLE.auth_uri)
+    this.google_form.setAttr('method', 'GET')
+    this.google_form.setAttr('action', GOOGLE.auth_uri)
 
-    this.children.google_form.append(new nInputHidden({ key: 'scope', value: this.getGetScopesByURL() }))
+    this.google_form.append(new nInputHidden({ key: 'scope', value: this.getGetScopesByURL() }))
 
     Array.from(['api_key', 'auth_provider_x509_cert_url', 'auth_uri', 'client_id', 'project_id', 'redirect_uri', 'response_type', 'token_uri',]).map((key) => {
-      this.children.google_form.append(new nInputHidden({ key, value: new String(GOOGLE[key]) }))
+      this.google_form.append(new nInputHidden({ key, value: new String(GOOGLE[key]) }))
     })
 
-    return this.children.google_form
+    return this.google_form
   }
 
   getGetScopesByURL() {
