@@ -6,11 +6,9 @@ import { TextComponent } from '../../assets/js/components/text.component.js'
 import { getParams } from '../../assets/js/utils/url.js'
 
 export class Page extends PageComponent {
-  children = {
-    weight: new InputComponent({ label: 'weight (kg)', value: 80, type: 'number' }),
-    height: new InputComponent({ label: 'height (m)', value: 1.8, type: 'number' }),
-    result: new HTML(),
-  }
+  weight = new InputComponent({ label: 'weight (kg)', value: 80, type: 'number' })
+  height = new InputComponent({ label: 'height (m)', value: 1.8, type: 'number' })
+  result = new HTML()
 
   state = { params: getParams({ title: 'IMC' }) }
 
@@ -31,22 +29,22 @@ export class Page extends PageComponent {
   }
 
   getWeightInput() {
-    return this.children.weight
+    return this.weight
   }
 
   getHeightInput() {
-    return this.children.height
+    return this.height
   }
 
   onImcButtonClick() {
-    const weight = this.children.weight.getValue()
-    const height = this.children.height.getValue()
+    const weight = this.weight.getValue()
+    const height = this.height.getValue()
     const imc = this.calcIMC(weight, height)
-    this.children.result.setText(`IMC: ${imc}`)
+    this.result.setText(`IMC: ${imc}`)
   }
 
   getResultHTML() {
-    return this.children.result
+    return this.result
   }
 
   calcIMC(weight = 1, height = 1) {

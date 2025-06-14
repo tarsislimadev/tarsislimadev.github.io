@@ -2,10 +2,8 @@ import { HTML, nInput } from '../../assets/js/libs/afrontend/index.js'
 import { getParams } from './params.js'
 
 export class InputComponent extends HTML {
-  children = {
-    label: new HTML(),
-    input: new nInput(),
-  }
+  label = new HTML()
+  input = new nInput()
 
   state = {
     label: '',
@@ -26,26 +24,26 @@ export class InputComponent extends HTML {
   }
 
   getLabel() {
-    this.children.label.setText(this.state.label)
-    // this.children.label.setStyle('margin', 'calc(1rem / 4) 0')
-    return this.children.label
+    this.label.setText(this.state.label)
+    // this.label.setStyle('margin', 'calc(1rem / 4) 0')
+    return this.label
   }
 
   getInput() {
-    this.children.input.setValue(this.state.value)
-    this.children.input.setPlaceholder(this.state.label)
-    this.children.input.setStyle('background-color', this.state.params.bgcolor)
-    this.children.input.setStyle('box-shadow', '0rem 0rem 0rem 1px #000000')
-    this.children.input.setStyle('color', this.state.params.color)
-    // this.children.input.setStyle('margin', 'calc(1rem / 4) 0')
-    this.children.input.setStyle('box-sizing', 'border-box')
-    this.children.input.setStyle('display', 'inline-block')
-    this.children.input.setStyle('border', 'none')
-    this.children.input.setStyle('width', '100%')
-    return this.children.input
+    this.input.setValue(this.state.value)
+    this.input.setPlaceholder(this.state.label)
+    this.input.setStyle('background-color', this.state.params.bgcolor)
+    this.input.setStyle('box-shadow', '0rem 0rem 0rem 1px #000000')
+    this.input.setStyle('color', this.state.params.color)
+    // this.input.setStyle('margin', 'calc(1rem / 4) 0')
+    this.input.setStyle('box-sizing', 'border-box')
+    this.input.setStyle('display', 'inline-block')
+    this.input.setStyle('border', 'none')
+    this.input.setStyle('width', '100%')
+    return this.input
   }
 
   getValue() {
-    return this.children.input.getValue()
+    return this.input.getValue()
   }
 }
