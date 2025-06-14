@@ -42,10 +42,8 @@ class LineHTML extends nFlex {
 }
 
 export class Page extends PageComponent {
-  children = {
-    result: new HTML(),
-    keyboard: new HTML(),
-  }
+  result = new HTML()
+  keyboard = new HTML()
 
   state = {
     n1: 0,
@@ -64,10 +62,10 @@ export class Page extends PageComponent {
   }
 
   getResultComponent() {
-    this.children.result.setStyle('text-align', 'center')
-    this.children.result.setStyle('font-size', '2rem')
-    this.children.result.setStyle('padding', '2rem')
-    return this.children.result
+    this.result.setStyle('text-align', 'center')
+    this.result.setStyle('font-size', '2rem')
+    this.result.setStyle('padding', '2rem')
+    return this.result
   }
 
   getRandomNumber(max = 100) {
@@ -88,10 +86,10 @@ export class Page extends PageComponent {
         cell.addEventListener('input', ({ value }) => this.onInput(value))
         cols.push(cell)
       })
-      this.children.keyboard.append(new LineHTML({ cols }))
+      this.keyboard.append(new LineHTML({ cols }))
     })
 
-    return this.children.keyboard
+    return this.keyboard
   }
 
   onInput(data) {
@@ -164,7 +162,7 @@ export class Page extends PageComponent {
   }
 
   update() {
-    this.children.result.setText(`${this.getCalc()} = ${this.state.result}`)
+    this.result.setText(`${this.getCalc()} = ${this.state.result}`)
   }
 
   getCalc(n1 = this.state.n1, operator = this.state.operator, n2 = this.state.n2) {
