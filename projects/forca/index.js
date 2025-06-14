@@ -10,9 +10,7 @@ export class Page extends PageComponent {
     ee: new EventTarget(),
   }
 
-  children = {
-    game: new HTML(),
-  }
+  game = new HTML()
 
   getBodyComponent() {
     const html = new HTML()
@@ -28,7 +26,7 @@ export class Page extends PageComponent {
       'text',
       ({ value: text }) => console.log('text', text)
     )
-    return this.children.game
+    return this.game
   }
 
   setEvents() {
@@ -36,7 +34,7 @@ export class Page extends PageComponent {
 
     this.state.peer.on('connection', (conn) => {
       conn.on('data', ({ message: { text } }) => {
-        this.children.game.append(new TextComponent({ text }))
+        this.game.append(new TextComponent({ text }))
       })
     })
   }
