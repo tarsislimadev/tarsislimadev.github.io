@@ -3,11 +3,9 @@ import { HTML, nSelect } from '../../../assets/js/libs/afrontend/index.js'
 export class SelectComponent extends HTML {
   state = { label: '', options: [] }
 
-  children = {
-    label: new HTML(),
-    input: new nSelect(),
-    error: new HTML(),
-  }
+  label = new HTML()
+  input = new nSelect()
+  error = new HTML()
 
   constructor({ label = '', options = [] } = {}) {
     super()
@@ -19,21 +17,16 @@ export class SelectComponent extends HTML {
 
   onCreate() {
     super.onCreate()
-    this.setEvents()
     this.append(this.getLabel())
     this.append(this.getInput())
     this.append(this.getError())
   }
 
-  setEvents() {
-    this.input.addEventListener('change', () => this.dispatch('change'))
-  }
-
   getLabel() {
-    this.children.label.setStyle('margin', '0rem 0rem calc(1rem / 4) 0rem')
-    this.children.label.setText(this.state.label)
+    this.label.setStyle('margin', '0rem 0rem calc(1rem / 4) 0rem')
+    this.label.setText(this.state.label)
     Array.from(this.state.options).map(([key, value = '']) => this.addOption(key, value))
-    return this.children.label
+    return this.label
   }
 
   getInput() {
@@ -45,7 +38,7 @@ export class SelectComponent extends HTML {
   }
 
   getError() {
-    return this.children.error
+    return this.error
   }
 
   getValue() {
