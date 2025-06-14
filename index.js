@@ -10,12 +10,10 @@ import { TextComponent } from './assets/js/components/text.component.js'
 import OWNER from './assets/js/owner.js'
 
 export class Page extends FirebaseDatabasePageComponent {
-  children = {
-    name: new InputComponent({ placeholder: 'Nome' }),
-    email: new InputComponent({ placeholder: 'E-mail' }),
-    whatsapp: new InputComponent({ placeholder: 'WhatsApp' }),
-    send_button: new ButtonComponent({ text: 'Enviar', onclick: () => this.onSendButtonComponentClick() }),
-  }
+  name = new InputComponent({ placeholder: 'Nome' }),
+  email = new InputComponent({ placeholder: 'E-mail' }),
+  whatsapp = new InputComponent({ placeholder: 'WhatsApp' }),
+  send_button = new ButtonComponent({ text: 'Enviar', onclick: () => this.onSendButtonComponentClick() }),
 
   onCreate() {
     super.onCreate()
@@ -40,25 +38,25 @@ export class Page extends FirebaseDatabasePageComponent {
   }
 
   getNameInputComponent() {
-    return this.children.name
+    return this.name
   }
 
   getEmailInputComponent() {
-    return this.children.email
+    return this.email
   }
 
   getWhatsAppInputComponent() {
-    return this.children.whatsapp
+    return this.whatsapp
   }
 
   getSendButtonComponent() {
-    return this.children.send_button
+    return this.send_button
   }
 
   onSendButtonComponentClick() {
-    const name = this.children.name.getValue()
-    const email = this.children.email.getValue()
-    const whatsapp = this.children.whatsapp.getValue()
+    const name = this.name.getValue()
+    const email = this.email.getValue()
+    const whatsapp = this.whatsapp.getValue()
 
     if (!name || !email || !whatsapp) {
       alert('Preencha todos os campos')
@@ -66,9 +64,9 @@ export class Page extends FirebaseDatabasePageComponent {
     }
 
     this.save({ name, email, whatsapp }).then(() => {
-      this.children.name.setValue('')
-      this.children.email.setValue('')
-      this.children.whatsapp.setValue('')
+      this.name.setValue('')
+      this.email.setValue('')
+      this.whatsapp.setValue('')
       alert('Mensagem enviada com sucesso!')
     }).catch((err) => {
       console.error(err)
