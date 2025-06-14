@@ -7,11 +7,9 @@ import { datetime2str } from '../../assets/js/utils/str.js'
 import * as Local from '../../assets/js/utils/local.js'
 
 export class Page extends PageComponent {
-  children = {
-    input: new InputComponent({ placeholder: 'what am i doing?' }),
-    button: new ButtonComponent({ text: 'save', onclick: () => this.onButtonClick() }),
-    list: new HTML(),
-  }
+  input = new InputComponent({ placeholder: 'what am i doing?' })
+  button = new ButtonComponent({ text: 'save', onclick: () => this.onButtonClick() })
+  list = new HTML()
 
   onCreate() {
     super.onCreate()
@@ -34,16 +32,16 @@ export class Page extends PageComponent {
   }
 
   getInput() {
-    return this.children.input
+    return this.input
   }
 
   getButton() {
-    this.children.button.setStyle('width', '100%')
-    return this.children.button
+    this.button.setStyle('width', '100%')
+    return this.button
   }
 
   onButtonClick() {
-    this.appendTask(this.children.input.children.input.getValue())
+    this.appendTask(this.input.input.getValue())
     this.updateList()
     this.clearInput()
   }
@@ -55,17 +53,17 @@ export class Page extends PageComponent {
   }
 
   updateList() {
-    this.children.list.clear()
+    this.list.clear()
     Local.get(['tasks'], []).map(({ title, datetime }) => {
       const flex = new nFlex()
       flex.append(new TextComponent({ text: title }))
       flex.append(new TextComponent({ text: datetime2str(datetime) }))
-      this.children.list.prepend(flex)
+      this.list.prepend(flex)
     })
   }
 
   clearInput() {
-    this.children.input.children.input.setValue('')
+    this.input.input.setValue('')
   }
 
   notifyMe(text) {
@@ -73,7 +71,7 @@ export class Page extends PageComponent {
   }
 
   getTasksList() {
-    this.children.list.setStyle('margin', '1rem 0rem 0rem 0rem')
-    return this.children.list
+    this.list.setStyle('margin', '1rem 0rem 0rem 0rem')
+    return this.list
   }
 }
