@@ -1,10 +1,8 @@
 import { HTML, nFlex, nInput, nButton } from '../../../assets/js/libs/afrontend/index.js'
 
 export class HeaderComponent extends HTML {
-  children = {
-    url: new nInput(),
-    connect: new nButton(),
-  }
+  url = new nInput()
+  connect = new nButton()
 
   onCreate() {
     super.onCreate()
@@ -19,23 +17,23 @@ export class HeaderComponent extends HTML {
   }
 
   getUrlInput() {
-    this.children.url.setContainerStyle('padding', '1rem')
-    this.children.url.setStyle('padding', 'calc(1rem / 4)')
-    this.children.url.setStyle('width', '100%')
-    this.children.url.setPlaceholder('url')
-    return this.children.url
+    this.url.setContainerStyle('padding', '1rem')
+    this.url.setStyle('padding', 'calc(1rem / 4)')
+    this.url.setStyle('width', '100%')
+    this.url.setPlaceholder('url')
+    return this.url
   }
 
   getConnectButton() {
-    this.children.connect.setContainerStyle('padding', '1rem')
-    this.children.connect.setStyle('padding', 'calc(1rem / 4)')
-    this.children.connect.setStyle('width', '100%')
-    this.children.connect.setText('connect')
-    this.children.connect.addEventListener('click', () => this.onConnectButtonClick())
-    return this.children.connect
+    this.connect.setContainerStyle('padding', '1rem')
+    this.connect.setStyle('padding', 'calc(1rem / 4)')
+    this.connect.setStyle('width', '100%')
+    this.connect.setText('connect')
+    this.connect.addEventListener('click', () => this.onConnectButtonClick())
+    return this.connect
   }
 
   onConnectButtonClick() {
-    this.dispatch('connect', this.children.url.getValue())
+    this.dispatch('connect', this.url.getValue())
   }
 }

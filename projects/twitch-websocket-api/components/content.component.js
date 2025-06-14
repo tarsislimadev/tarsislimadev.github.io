@@ -3,9 +3,7 @@ import { TextComponent } from '../../../assets/js/components/text.component.js'
 import * as str from '../../../assets/js/utils/str.js'
 
 export class ContentComponent extends HTML {
-  children = {
-    messages: new HTML(),
-  }
+  messages = new HTML()
 
   onCreate() {
     super.onCreate()
@@ -18,11 +16,11 @@ export class ContentComponent extends HTML {
   }
 
   getMessages() {
-    return this.children.messages
+    return this.messages
   }
 
   addMessage(header, ...messages) {
-    this.children.messages.prepend(this.createMessageCard(header, ...messages))
+    this.messages.prepend(this.createMessageCard(header, ...messages))
   }
 
   createMessageCard(header, ...messages) {

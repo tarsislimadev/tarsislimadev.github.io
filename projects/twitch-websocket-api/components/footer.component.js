@@ -1,10 +1,8 @@
 import { HTML, nFlex, nInput, nButton } from '../../../assets/js/libs/afrontend/index.js'
 
 export class FooterComponent extends HTML {
-  children = {
-    text: new nInput(),
-    send: new nButton(),
-  }
+  text = new nInput()
+  send = new nButton()
 
   onCreate() {
     super.onCreate()
@@ -19,23 +17,23 @@ export class FooterComponent extends HTML {
   }
 
   getTextInput() {
-    this.children.text.setContainerStyle('padding', '1rem')
-    this.children.text.setStyle('padding', 'calc(1rem / 4)')
-    this.children.text.setStyle('width', '100%')
-    this.children.text.setPlaceholder('text')
-    return this.children.text
+    this.text.setContainerStyle('padding', '1rem')
+    this.text.setStyle('padding', 'calc(1rem / 4)')
+    this.text.setStyle('width', '100%')
+    this.text.setPlaceholder('text')
+    return this.text
   }
 
   getSendButton() {
-    this.children.send.setContainerStyle('padding', '1rem')
-    this.children.send.setStyle('padding', 'calc(1rem / 4)')
-    this.children.send.setStyle('width', '100%')
-    this.children.send.setText('send')
-    this.children.send.addEventListener('click', () => this.onSendButtonClick())
-    return this.children.send
+    this.send.setContainerStyle('padding', '1rem')
+    this.send.setStyle('padding', 'calc(1rem / 4)')
+    this.send.setStyle('width', '100%')
+    this.send.setText('send')
+    this.send.addEventListener('click', () => this.onSendButtonClick())
+    return this.send
   }
 
   onSendButtonClick() {
-    this.dispatch('send', this.children.text.getValue())
+    this.dispatch('send', this.text.getValue())
   }
 }
