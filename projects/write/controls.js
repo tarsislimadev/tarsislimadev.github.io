@@ -12,9 +12,7 @@ export class Page extends PageComponent {
     conn: null,
   }
 
-  children = {
-    input: new InputComponent({ label: 'text' }),
-  }
+  input = new InputComponent({ label: 'text' })
 
   onCreate() {
     super.onCreate()
@@ -49,12 +47,12 @@ export class Page extends PageComponent {
   }
 
   getInput() {
-    return this.children.input
+    return this.input
   }
 
   onSendButtonClick() {
-    this.sendMessage({ text: this.children.input.children.input.getValue() })
-    this.children.input.children.input.setValue('')
+    this.sendMessage({ text: this.input.input.getValue() })
+    this.input.input.setValue('')
   }
 
   onChangeColorButtonClick() {
