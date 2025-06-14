@@ -10,10 +10,8 @@ import * as API from '../../assets/js/utils/api.js'
 import { API_KEY } from './config.js'
 
 export class Page extends PageComponent {
-  children = {
-    videoElem: new nVideo(),
-    log: new HTML(),
-  }
+  videoElem = new nVideo()
+  log = new HTML()
 
   state = {
     displayMedia: { video: true, audio: true },
@@ -51,28 +49,28 @@ export class Page extends PageComponent {
   }
 
   getVideoElem() {
-    return this.children.videoElem
+    return this.videoElem
   }
 
   getLog() {
-    return this.children.log
+    return this.log
   }
 
   startCapture() {
     const self = this
-    self.children.log.clear()
+    self.log.clear()
 
     navigator.mediaDevices.getDisplayMedia(self.state.displayMedia)
       .then((src) => self.state.src = (src))
       .then(() => console.log('state.src', self.state.src))
-      .then(() => self.children.videoElem.setSrcObject(self.state.src))
-      .then(() => self.children.videoElem.play())
+      .then(() => self.videoElem.setSrcObject(self.state.src))
+      .then(() => self.videoElem.play())
       .catch((err) => console.error(err))
   }
 
   stopCapture() {
-    this.children.videoElem.getSrcObject().getTracks().forEach((t) => t.stop())
-    this.children.videoElem.setSrcObject(null)
+    this.videoElem.getSrcObject().getTracks().forEach((t) => t.stop())
+    this.videoElem.setSrcObject(null)
   }
 
   loadGAPI() {
