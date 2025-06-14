@@ -2,9 +2,7 @@ import { HTML } from '../../assets/js/libs/afrontend/index.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
 
 export class Page extends HTML {
-  children = {
-    input: new InputComponent('Phone Number'),
-  }
+  input = new InputComponent('Phone Number')
 
   onCreate() {
     this.setStyles()
@@ -17,15 +15,15 @@ export class Page extends HTML {
   }
 
   getInput() {
-    this.children.input.children.input.addEventListener('input', () => this.onInput())
-    return this.children.input
+    this.input.input.addEventListener('input', () => this.onInput())
+    return this.input
   }
 
   onInput() {
-    const value = this.children.input.children.input.getValue()
+    const value = this.input.input.getValue()
       .replace(/\W+/ig, '')
       .replace(/(.?.?)(.?.?.?.?)(.?.?.?.?.?)/, '($1) $2-$3')
-    this.children.input.children.input.setValue(value)
+    this.input.input.setValue(value)
     console.log('value', value, value.length)
   }
 }
