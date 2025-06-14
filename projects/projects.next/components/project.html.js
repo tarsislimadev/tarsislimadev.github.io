@@ -9,11 +9,9 @@ export class ProjectHTML extends HTML {
     services: [],
   }
 
-  children = {
-    domain: new nInputText(),
-    contract: new nSelect(),
-    endpoints: new HTML(),
-  }
+  domain = new nInputText()
+  contract = new nSelect()
+  endpoints = new HTML()
 
   onCreate() {
     super.onCreate()
@@ -40,15 +38,15 @@ export class ProjectHTML extends HTML {
   }
 
   getDomainInputText() {
-    this.children.domain.addEventListener('input', () => console.log('value', this.getValue()))
-    return this.children.domain
+    this.domain.addEventListener('input', () => console.log('value', this.getValue()))
+    return this.domain
   }
 
   getContractSelect() {
-    this.children.contract.addOption('1', '1y')
-    this.children.contract.addOption('2', '2y')
-    this.children.contract.addOption('5', '5y')
-    return this.children.contract
+    this.contract.addOption('1', '1y')
+    this.contract.addOption('2', '2y')
+    this.contract.addOption('5', '5y')
+    return this.contract
   }
 
   getDeleteButton() {
@@ -61,10 +59,10 @@ export class ProjectHTML extends HTML {
 
   getBody() {
     this.addEndpoint(new EndpointModel())
-    this.children.endpoints.setStyle('box-shadow', 'inset 0rem 0rem 0rem 1px #000000')
-    this.children.endpoints.setStyle('margin-bottom', '1rem')
-    this.children.endpoints.setStyle('padding', '1rem')
-    return this.children.endpoints
+    this.endpoints.setStyle('box-shadow', 'inset 0rem 0rem 0rem 1px #000000')
+    this.endpoints.setStyle('margin-bottom', '1rem')
+    this.endpoints.setStyle('padding', '1rem')
+    return this.endpoints
   }
 
   addEndpoint(endpoint = new EndpointModel()) {
@@ -73,14 +71,14 @@ export class ProjectHTML extends HTML {
   }
 
   updateEndpoints() {
-    this.children.endpoints.clear()
-    this.state.endpoints.map((endpoint) => this.children.endpoints.append(new EndpointHTML(endpoint)))
+    this.endpoints.clear()
+    this.state.endpoints.map((endpoint) => this.endpoints.append(new EndpointHTML(endpoint)))
   }
 
   getValue() {
     return {
-      domain: this.children.domain.getValue(),
-      contract: this.children.contract.getValue(),
+      domain: this.domain.getValue(),
+      contract: this.contract.getValue(),
       // endpoints: Array.from(this.state.endpoints).map((endpoint) => endpoint.getValue()),
       // services: Array.from(this.state.services).map((service) => service.getValue()),
     }

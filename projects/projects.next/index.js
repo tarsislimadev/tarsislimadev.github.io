@@ -4,11 +4,9 @@ import { BodyHTML } from './components/body.html.js'
 import { FooterHTML } from './components/footer.html.js'
 
 export class Page extends HTML {
-  children = {
-    header: new HeaderHTML(),
-    body: new BodyHTML(),
-    footer: new FooterHTML(),
-  }
+  header = new HeaderHTML()
+  body = new BodyHTML()
+  footer = new FooterHTML()
 
   onCreate() {
     super.onCreate()
@@ -24,16 +22,16 @@ export class Page extends HTML {
   }
 
   getHeader() {
-    this.children.header.addEventListener('createproject', () => this.children.body.dispatch('createproject'))
-    return this.children.header
+    this.header.addEventListener('createproject', () => this.body.dispatch('createproject'))
+    return this.header
   }
 
   getBody() {
-    this.children.body.addEventListener('update', () => this.children.footer.dispatch('update'))
-    return this.children.body
+    this.body.addEventListener('update', () => this.footer.dispatch('update'))
+    return this.body
   }
 
   getFooter() {
-    return this.children.footer
+    return this.footer
   }
 }

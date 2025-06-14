@@ -7,9 +7,7 @@ export class BodyHTML extends HTML {
     projects: [],
   }
 
-  children = {
-    projects: new HTML(),
-  }
+  projects = new HTML()
 
   onCreate() {
     super.onCreate()
@@ -27,11 +25,11 @@ export class BodyHTML extends HTML {
   }
 
   renderProjects() {
-    this.children.projects.clear()
+    this.projects.clear()
     this.state.projects.map((project, ix) => {
       const html = new ProjectHTML(project)
       html.addEventListener('delete', () => this.deleteProjectByIndex(ix))
-      this.children.projects.append(html)
+      this.projects.append(html)
     })
   }
 
@@ -41,6 +39,6 @@ export class BodyHTML extends HTML {
   }
 
   getProjectsHTML() {
-    return this.children.projects
+    return this.projects
   }
 }
