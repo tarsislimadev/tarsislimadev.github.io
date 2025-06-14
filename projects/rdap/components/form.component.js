@@ -3,9 +3,7 @@ import { ButtonComponent } from '../../../assets/js/components/button.component.
 import { InputComponent } from '../../../assets/js/components/input.component.js'
 
 export class FormComponent extends HTML {
-  children = {
-    tld: new InputComponent({ label: 'tld', value: 'google.com.br' })
-  }
+  tld = new InputComponent({ label: 'tld', value: 'google.com.br' })
 
   onCreate() {
     super.onCreate()
@@ -14,10 +12,10 @@ export class FormComponent extends HTML {
   }
 
   getTldInputComponent() {
-    return this.children.tld
+    return this.tld
   }
 
   onSendButtonClick() {
-    this.dispatch('submit', { tld: this.children.tld.getValue() })
+    this.dispatch('submit', { tld: this.tld.getValue() })
   }
 }

@@ -42,10 +42,8 @@ class ResponseComponent extends HTML {
 }
 
 export class Page extends PageComponent {
-  children = {
-    form: new FormComponent(),
-    messages: new MessagesComponent(),
-  }
+  form = new FormComponent()
+  messages = new MessagesComponent()
 
   onCreate() {
     super.onCreate()
@@ -65,8 +63,8 @@ export class Page extends PageComponent {
   }
 
   getForm() {
-    this.children.form.addEventListener('submit', ({ value }) => this.onFormSubmit(value))
-    return this.children.form
+    this.form.addEventListener('submit', ({ value }) => this.onFormSubmit(value))
+    return this.form
   }
 
   onFormSubmit({ tld } = {}) {
@@ -78,7 +76,7 @@ export class Page extends PageComponent {
   }
 
   addMessage(message = new MessageModel()) {
-    this.children.messages.append(this.parseMessage(message))
+    this.messages.append(this.parseMessage(message))
   }
 
   parseMessage(message = new MessageModel()) {
@@ -87,7 +85,7 @@ export class Page extends PageComponent {
   }
 
   getMessages() {
-    this.children.messages.setStyle('text-align', 'right')
-    return this.children.messages
+    this.messages.setStyle('text-align', 'right')
+    return this.messages
   }
 }
