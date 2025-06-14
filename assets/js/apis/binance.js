@@ -6,10 +6,6 @@ export const websocket = {
   docs: 'https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api',
 }
 
-export class BinanceWebSocket extends WebSocket {
-  constructor() { super(websocket.url) }
-}
-
 const createURLParams = (params) => params ? ('?' + (new URLSearchParams(params)).toString()) : ''
 
 const createURL = (hostAndPath, params = {}) => new URL(hostAndPath + createURLParams(params)).toString()
