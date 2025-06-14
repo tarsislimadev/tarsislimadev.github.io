@@ -4,7 +4,7 @@ import { RangeComponent } from '../../../assets/js/components/range.component.js
 import * as COMPONENTS from '../../../assets/js/components/inputs.component.js'
 
 export class InputsComponent extends COMPONENTS.InputsComponent {
-  children = {
+  components = {
     text: new TextComponent({ label: 'text' }),
     model_id: new SelectComponent({ label: 'model_id', options: this.getModelsList().map((s) => ([s, s])) }),
     voice_id: new SelectComponent({ label: 'voice_id', options: this.getVoicesList() }),

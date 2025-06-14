@@ -14,10 +14,9 @@ export class SelectComponent extends HTML {
     this.state.values = values
   }
 
-  children = {
-    label: new nLabel(),
-    select: new nSelect(),
-  }
+  label = new nLabel()
+  select = new nSelect()
+
 
   onCreate() {
     super.onCreate()
@@ -26,16 +25,16 @@ export class SelectComponent extends HTML {
   }
 
   getLabel() {
-    this.children.label.setText(this.state.label)
-    return this.children.label
+    this.label.setText(this.state.label)
+    return this.label
   }
 
   getSelect() {
-    Array.from(this.state.values).map((v) => this.children.select.addOption(v, v))
-    return this.children.select
+    Array.from(this.state.values).map((v) => this.select.addOption(v, v))
+    return this.select
   }
 
   getValue() {
-    return this.children.select.getValue()
+    return this.select.getValue()
   }
 }
