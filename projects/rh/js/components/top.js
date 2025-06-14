@@ -1,8 +1,11 @@
-import { HTML, nLink, nFlex } from  '../../assets/js/libs/afrontend/index.js'
+import { HTML, nLink, nFlex } from '../../assets/js/libs/afrontend/index.js'
+
+import { RowComponent } from '../../../../assets/js/components/row.component.js'
 
 class LogoComponent extends HTML {
   onCreate() {
     super.onCreate()
+    this.setStyle('padding', '1rem 0rem')
     const link = new nLink()
     link.setText('RH')
     link.href('/')
@@ -13,6 +16,7 @@ class LogoComponent extends HTML {
 class MenuComponent extends HTML {
   onCreate() {
     super.onCreate()
+    this.setStyle('padding', '1rem 0rem')
     this.append(this.createLink('publish a job', '/publish/'))
   }
 
@@ -25,30 +29,10 @@ class MenuComponent extends HTML {
 }
 
 export class TopComponent extends HTML {
-  children = {
-    logo: new LogoComponent(),
-    menu: new MenuComponent(),
-  }
-
   onCreate() {
     super.onCreate()
-    const flex = new nFlex()
-    flex.setStyle('margin', '0 auto')
-    flex.setStyle('width', '40rem')
-    flex.append(this.getLogo())
-    flex.append(this.getMenu())
-    this.append(flex)
-  }
-
-  getLogo() {
-    this.children.logo.setStyle('padding', '1rem 0rem')
-
-    return this.children.logo
-  }
-
-  getMenu() {
-    this.children.menu.setStyle('padding', '1rem 0rem')
-
-    return this.children.menu
+    this.setStyle('margin', '0 auto')
+    this.setStyle('width', '40rem')
+    this.append(new RowComponent([new LogoComponent(), new MenuComponent()]))
   }
 }

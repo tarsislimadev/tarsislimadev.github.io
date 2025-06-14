@@ -1,4 +1,4 @@
-import { HTML, nSpan, nFlex, nHr } from  '../../assets/js/libs/afrontend/index.js'
+import { HTML, nSpan, nFlex, nHr } from '../../assets/js/libs/afrontend/index.js'
 
 class nSpanExtended extends nSpan {
   hasContainer() {
@@ -21,18 +21,16 @@ export class JobItem extends HTML {
     updated_at: '',
   }
 
-  children = {
-    name: new HTML(),
-    type: new HTML(),
-    schedule: new HTML(),
-    company_name: new HTML(),
-    company_location: new HTML(),
-    salary_min: new HTML(),
-    salary_max: new HTML(),
-    description: new HTML(),
-    created_at: new HTML(),
-    updated_at: new HTML(),
-  }
+  name = new HTML()
+  type = new HTML()
+  schedule = new HTML()
+  company_name = new HTML()
+  company_location = new HTML()
+  salary_min = new HTML()
+  salary_max = new HTML()
+  description = new HTML()
+  created_at = new HTML()
+  updated_at = new HTML()
 
   constructor({
     company_location = '',

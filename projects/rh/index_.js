@@ -52,7 +52,7 @@ export class Page extends HTML {
       .then((res) => {
         res.get('list')
           .map((item) => new JobItem(item))
-          .map((item) => this.children.right.append(item))
+          .map((item) => this.right.append(item))
       })
       .catch((err) => console.error(err))
   }

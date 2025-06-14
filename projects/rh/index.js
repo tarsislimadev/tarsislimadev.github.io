@@ -1,13 +1,11 @@
-import { HTML } from  '../../assets/js/libs/afrontend/index.js'
+import { HTML } from '../../assets/js/libs/afrontend/index.js'
 import { TopComponent } from './js/components/top.js'
 import { JobItem } from './js/components/job-item.js'
 import * as API from './js/utils/api.js'
 
 export class Page extends HTML {
-  children = {
-    top: new TopComponent(),
-    container: new HTML(),
-  }
+  top = new TopComponent()
+  container = new HTML()
 
   onCreate() {
     super.onCreate()
@@ -17,28 +15,28 @@ export class Page extends HTML {
   }
 
   getTop() {
-    return this.children.top
+    return this.top
   }
 
   getContainer() {
-    this.children.container.setStyle('margin', '0 auto')
-    this.children.container.setStyle('width', '40rem')
+    this.container.setStyle('margin', '0 auto')
+    this.container.setStyle('width', '40rem')
 
-    return this.children.container
+    return this.container
   }
 
   getJobsList() {
-    this.children.container.setText('loading...')
+    this.container.setText('loading...')
 
     API.jobsList({})
       .then((res) => {
         const list = res.get('list', [])
 
-        this.children.container.setText(list.length === 0 ? 'no items' : '')
+        this.container.setText(list.length === 0 ? 'no items' : '')
 
         list
           .map((item) => new JobItem(item))
-          .map((item) => this.children.container.append(item))
+          .map((item) => this.container.append(item))
       })
       .catch((err) => console.error(err))
   }

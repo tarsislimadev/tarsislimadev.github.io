@@ -1,4 +1,4 @@
-import { HTML } from  '../../assets/js/libs/afrontend/index.js'
+import { HTML } from '../../assets/js/libs/afrontend/index.js'
 
 class nCanvas extends HTML {
   getTagName() {
@@ -19,9 +19,7 @@ export class Page extends HTML {
     width: 16,
   }
 
-  children = {
-    canvas: new nCanvas(),
-  }
+  canvas = new nCanvas()
 
   onCreate() {
     super.onCreate()
@@ -33,15 +31,15 @@ export class Page extends HTML {
     const width = this.state.width * 32
     const height = width * 3 / 4
 
-    this.children.canvas.setStyle('height', `${height}px`)
-    this.children.canvas.setStyle('width', `${width}px`)
-    this.children.canvas.setStyle('box-shadow', '0rem 0rem 0rem calc(1rem / 8) #000000')
+    this.canvas.setStyle('height', `${height}px`)
+    this.canvas.setStyle('width', `${width}px`)
+    this.canvas.setStyle('box-shadow', '0rem 0rem 0rem calc(1rem / 8) #000000')
 
-    return this.children.canvas
+    return this.canvas
   }
 
   draw() {
-    const ctx = this.children.canvas.getContext()
+    const ctx = this.canvas.getContext()
     const width = this.state.width * 32
     const height = width * 3 / 4
 

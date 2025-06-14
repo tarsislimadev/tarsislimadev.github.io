@@ -1,45 +1,43 @@
-import { HTML, nInputTextGroup, nFlex, nButton, nTextAreaGroup } from  '../../assets/js/libs/afrontend/index.js'
+import { HTML, nInputTextGroup, nFlex, nButton, nTextAreaGroup } from '../../assets/js/libs/afrontend/index.js'
 import { TopComponent } from '../js/components/top.js'
 import * as API from '../js/utils/api.js'
 import * as Flow from '../js/utils/flow.js'
 import * as PAGES from '../js/utils/pages.js'
 
 class ContainerComponent extends HTML {
-  children = {
-    name: this.createInput('name'),
-    type: this.createInput('type'),
-    schedule: this.createInput('schedule'),
-    description: new nTextAreaGroup(),
-    company_name: this.createInput('company name'),
-    company_location: this.createInput('company location'),
-    salary_min: this.createInput('salary min', 'number'),
-    salary_max: this.createInput('salary max', 'number'),
-    button: new nButton(),
-  }
+  name = this.createInput('name')
+  type = this.createInput('type')
+  schedule = this.createInput('schedule')
+  description = new nTextAreaGroup()
+  company_name = this.createInput('company name')
+  company_location = this.createInput('company location')
+  salary_min = this.createInput('salary min', 'number')
+  salary_max = this.createInput('salary max', 'number')
+  button = new nButton()
 
   createInput(label = '', type = 'text') {
     const group = new nInputTextGroup()
 
     // label
-    group.children.label.setText(label)
-    group.children.label.setContainerStyle('padding', 'calc(1rem / 4) 0rem')
+    group.label.setText(label)
+    group.label.setContainerStyle('padding', 'calc(1rem / 4) 0rem')
 
     // input
-    group.children.input.setRules()
+    group.input.setRules()
 
-    group.children.input.setAttr('type', type)
+    group.input.setAttr('type', type)
 
-    group.children.input.setStyle('width', '100%')
-    group.children.input.setStyle('border', 'none')
-    group.children.input.setStyle('outline', 'none')
-    group.children.input.setStyle('max-width', '100%')
-    group.children.input.setStyle('padding', 'calc(1rem / 4)')
+    group.input.setStyle('width', '100%')
+    group.input.setStyle('border', 'none')
+    group.input.setStyle('outline', 'none')
+    group.input.setStyle('max-width', '100%')
+    group.input.setStyle('padding', 'calc(1rem / 4)')
 
-    group.children.input.setContainerStyle('box-shadow', '0rem 0rem 0rem calc(1rem / 8) #000000')
-    group.children.input.setContainerStyle('overflow', 'hidden')
+    group.input.setContainerStyle('box-shadow', '0rem 0rem 0rem calc(1rem / 8) #000000')
+    group.input.setContainerStyle('overflow', 'hidden')
 
     // error
-    group.children.error.setContainerStyle('padding', 'calc(1rem / 4) 0rem')
+    group.error.setContainerStyle('padding', 'calc(1rem / 4) 0rem')
 
     return group
   }
@@ -77,15 +75,15 @@ class ContainerComponent extends HTML {
   }
 
   getNameInput() {
-    return this.children.name
+    return this.name
   }
 
   getSalaryMin() {
-    return this.children.salary_min
+    return this.salary_min
   }
 
   getSalaryMax() {
-    return this.children.salary_max
+    return this.salary_max
   }
 
   getSalaryInputs() {
@@ -96,44 +94,44 @@ class ContainerComponent extends HTML {
   }
 
   getTypeInput() {
-    return this.children.type
+    return this.type
   }
 
   getScheduleInput() {
-    return this.children.schedule
+    return this.schedule
   }
 
   getDescriptionTextArea() {
-    this.children.description.children.input.setRules()
+    this.description.input.setRules()
 
     // label
-    this.children.description.children.label.setText('description')
-    this.children.description.children.label.setContainerStyle('padding', 'calc(1rem / 4) 0rem')
+    this.description.label.setText('description')
+    this.description.label.setContainerStyle('padding', 'calc(1rem / 4) 0rem')
 
     // input
-    this.children.description.children.input.setStyle('padding', 'calc(1rem / 4)')
-    this.children.description.children.input.setStyle('min-width', '100%')
-    this.children.description.children.input.setStyle('max-width', '100%')
-    this.children.description.children.input.setStyle('height', '20rem')
-    this.children.description.children.input.setStyle('outline', 'none')
-    this.children.description.children.input.setStyle('border', 'none')
-    this.children.description.children.input.setStyle('width', '100%')
+    this.description.input.setStyle('padding', 'calc(1rem / 4)')
+    this.description.input.setStyle('min-width', '100%')
+    this.description.input.setStyle('max-width', '100%')
+    this.description.input.setStyle('height', '20rem')
+    this.description.input.setStyle('outline', 'none')
+    this.description.input.setStyle('border', 'none')
+    this.description.input.setStyle('width', '100%')
 
-    this.children.description.children.input.setContainerStyle('box-shadow', '0rem 0rem 0rem calc(1rem / 8) #000000')
-    this.children.description.children.input.setContainerStyle('overflow', 'hidden')
+    this.description.input.setContainerStyle('box-shadow', '0rem 0rem 0rem calc(1rem / 8) #000000')
+    this.description.input.setContainerStyle('overflow', 'hidden')
 
     // error
-    this.children.description.children.error.setContainerStyle('padding', 'calc(1rem / 4) 0rem')
+    this.description.error.setContainerStyle('padding', 'calc(1rem / 4) 0rem')
 
-    return this.children.description
+    return this.description
   }
 
   getCompanyName() {
-    return this.children.company_name
+    return this.company_name
   }
 
   getCompanyLocation() {
-    return this.children.company_location
+    return this.company_location
   }
 
   onButtonClick() {
@@ -153,14 +151,14 @@ class ContainerComponent extends HTML {
 
     const errors = fields
       .map((field) => field.validate())
-      .map((field) => field.children.input.getErrorMessage())
+      .map((field) => field.input.getErrorMessage())
       .filter((err) => err)
 
     if (errors.length > 0) return
 
     const payload = field_names
       .reduce((payload, field) => {
-        payload[field] = this.children[field].children.input.getValue()
+        payload[field] = this.children[field].input.getValue()
 
         return payload
       }, {})
@@ -171,27 +169,25 @@ class ContainerComponent extends HTML {
   }
 
   getButton() {
-    this.children.button.setText('publish')
+    this.button.setText('publish')
 
-    this.children.button.setStyle('padding', 'calc(1rem / 2) 1rem')
-    this.children.button.setStyle('background-color', '#000000')
-    this.children.button.setStyle('margin', '1rem 0rem')
-    this.children.button.setStyle('color', '#ffffff')
-    this.children.button.setStyle('border', 'none')
+    this.button.setStyle('padding', 'calc(1rem / 2) 1rem')
+    this.button.setStyle('background-color', '#000000')
+    this.button.setStyle('margin', '1rem 0rem')
+    this.button.setStyle('color', '#ffffff')
+    this.button.setStyle('border', 'none')
 
-    this.children.button.setContainerStyle('text-align', 'right')
+    this.button.setContainerStyle('text-align', 'right')
 
-    this.children.button.on('click', () => this.onButtonClick())
+    this.button.on('click', () => this.onButtonClick())
 
-    return this.children.button
+    return this.button
   }
 }
 
 export class Page extends HTML {
-  children = {
-    top: new TopComponent(),
-    container: new ContainerComponent(),
-  }
+  top = new TopComponent()
+  container = new ContainerComponent()
 
   onCreate() {
     super.onCreate()
@@ -200,12 +196,12 @@ export class Page extends HTML {
   }
 
   getTop() {
-    return this.children.top
+    return this.top
   }
 
 
   getContainer() {
-    return this.children.container
+    return this.container
   }
 
 }

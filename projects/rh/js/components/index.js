@@ -1,4 +1,4 @@
-import { HTML, nInput, nButton, nFlex, nInputTextGroup, nImage, nLink, nHr } from  '../../assets/js/libs/afrontend/index.js'
+import { HTML, nInput, nButton, nFlex, nInputTextGroup, nImage, nLink, nHr } from '../../assets/js/libs/afrontend/index.js'
 import * as COLORS from '../utils/colors.js'
 
 export class nInput extends nInput {
@@ -23,19 +23,12 @@ export class nFlex extends nFlex {
 }
 
 export class nTextAreaGroup extends nInputTextGroup {
-  children = {
-    label: new nLabel(),
-    input: new nTextArea(),
-    error: new nError(),
-  }
+  label = new nLabel()
+  input = new nTextArea()
+  error = new nError()
 }
 
-export class nInputTextGroup extends nInputTextGroup {
-  onCreate() {
-    super.onCreate()
-    this.setStyle('box-sizing', 'border-box')
-  }
-}
+export default { nInputTextGroup }
 
 export class nImage extends nImage {
   onCreate() {
@@ -60,7 +53,7 @@ export class nHr extends nHr {
 
 export class Item extends HTML {
   state = {}
-  children = {}
+  components = {}
 }
 
 export class JobItem extends Item {
@@ -77,7 +70,7 @@ export class JobItem extends Item {
     updated_at: '',
   }
 
-  children = {
+  components = {
     name: new HTML(),
     type: new HTML(),
     schedule: new HTML(),
@@ -138,63 +131,63 @@ export class JobItem extends Item {
   }
 
   getNameInput() {
-    this.children.name.setText(this.state.name)
+    this.name.setText(this.state.name)
 
-    return this.children.name
+    return this.name
   }
 
   getTypeInput() {
-    this.children.type.setText(this.state.type)
+    this.type.setText(this.state.type)
 
-    return this.children.type
+    return this.type
   }
 
   getScheduleInput() {
-    this.children.schedule.setText(this.state.schedule)
+    this.schedule.setText(this.state.schedule)
 
-    return this.children.schedule
+    return this.schedule
   }
 
   getDescriptionInput() {
-    this.children.description.setText(this.state.description)
+    this.description.setText(this.state.description)
 
-    return this.children.description
+    return this.description
   }
 
   getCompanyNameInput() {
-    this.children.company_name.setText(this.state.company_name)
+    this.company_name.setText(this.state.company_name)
 
-    return this.children.company_name
+    return this.company_name
   }
 
   getCompanyLocationInput() {
-    this.children.company_location.setText(this.state.company_location)
+    this.company_location.setText(this.state.company_location)
 
-    return this.children.company_location
+    return this.company_location
   }
 
   getSalaryMinInput() {
-    this.children.salary_min.setText(this.state.salary_min)
+    this.salary_min.setText(this.state.salary_min)
 
-    return this.children.salary_min
+    return this.salary_min
   }
 
   getSalaryMaxInput() {
-    this.children.salary_max.setText(this.state.salary_max)
+    this.salary_max.setText(this.state.salary_max)
 
-    return this.children.salary_max
+    return this.salary_max
   }
 
   getCreatedAtInput() {
-    this.children.created_at.setText(this.state.created_at)
+    this.created_at.setText(this.state.created_at)
 
-    return this.children.created_at
+    return this.created_at
   }
 
   getUpdatedAtInput() {
-    this.children.updated_at.setText(this.state.updated_at)
+    this.updated_at.setText(this.state.updated_at)
 
-    return this.children.updated_at
+    return this.updated_at
   }
 
   getBottomBar() {

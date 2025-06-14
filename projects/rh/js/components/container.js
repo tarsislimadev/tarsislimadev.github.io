@@ -1,4 +1,4 @@
-import { HTML, nFlex } from  '../../assets/js/libs/afrontend/index.js'
+import { HTML, nFlex } from '../../assets/js/libs/afrontend/index.js'
 
 class LeftBar extends HTML {
   onCreate() {
@@ -8,10 +8,8 @@ class LeftBar extends HTML {
 }
 
 export class ContainerComponent extends HTML {
-  children = {
-    left: new LeftBar(),
-    right: new HTML(),
-  }
+  left = new LeftBar()
+  right = new HTML()
 
   onCreate() {
     super.onCreate()
@@ -24,12 +22,12 @@ export class ContainerComponent extends HTML {
   }
 
   getLeft() {
-    return this.children.left
+    return this.left
   }
 
   getRight() {
-    this.children.right.setText('right')
+    this.right.setText('right')
 
-    return this.children.right
+    return this.right
   }
 }

@@ -6,11 +6,9 @@ import * as FLOW from '../js/utils/flow.js'
 import * as API from '../js/utils/api.js'
 
 export class Page extends HTML {
-  children = {
-    email: new nInput(),
-    password: new nInput(),
-    button: new nButton(),
-  }
+  email = new nInput()
+  password = new nInput()
+  button = new nButton()
 
   onCreate() {
     super.onCreate()
@@ -21,24 +19,24 @@ export class Page extends HTML {
   }
 
   getEmailInput() {
-    this.children.email.setPlaceholder('e-mail')
-    this.children.email.setValue('mail@mail.com')
+    this.email.setPlaceholder('e-mail')
+    this.email.setValue('mail@mail.com')
 
-    return this.children.email
+    return this.email
   }
 
   getPasswordInput() {
-    this.children.password.setPlaceholder('password')
-    this.children.password.setValue('password')
-    this.children.password.setAttr('type', 'password')
-    return this.children.password
+    this.password.setPlaceholder('password')
+    this.password.setValue('password')
+    this.password.setAttr('type', 'password')
+    return this.password
   }
 
   getButton() {
-    this.children.button.setText('register')
-    this.children.button.on('click', () => {
-      const email = this.children.email.getValue()
-      const password = this.children.password.getValue()
+    this.button.setText('register')
+    this.button.on('click', () => {
+      const email = this.email.getValue()
+      const password = this.password.getValue()
 
       API.usersLogin({ email, password })
         .then((res) => {
@@ -51,6 +49,6 @@ export class Page extends HTML {
         .catch((err) => console.error(err))
     })
 
-    return this.children.button
+    return this.button
   }
 }
