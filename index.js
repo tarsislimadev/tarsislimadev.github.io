@@ -10,10 +10,10 @@ import { TextComponent } from './assets/js/components/text.component.js'
 import OWNER from './assets/js/owner.js'
 
 export class Page extends FirebaseDatabasePageComponent {
-  name = new InputComponent({ placeholder: 'Nome' }),
-  email = new InputComponent({ placeholder: 'E-mail' }),
-  whatsapp = new InputComponent({ placeholder: 'WhatsApp' }),
-  send_button = new ButtonComponent({ text: 'Enviar', onclick: () => this.onSendButtonComponentClick() }),
+  name = new InputComponent({ placeholder: 'Nome' })
+  email = new InputComponent({ placeholder: 'E-mail' })
+  whatsapp = new InputComponent({ placeholder: 'WhatsApp' })
+  send_button = new ButtonComponent({ text: 'Enviar', onclick: () => this.onSendButtonComponentClick() })
 
   onCreate() {
     super.onCreate()
