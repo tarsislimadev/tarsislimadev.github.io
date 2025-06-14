@@ -9,14 +9,12 @@ export class Page extends HTML {
     price: 0,
   }
 
-  children = {
-    amount: new AmountInputComponent(),
-    coin: new CoinSelectComponent(),
-    price: new PriceComponent(),
-    datetime: new DatetimeComponent(),
-    buy: new ButtonComponent({ text: 'Buy (BRL 100)', onclick: () => this.onBuyButtonClick() }),
-    history: new HistoryComponent(),
-  }
+  amount = new AmountInputComponent()
+  coin = new CoinSelectComponent()
+  price = new PriceComponent()
+  datetime = new DatetimeComponent()
+  buy = new ButtonComponent({ text: 'Buy (BRL 100)', onclick: () => this.onBuyButtonClick() })
+  history = new HistoryComponent()
 
   onCreate() {
     super.onCreate()
@@ -30,38 +28,38 @@ export class Page extends HTML {
   }
 
   getAmountInputComponent() {
-    this.children.amount.setValue(100)
-    this.children.amount.addEventListener('keyup', () => this.onAmountInputKeyUp())
-    return this.children.amount
+    this.amount.setValue(100)
+    this.amount.addEventListener('keyup', () => this.onAmountInputKeyUp())
+    return this.amount
   }
 
   onAmountInputKeyUp() {
-    this.children.buy.setText(`Buy (BRL ${this.getAmountValue()})`)
+    this.buy.setText(`Buy (BRL ${this.getAmountValue()})`)
   }
 
   getAmountValue() {
-    return this.children.amount.getValue()
+    return this.amount.getValue()
   }
 
   getCoinSelectComponent() {
-    this.children.coin.addEventListener('change', () => this.onCoinSelectChange())
-    return this.children.coin
+    this.coin.addEventListener('change', () => this.onCoinSelectChange())
+    return this.coin
   }
 
   onCoinSelectChange() {
-    this.state.coin = this.children.coin.getValue()
+    this.state.coin = this.coin.getValue()
   }
 
   getPriceComponent() {
-    return this.children.price
+    return this.price
   }
 
   getDatetimeComponent() {
-    return this.children.datetime
+    return this.datetime
   }
 
   getBuyButtonComponent() {
-    return this.children.buy
+    return this.buy
   }
 
   onBuyButtonClick() {
@@ -74,7 +72,7 @@ export class Page extends HTML {
   }
 
   getHistoryComponent() {
-    return this.children.history
+    return this.history
   }
 
   getApiPrice(symbol = '') {
@@ -84,9 +82,9 @@ export class Page extends HTML {
   update() {
     this.getApiPrice(this.state.coin)
       .then((res) => this.state.price = +res.price)
-      .then(() => this.children.price.update(this.state.price))
-      .then(() => this.children.history.update(this.state.price, this.state.coin))
-      .then(() => this.children.datetime.update())
+      .then(() => this.price.update(this.state.price))
+      .then(() => this.history.update(this.state.price, this.state.coin))
+      .then(() => this.datetime.update())
       .then(() => this.update())
       .catch((err) => console.error(err))
   }
