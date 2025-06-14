@@ -16,12 +16,10 @@ export class Page extends PageComponent {
     pointer: 0,
   }
 
-  children = {
-    speed: new InputComponent({ label: 'speed', type: 'number', value: SPEED }),
-    start_button: new ButtonComponent({ text: 'start', onclick: () => this.onStartButtonClick() }),
-    reset_button: new ButtonComponent({ text: 'reset', onclick: () => this.onResetButtonClick() }),
-    pointers: Array.from(Array(TIMES)).map(() => new CursorComponent())
-  }
+  speed = new InputComponent({ label: 'speed', type: 'number', value: SPEED })
+  start_button = new ButtonComponent({ text: 'start', onclick: () => this.onStartButtonClick() })
+  reset_button = new ButtonComponent({ text: 'reset', onclick: () => this.onResetButtonClick() })
+  pointers = Array.from(Array(TIMES)).map(() => new CursorComponent())
 
   onCreate() {
     super.onCreate()
@@ -43,15 +41,15 @@ export class Page extends PageComponent {
   }
 
   onStartButtonClick() {
-    const speed = this.children.speed.getValue()
-    this.children.start_button.getText() == 'start'
+    const speed = this.speed.getValue()
+    this.start_button.getText() == 'start'
       ? this.start(+speed)
       : this.stop()
   }
 
   start(speed) {
     this.state.id = setInterval(() => this.tick(), (MINUTE / speed))
-    this.children.start_button.setText('stop')
+    this.start_button.setText('stop')
   }
 
   tick() {
@@ -60,38 +58,38 @@ export class Page extends PageComponent {
 
   stop() {
     clearInterval(this.state.id)
-    this.children.start_button.setText('start')
+    this.start_button.setText('start')
     this.update()
   }
 
   getSpeedInputComponent() {
-    return this.children.speed
+    return this.speed
   }
 
   getStartButton() {
-    return this.children.start_button
+    return this.start_button
   }
 
   getResetButton() {
-    return this.children.reset_button
+    return this.reset_button
   }
 
   onResetButtonClick() {
-    this.children.speed.children.input.setValue(SPEED)
+    this.speed.input.setValue(SPEED)
     this.stop()
     this.update()
   }
 
   update(pointer = 0) {
     this.state.pointer = pointer
-    Array.from(Array(TIMES)).map((_, ix) => this.children.pointers[ix].down())
-    this.children.pointers[pointer % 4].up()
+    Array.from(Array(TIMES)).map((_, ix) => this.pointers[ix].down())
+    this.pointers[pointer % 4].up()
   }
 
   getPointers() {
     const html = new nFlex()
     Array.from(Array(TIMES)).map((_, ix) => {
-      const pointer = this.children.pointers[ix]
+      const pointer = this.pointers[ix]
       pointer.setText(ix + 1)
       html.append(pointer)
     })
