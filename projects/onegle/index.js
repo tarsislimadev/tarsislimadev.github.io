@@ -7,13 +7,11 @@ import { LinkComponent } from '../../assets/js/components/link.component.js'
 import { VideoComponent } from './components/video.component.js'
 
 export class Page extends PageComponent {
-  children = {
-    title: new HTML(),
-    login_button: new ButtonComponent({ text: 'facebook login', onclick: () => this.onFacebookLoginButtonClick() }),
-    user_media_button: new ButtonComponent({ text: 'user media', onclick: () => this.onUserMedia() }),
-    peer_button: new ButtonComponent({ text: 'peer', onclick: () => this.onPeerButtonClick() }),
-    video: new VideoComponent(),
-  }
+  title = new HTML()
+  login_button = new ButtonComponent({ text: 'facebook login', onclick: () => this.onFacebookLoginButtonClick() })
+  user_media_button = new ButtonComponent({ text: 'user media', onclick: () => this.onUserMedia() })
+  peer_button = new ButtonComponent({ text: 'peer', onclick: () => this.onPeerButtonClick() })
+  video = new VideoComponent()
 
   state = {
     peer: {
@@ -39,15 +37,15 @@ export class Page extends PageComponent {
 
   getTitle() {
     this.setTitle()
-    return this.children.title
+    return this.title
   }
 
   setTitle(title = '', href = '') {
-    this.children.title.clear()
+    this.title.clear()
     if (href != '') {
-      this.children.title.append(new LinkComponent({ text: 'onegle ' + title, href }))
+      this.title.append(new LinkComponent({ text: 'onegle ' + title, href }))
     } else {
-      this.children.title.append(new TextComponent({ text: 'onegle ' + title }))
+      this.title.append(new TextComponent({ text: 'onegle ' + title }))
     }
   }
 
@@ -98,7 +96,7 @@ export class Page extends PageComponent {
   }
 
   getFacebookLoginButton() {
-    return this.children.login_button
+    return this.login_button
   }
 
   onFacebookLoginButtonClick() {
@@ -119,21 +117,21 @@ export class Page extends PageComponent {
   onUserMedia() {
     console.log('on user media')
     navigator.getUserMedia({ audio: true, video: true }, (stream) => {
-      this.children.video.srcObject(this.state.user_media.stream = stream)
-      this.children.video.play()
+      this.video.srcObject(this.state.user_media.stream = stream)
+      this.video.play()
     })
   }
 
   getUserMediaButon() {
-    return this.children.user_media_button
+    return this.user_media_button
   }
 
   getVideo() {
-    return this.children.video
+    return this.video
   }
 
   getPeerButton() {
-    return this.children.peer_button
+    return this.peer_button
   }
 
   onPeerButtonClick() {
