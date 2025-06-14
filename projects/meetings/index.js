@@ -5,11 +5,9 @@ import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { CalendarComponent } from '../../assets/js/components/calendar.component.js'
 
 export class Page extends HTML {
-  children = {
-    event_type: new HTML(),
-    calendar: new CalendarComponent(),
-    payment_buttons: new HTML(),
-  }
+  event_type = new HTML()
+  calendar = new CalendarComponent()
+  payment_buttons = new HTML()
 
   onCreate() {
     super.onCreate()
@@ -27,8 +25,8 @@ export class Page extends HTML {
   }
 
   getEventTypeHTML() {
-    this.children.event_type.append(this.getCreateMeetingEventButton())
-    return this.children.event_type
+    this.event_type.append(this.getCreateMeetingEventButton())
+    return this.event_type
   }
 
   getCreateMeetingEventButton() {
@@ -36,14 +34,14 @@ export class Page extends HTML {
   }
 
   onCreateMeetingEventButtonClick() {
-    this.children.event_type.setStyle('display', 'none')
-    this.children.calendar.setStyle('display', 'block')
+    this.event_type.setStyle('display', 'none')
+    this.calendar.setStyle('display', 'block')
   }
 
   getCalendarHTML() {
-    this.children.calendar.setStyle('display', 'none')
-    this.children.calendar.addEventListener('change', ({ value }) => this.onCalendarChange({ value }))
-    return this.children.calendar
+    this.calendar.setStyle('display', 'none')
+    this.calendar.addEventListener('change', ({ value }) => this.onCalendarChange({ value }))
+    return this.calendar
   }
 
   onCalendarChange({ value } = {}) {
@@ -51,7 +49,7 @@ export class Page extends HTML {
   }
 
   getPaymentButtons() {
-    this.children.payment_buttons.setStyle('display', 'none')
-    return this.children.payment_buttons
+    this.payment_buttons.setStyle('display', 'none')
+    return this.payment_buttons
   }
 }
