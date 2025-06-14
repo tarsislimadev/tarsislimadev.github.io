@@ -8,10 +8,8 @@ export class InputComponent extends HTML {
     value: [],
   }
 
-  children = {
-    label: new nLabel(),
-    input: new nInput(),
-  }
+  label = new nLabel()
+  input = new nInput()
 
   constructor(label, value = []) {
     super()
@@ -26,17 +24,17 @@ export class InputComponent extends HTML {
   }
 
   getLabel() {
-    this.children.label.setText(this.state.label)
-    this.children.label.setStyle('padding', 'calc(1rem / 4)')
-    return this.children.label
+    this.label.setText(this.state.label)
+    this.label.setStyle('padding', 'calc(1rem / 4)')
+    return this.label
   }
 
   getInput() {
-    this.children.input.setValue(this.state.value)
-    return this.children.input
+    this.input.setValue(this.state.value)
+    return this.input
   }
 
   getValue() {
-    return this.children.input.getValue()
+    return this.input.getValue()
   }
 }

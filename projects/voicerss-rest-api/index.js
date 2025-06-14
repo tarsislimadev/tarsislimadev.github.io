@@ -14,13 +14,11 @@ import { MessageModel } from './models/message.model.js'
 import { getLanguages } from './languages.js'
 
 export class Page extends PageComponent {
-  children = {
-    ip: new HTML(),
-    src_input: new InputComponent({ label: 'src', value: 'project ' + Date.now().toString() }),
-    key_input: new InputComponent({ label: 'key', value: 'ebcb13f044794a24b8f1511008312127', type: 'password' }),
-    language_select: new SelectComponent({ label: 'languages' }),
-    messages: new HTML(),
-  }
+  ip = new HTML()
+  src_input = new InputComponent({ label: 'src', value: 'project ' + Date.now().toString() })
+  key_input = new InputComponent({ label: 'key', value: 'ebcb13f044794a24b8f1511008312127', type: 'password' })
+  language_select = new SelectComponent({ label: 'languages' })
+  messages = new HTML()
 
   onCreate() {
     super.onCreate()
@@ -49,16 +47,16 @@ export class Page extends PageComponent {
   }
 
   getSrcInput() {
-    return this.children.src_input
+    return this.src_input
   }
 
   getKeyInput() {
-    return this.children.key_input
+    return this.key_input
   }
 
   getLanguageSelect() {
-    Array.from(getLanguages()).map((l) => this.children.language_select.children.input.addOption(l, l))
-    return this.children.language_select
+    Array.from(getLanguages()).map((l) => this.language_select.input.addOption(l, l))
+    return this.language_select
   }
 
   onSendButtonClick() {
@@ -66,9 +64,9 @@ export class Page extends PageComponent {
   }
 
   addAudioMessage() {
-    const key = this.children.key_input.getValue()
-    const src = this.children.src_input.getValue()
-    const hl = this.children.language_select.getValue()
+    const key = this.key_input.getValue()
+    const src = this.src_input.getValue()
+    const hl = this.language_select.getValue()
     const search = new URLSearchParams({ key, src, hl })
     const url = this.getUrl({ search })
     this.addMessage(new AudioMessageModel(url, src))
@@ -79,7 +77,7 @@ export class Page extends PageComponent {
   }
 
   addMessage(message = new MessageModel()) {
-    this.children.messages.append(this.parseMessage(message))
+    this.messages.append(this.parseMessage(message))
   }
 
   parseMessage(message = new MessageModel()) {
@@ -91,7 +89,7 @@ export class Page extends PageComponent {
   }
 
   getMessages() {
-    this.children.messages.setStyle('text-align', 'right')
-    return this.children.messages
+    this.messages.setStyle('text-align', 'right')
+    return this.messages
   }
 }
