@@ -4,11 +4,9 @@ import { ButtonComponent } from './button.component.js'
 import { InputsComponent } from './inputs.component.js'
 
 export class EndpointsComponent extends HTML {
-  children = {
-    select: new SelectComponent({}),
-    form: new HTML(),
-    inputs: new InputsComponent(),
-  }
+  select = new SelectComponent({})
+  form = new HTML()
+  inputs = new InputsComponent()
 
   state = {
     endpoints: [],
@@ -30,23 +28,23 @@ export class EndpointsComponent extends HTML {
   }
 
   getEndpointsSelect() {
-    Array.from(this.state.endpoints).map(({ name }) => this.children.select.addOption(name, name))
-    this.children.select.addEventListener('change', () => this.onEndpointsSelectChange())
-    return this.children.select
+    Array.from(this.state.endpoints).map(({ name }) => this.select.addOption(name, name))
+    this.select.addEventListener('change', () => this.onEndpointsSelectChange())
+    return this.select
   }
 
   onEndpointsSelectChange() {
-    this.children.form.clear()
-    this.getEndpointInputs().map((i) => this.children.form.append(i))
+    this.form.clear()
+    this.getEndpointInputs().map((i) => this.form.append(i))
   }
 
-  getEndpointInputs(endpoint = this.children.select.getValue()) {
-    const { params,  query } = this.getEndpoint(endpoint)
+  getEndpointInputs(endpoint = this.select.getValue()) {
+    const { params, query } = this.getEndpoint(endpoint)
     return Array.from(params).concat(query).map((q) => (this.inputs.getComponent(q)))
   }
 
   getForm() {
-    return this.children.form
+    return this.form
   }
 
   onSendButtonClick() {
@@ -56,16 +54,16 @@ export class EndpointsComponent extends HTML {
     this.dispatch('send', { endpoint, query, params })
   }
 
-  getEndpoint(endpoint = this.children.select.getValue()) {
+  getEndpoint(endpoint = this.select.getValue()) {
     return Array.from(this.state.endpoints).find(({ name }) => name == endpoint)
   }
 
-  getEndpointQuery(endpoint = this.children.select.getValue()) {
+  getEndpointQuery(endpoint = this.select.getValue()) {
     const { query } = this.getEndpoint(endpoint)
     return Array.from(query).reduce((params, q) => ({ ...params, [q]: this.inputs.getValue(q) }), {})
   }
 
-  getEndpointParams(endpoint = this.children.select.getValue()) {
+  getEndpointParams(endpoint = this.select.getValue()) {
     const { params } = this.getEndpoint(endpoint)
     return Array.from(params).reduce((params, q) => ({ ...params, [q]: this.inputs.getValue(q) }), {})
   }
