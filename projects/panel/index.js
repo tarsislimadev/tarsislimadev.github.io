@@ -5,10 +5,8 @@ import { TextComponent } from '../../assets/js/components/text.component.js'
 import { Peer } from '../../assets/js/libs/peerjs/index.js'
 
 export class Page extends PageComponent {
-  children = {
-    left: new HTML(),
-    right: new HTML(),
-  }
+  left = new HTML()
+  right = new HTML()
 
   state = {
     peer: new Peer(),
@@ -101,13 +99,13 @@ export class Page extends PageComponent {
   }
 
   getLeftBar() {
-    this.children.left.append(new TextComponent({ text: 'init' }))
-    return this.children.left
+    this.left.append(new TextComponent({ text: 'init' }))
+    return this.left
   }
 
   getRightBar() {
-    this.children.right.append(new TextComponent({ text: 'init' }))
-    return this.children.right
+    this.right.append(new TextComponent({ text: 'init' }))
+    return this.right
   }
 
   update() {
@@ -117,15 +115,15 @@ export class Page extends PageComponent {
 
   updateLeft() {
     if (this.state.numbers.length > 1) {
-      this.children.left.clear()
+      this.left.clear()
       const last_numbers = Array.from(this.state.numbers).filter((_, ix) => ix < this.state.numbers.length - 1)
-      Array.from(last_numbers).map((text) => this.children.left.append(new TextComponent({ text })))
+      Array.from(last_numbers).map((text) => this.left.append(new TextComponent({ text })))
     }
   }
 
   updateRight() {
-    this.children.right.clear()
+    this.right.clear()
     const text = this.state.numbers[this.state.numbers - 1]
-    this.children.right.append(new TextComponent({ text }))
+    this.right.append(new TextComponent({ text }))
   }
 }
