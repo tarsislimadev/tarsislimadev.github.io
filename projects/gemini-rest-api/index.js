@@ -7,12 +7,10 @@ import { InputComponent } from '../../assets/js/components/input.component.js'
 import { MessageModel } from './models/message.model.js'
 
 export class Page extends PageComponent {
-  children = {
-    ip: new HTML(),
-    key_input: new InputComponent({ label: 'key', type: 'password' }),
-    text_input: new InputComponent({ label: 'text' }),
-    messages: new HTML(),
-  }
+  ip = new HTML()
+  key_input = new InputComponent({ label: 'key', type: 'password' })
+  text_input = new InputComponent({ label: 'text' })
+  messages = new HTML()
 
   onCreate() {
     super.onCreate()
@@ -40,20 +38,20 @@ export class Page extends PageComponent {
   }
 
   getKeyInput() {
-    return this.children.key_input
+    return this.key_input
   }
 
   getTextInput() {
-    return this.children.text_input
+    return this.text_input
   }
 
   onSendButtonClick() { alert('Not Implemented!') }
 
   addMessage(message = new MessageModel()) {
-    this.children.messages.append(this.parseMessage(message))
+    this.messages.append(this.parseMessage(message))
   }
 
   getMessages() {
-    return this.children.messages
+    return this.messages
   }
 }
