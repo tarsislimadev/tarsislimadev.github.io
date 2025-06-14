@@ -4,11 +4,9 @@ import { ContentComponent } from './components/content.component.js'
 import { FooterComponent } from './components/footer.component.js'
 
 export class Page extends HTML {
-  children = {
-    header: new HeaderComponent(),
-    content: new ContentComponent(),
-    footer: new FooterComponent(),
-  }
+  header = new HeaderComponent()
+  content = new ContentComponent()
+  footer = new FooterComponent()
 
   state = {
     socket: null,
@@ -22,8 +20,8 @@ export class Page extends HTML {
   }
 
   getHeaderComponent() {
-    this.children.header.addEventListener('connect', (ev) => this.onConnect(ev))
-    return this.children.header
+    this.header.addEventListener('connect', (ev) => this.onConnect(ev))
+    return this.header
   }
 
   onConnect(ev) {
@@ -35,7 +33,7 @@ export class Page extends HTML {
   }
 
   onConnectOpen(data) {
-    this.children.content.addMessage('open', '')
+    this.content.addMessage('open', '')
   }
 
   onConnectMessage({ data } = {}) {
@@ -43,20 +41,20 @@ export class Page extends HTML {
   }
 
   onConnectError(data) {
-    this.children.content.addMessage('error', data.message.toString())
+    this.content.addMessage('error', data.message.toString())
   }
 
   onConnectClose(data) {
-    this.children.content.addMessage('close', '')
+    this.content.addMessage('close', '')
   }
 
   getContentComponent() {
-    return this.children.content
+    return this.content
   }
 
   getFooterComponent() {
-    this.children.footer.addEventListener('send', (ev) => this.onSend(ev))
-    return this.children.footer
+    this.footer.addEventListener('send', (ev) => this.onSend(ev))
+    return this.footer
   }
 
   onSend({ value: data } = {}) {
@@ -65,7 +63,7 @@ export class Page extends HTML {
   }
 
   addMessage(message) {
-    this.children.content.addMessage('message', message.toString())
+    this.content.addMessage('message', message.toString())
   }
 
 }
