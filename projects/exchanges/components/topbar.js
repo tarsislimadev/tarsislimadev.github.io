@@ -93,11 +93,9 @@ class nSearch extends nModal {
 }
 
 export class TopBar extends HTML {
-  children = {
-    title: new nLink(),
-    menu: new nMenu(),
-    search: new nSearch(),
-  }
+  title = new nLink()
+  menu = new nMenu()
+  search = new nSearch()
 
   state = {
     text: '',
@@ -124,22 +122,22 @@ export class TopBar extends HTML {
   }
 
   getMenuButton() {
-    return this.createButton('menu', () => this.children.menu.toggle())
+    return this.createButton('menu', () => this.menu.toggle())
   }
 
   getTitle() {
-    this.children.title.setStyle('color', COLORS.WHITE_1)
-    this.children.title.setStyle('text-align', 'center')
-    this.children.title.setContainerStyle('padding', '1rem')
+    this.title.setStyle('color', COLORS.WHITE_1)
+    this.title.setStyle('text-align', 'center')
+    this.title.setContainerStyle('padding', '1rem')
 
-    this.children.title.setText(this.state.text)
-    this.children.title.href(this.state.href)
+    this.title.setText(this.state.text)
+    this.title.href(this.state.href)
 
-    return this.children.title
+    return this.title
   }
 
   getSearchButton() {
-    return this.createButton('search', () => this.children.search.toggle())
+    return this.createButton('search', () => this.search.toggle())
   }
 
   getFlex() {
@@ -152,10 +150,10 @@ export class TopBar extends HTML {
   }
 
   getMenu() {
-    return this.children.menu
+    return this.menu
   }
 
   getSearch() {
-    return this.children.search
+    return this.search
   }
 }

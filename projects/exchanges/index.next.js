@@ -40,7 +40,7 @@ class DiffModel extends Model {
   getValuesPercent() {
     return 100 * +this.price2.value / +this.price1.value - 100
   }
-  
+
   getValuesPercentStr() {
     return +this.getValuesPercent().toFixed(6) + '%'
   }
@@ -164,11 +164,9 @@ export class Page extends PageComponent {
     prices: [],
   }
 
-  children = {
-    prices_table: new TableComponent(),
-    buys_table: new TableComponent(),
-    sells_table: new TableComponent(),
-  }
+  prices_table = new TableComponent()
+  buys_table = new TableComponent()
+  sells_table = new TableComponent()
 
   storage = {
     getBuysModels: () => Local.get(['buys'], []).map((buy) => new BuyModel(new PriceModel(buy.price.symbol, buy.price.value, buy.price.time))),
@@ -200,26 +198,26 @@ export class Page extends PageComponent {
   getPricesTable() {
     return new ColumnComponent([
       new TextComponent({ text: 'Prices' }),
-      this.children.prices_table
+      this.prices_table
     ])
   }
 
   getBuysTable() {
     return new ColumnComponent([
       new TextComponent({ text: 'Buys' }),
-      this.children.buys_table
+      this.buys_table
     ])
   }
 
   getSellsTable() {
     return new ColumnComponent([
       new TextComponent({ text: 'Sells' }),
-      this.children.sells_table
+      this.sells_table
     ])
   }
 
   updatePricesTable() {
-    this.children.prices_table.clear()
+    this.prices_table.clear()
 
     const tr = new TrComponent({})
 
@@ -227,10 +225,10 @@ export class Page extends PageComponent {
       tr.append(new TdComponent({ text: key }))
     })
 
-    this.children.prices_table.append(tr)
+    this.prices_table.append(tr)
 
     Array.from(this.state.prices).map((price) => {
-      this.children.prices_table.append(new PriceComponent(price))
+      this.prices_table.append(new PriceComponent(price))
     })
   }
 
@@ -244,7 +242,7 @@ export class Page extends PageComponent {
   }
 
   updateBuysTable() {
-    this.children.buys_table.clear()
+    this.buys_table.clear()
 
     const buys = this.storage.getBuysModels() // Local.get(['buys'], [])
 
@@ -255,14 +253,14 @@ export class Page extends PageComponent {
     Array.from(['symbol', 'value', 'datetime', 'price_diff', 'percent_diff'])
       .map((key) => tr.append(new TdComponent({ text: key })))
 
-    this.children.buys_table.append(tr)
+    this.buys_table.append(tr)
 
     Array.from(buys).map((buy) => {
       const tr = new TrComponent({})
       tr.append(this.createTdText(buy.price.symbol))
       tr.append(this.createTdText(buy.price.getValueStr()))
       tr.append(this.createTdText(buy.price.getTimeStr()))
-      
+
       const price = this.getPriceBySymbol(buy.price.getSymbol())
       const diff = buy.price.getDiff(price)
       tr.append(this.createTdText(diff.getValuesDiffStr()))
@@ -272,7 +270,7 @@ export class Page extends PageComponent {
       button.append(new ButtonComponent({ text: 'sell', onclick: () => this.sell(buy.buy_datetime) }))
       tr.append(button)
 
-      this.children.buys_table.append(tr)
+      this.buys_table.append(tr)
     })
   }
 
@@ -302,7 +300,7 @@ export class Page extends PageComponent {
   }
 
   updateSellsTable() {
-    this.children.sells_table.clear()
+    this.sells_table.clear()
 
     const sells = Array.from(Local.get(['sells'], []))
 
@@ -318,7 +316,7 @@ export class Page extends PageComponent {
       'time',
     ]).map((key) => tr.append(this.createTdText(key)))
 
-    this.children.sells_table.append(tr)
+    this.sells_table.append(tr)
 
     Array.from(sells).map((sell) => {
       const tr = new TrComponent({})
@@ -327,7 +325,7 @@ export class Page extends PageComponent {
       tr.append(this.createTdText(price2string(sell['sell_price'], 'R$')))
       tr.append(this.createTdText(price2string(sell['gain'])))
       tr.append(this.createTdText(interval2str(sell['time'])))
-      this.children.sells_table.append(tr)
+      this.sells_table.append(tr)
     })
   }
 

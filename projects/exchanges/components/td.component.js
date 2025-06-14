@@ -5,15 +5,15 @@ export class TdComponent extends HTML {
 
   hasContainer() { return false }
 
-  children = { component: new HTML() }
+  component = new HTML()
 
   constructor(component = new HTML()) {
     super()
-    this.children.component = component
+    this.component = component
   }
 
   onCreate() {
     super.onCreate()
-    this.append(this.children.component)
+    this.append(this.component)
   }
 }

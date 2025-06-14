@@ -19,11 +19,9 @@ export class Page extends PageComponent {
     values: [],
   }
 
-  children = {
-    prices_table: new TableComponent(),
-    buys_table: new TableComponent(),
-    sells_table: new TableComponent(),
-  }
+  prices_table = new TableComponent()
+  buys_table = new TableComponent()
+  sells_table = new TableComponent()
 
   onCreate() {
     super.onCreate()
@@ -46,26 +44,26 @@ export class Page extends PageComponent {
   getPricesTable() {
     const html = new HTML()
     html.append(new TextComponent({ text: 'prices' }))
-    html.append(this.children.prices_table)
+    html.append(this.prices_table)
     return html
   }
 
   getBuysTable() {
     const html = new HTML()
     html.append(new TextComponent({ text: 'buys' }))
-    html.append(this.children.buys_table)
+    html.append(this.buys_table)
     return html
   }
 
   getSellsTable() {
     const html = new HTML()
     html.append(new TextComponent({ text: 'sells' }))
-    html.append(this.children.sells_table)
+    html.append(this.sells_table)
     return html
   }
 
   updatePricesTable() {
-    this.children.prices_table.clear()
+    this.prices_table.clear()
 
     const tr = new TrComponent({})
 
@@ -75,7 +73,7 @@ export class Page extends PageComponent {
       tr.append(td)
     })
 
-    this.children.prices_table.append(tr)
+    this.prices_table.append(tr)
 
     Array.from(this.state.values).map((value) => {
       const tr = new TrComponent({})
@@ -88,7 +86,7 @@ export class Page extends PageComponent {
       button.append(new ButtonComponent({ text: 'buy', onclick: () => this.buy(value['symbol']) }))
       tr.append(button)
 
-      this.children.prices_table.append(tr)
+      this.prices_table.append(tr)
     })
   }
 
@@ -107,7 +105,7 @@ export class Page extends PageComponent {
   }
 
   updateBuysTable() {
-    this.children.buys_table.clear()
+    this.buys_table.clear()
 
     const buys = Local.get(['buys'], [])
 
@@ -117,7 +115,7 @@ export class Page extends PageComponent {
 
     Array.from(['symbol', 'price', 'datetime', 'price_diff', 'percent_diff']).map((key) => tr.append(this.createTdText(key)))
 
-    this.children.buys_table.append(tr)
+    this.buys_table.append(tr)
 
     Array.from(buys).map((buy) => {
       const tr = new TrComponent({})
@@ -132,7 +130,7 @@ export class Page extends PageComponent {
       const button = new TdComponent({})
       button.append(new ButtonComponent({ text: 'sell', onclick: () => this.sell(buy.buy_datetime) }))
       tr.append(button)
-      this.children.buys_table.append(tr)
+      this.buys_table.append(tr)
     })
   }
 
@@ -165,7 +163,7 @@ export class Page extends PageComponent {
   }
 
   updateSellsTable() {
-    this.children.sells_table.clear()
+    this.sells_table.clear()
 
     const sells = Array.from(Local.get(['sells'], []))
 
@@ -175,7 +173,7 @@ export class Page extends PageComponent {
 
     Array.from(['symbol', 'buy_price', 'buy_datetime', 'sell_price', 'sell_datetime']).map((key) => tr.append(this.createTdText(key)))
 
-    this.children.sells_table.append(tr)
+    this.sells_table.append(tr)
 
     Array.from(sells).map((sell) => {
       const tr = new TrComponent({})
@@ -184,7 +182,7 @@ export class Page extends PageComponent {
       tr.append(this.createTdText(datetime2str(sell['buy_datetime'])))
       tr.append(this.createTdText(price2string(sell['sell_price'], 'R$')))
       tr.append(this.createTdText(datetime2str(sell['sell_datetime'])))
-      this.children.sells_table.append(tr)
+      this.sells_table.append(tr)
     })
   }
 
