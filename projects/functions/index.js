@@ -15,10 +15,8 @@ class ErrorComponent extends TextComponent {
 }
 
 class FormComponent extends HTML {
-  children = {
-    values: new HTML(),
-    inputs: [],
-  }
+  values = new HTML()
+  inputs = []
 
   onCreate() {
     super.onCreate()
@@ -28,24 +26,22 @@ class FormComponent extends HTML {
   }
 
   getValuesComponent() {
-    return this.children.values
+    return this.values
   }
 
   onAddClick() {
-    const input = new InputComponent({ type: 'text', label: 'var ' + String.fromCharCode(this.children.inputs.length + 97) })
-    this.children.inputs.push(input)
-    this.children.values.append(input)
+    const input = new InputComponent({ type: 'text', label: 'var ' + String.fromCharCode(this.inputs.length + 97) })
+    this.inputs.push(input)
+    this.values.append(input)
   }
 
   onSaveClick() {
-    this.dispatch('save', this.children.inputs.map(i => i.getValue()))
+    this.dispatch('save', this.inputs.map(i => i.getValue()))
   }
 }
 
 class FunctionComponent extends HTML {
-  children = {
-    textarea: new TextareaComponent({}),
-  }
+  textarea = new TextareaComponent({})
 
   onCreate() {
     super.onCreate()
@@ -55,11 +51,11 @@ class FunctionComponent extends HTML {
   }
 
   getTextareaComponent() {
-    return this.children.textarea
+    return this.textarea
   }
 
   onSaveClick() {
-    this.dispatch('save', this.children.textarea.getValue())
+    this.dispatch('save', this.textarea.getValue())
   }
 
   onRunClick() {
@@ -68,11 +64,9 @@ class FunctionComponent extends HTML {
 }
 
 export class Page extends FirebaseDatabasePageComponent {
-  children = {
-    form: new FormComponent(),
-    function: new FunctionComponent(),
-    result: new HTML(),
-  }
+  form = new FormComponent()
+  function = new FunctionComponent()
+  result = new HTML()
 
   state = {
     name: '',
@@ -97,23 +91,23 @@ export class Page extends FirebaseDatabasePageComponent {
   }
 
   getFormComponent() {
-    this.children.form.addEventListener('save', ({ value }) => {
+    this.form.addEventListener('save', ({ value }) => {
       this.state.values = Array.from(value)
     })
-    return this.children.form
+    return this.form
   }
 
   getFunctionComponent() {
-    this.children.function.addEventListener('save', ({ value }) => {
+    this.function.addEventListener('save', ({ value }) => {
       this.state.function = value
       this.save(this.state).then(() => alert('saved'))
     })
-    this.children.function.addEventListener('run', () => this.onRunClick())
-    return this.children.function
+    this.function.addEventListener('run', () => this.onRunClick())
+    return this.function
   }
 
   getResultComponent() {
-    return this.children.result
+    return this.result
   }
 
   onRunClick() {
@@ -125,16 +119,16 @@ export class Page extends FirebaseDatabasePageComponent {
 ${func}
 }`)
 
-    this.children.result.clear()
+    this.result.clear()
     try {
       const result = fn(...values)
       if (result instanceof Promise) {
-        result.then(res => this.children.result.append(new TextComponent({ text: res })))
+        result.then(res => this.result.append(new TextComponent({ text: res })))
         return
       }
-      this.children.result.append(new TextComponent({ text: result }))
+      this.result.append(new TextComponent({ text: result }))
     } catch (e) {
-      this.children.result.append(new ErrorComponent({ text: e.message }))
+      this.result.append(new ErrorComponent({ text: e.message }))
       console.error(e)
     }
   }
