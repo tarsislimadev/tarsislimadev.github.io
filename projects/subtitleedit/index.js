@@ -7,10 +7,8 @@ import { TextComponent } from '../../assets/js/components/text.component.js'
 import { InputFileComponent } from './input.file.component.js'
 
 class SubtitlesEditor extends HTML {
-  children = {
-    input_file: new InputFileComponent(),
-    text: new HTML(),
-  }
+  input_file = new InputFileComponent()
+  text = new HTML()
 
   state = {
     texts: [],
@@ -24,12 +22,12 @@ class SubtitlesEditor extends HTML {
   }
 
   getText() {
-    return this.children.text
+    return this.text
   }
 
   getInputFileComponent() {
-    this.children.input_file.addEventListener('change', () => this.readFile(this.children.input_file.element.files[0]))
-    return this.children.input_file
+    this.input_file.addEventListener('change', () => this.readFile(this.input_file.element.files[0]))
+    return this.input_file
   }
 
   readFile(file = new File) {
@@ -51,15 +49,13 @@ class SubtitlesEditor extends HTML {
   }
 
   update() {
-    this.children.text.setText(this.state.texts.join(' --- '))
+    this.text.setText(this.state.texts.join(' --- '))
   }
 }
 
 class VideoPlayer extends HTML {
-  children = {
-    url: new InputComponent({ label: 'video url', placeholder: 'https://youtu.be/Vtot7ZVXHHU' }),
-    button: new ButtonComponent({ text: 'load video', onclick: () => this.onLoadVideoClick() }),
-  }
+  url = new InputComponent({ label: 'video url', placeholder: 'https://youtu.be/Vtot7ZVXHHU' })
+  button = new ButtonComponent({ text: 'load video', onclick: () => this.onLoadVideoClick() })
 
   onLoadVideoClick() {
     console.log('on load video click')
@@ -73,19 +69,17 @@ class VideoPlayer extends HTML {
   }
 
   getURL() {
-    return this.children.url
+    return this.url
   }
 
   getButton() {
-    return this.children.button
+    return this.button
   }
 }
 
 export class Page extends PageComponent {
-  children = {
-    subtitles_editor: new SubtitlesEditor(),
-    video_player: new VideoPlayer(),
-  }
+  subtitles_editor = new SubtitlesEditor()
+  video_player = new VideoPlayer()
 
   state = {
     subtitles: {},
@@ -106,10 +100,10 @@ export class Page extends PageComponent {
   }
 
   getSubtitlesEditor() {
-    return this.children.subtitles_editor
+    return this.subtitles_editor
   }
 
   getVideoPlayer() {
-    return this.children.video_player
+    return this.video_player
   }
 }
