@@ -48,9 +48,7 @@ class nLetter extends HTML {
     index: -1,
   }
 
-  children = {
-    letter: new HTML(),
-  }
+  letter = new HTML()
 
   constructor(letter, index) {
     super()
@@ -116,11 +114,11 @@ class nLetter extends HTML {
 
   getLetterHTML() {
     this.update()
-    return this.children.letter
+    return this.letter
   }
 
   update() {
-    this.children.letter.setText(this.getLetter())
+    this.letter.setText(this.getLetter())
   }
 
   getLetter() {

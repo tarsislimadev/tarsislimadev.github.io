@@ -43,9 +43,7 @@ class LetterComponent extends HTML {
 }
 
 export class Page extends HTML {
-  children = {
-    letters: new nFlex(),
-  }
+  letters = new nFlex()
 
   state = {
     letters: ['a', 'n', 'a', 'g', 'r', 'a', 'm'],
@@ -59,15 +57,15 @@ export class Page extends HTML {
   }
 
   getLetters() {
-    this.children.letters.setStyle('margin', '0 auto')
-    this.children.letters.setStyle('max-width', '40rem')
-    return this.children.letters
+    this.letters.setStyle('margin', '0 auto')
+    this.letters.setStyle('max-width', '40rem')
+    return this.letters
   }
 
   update() {
-    this.children.letters.clear()
+    this.letters.clear()
     this.state.letters.map((letter) => {
-      this.children.letters.append(new LetterComponent({ letter }))
+      this.letters.append(new LetterComponent({ letter }))
     })
     console.log('update')
   }
