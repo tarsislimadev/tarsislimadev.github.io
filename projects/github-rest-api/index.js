@@ -10,10 +10,8 @@ import * as Flow from '../../assets/js/utils/flow.js'
 import { client_id } from './config.js'
 
 export class Page extends PageComponent {
-  children = {
-    responses: new HTML(),
-    access_token: new InputComponent({ label: 'access token' }),
-  }
+  responses = new HTML()
+  access_token = new InputComponent({ label: 'access token' })
 
   onCreate() {
     super.onCreate()
@@ -35,7 +33,7 @@ export class Page extends PageComponent {
   }
 
   getAccessTokenInput() {
-    return this.children.access_token
+    return this.access_token
   }
 
   getApiUserButton() {
@@ -45,18 +43,18 @@ export class Page extends PageComponent {
   onApiUserButton() {
     fetch('https://api.github.com/user', { headers: this.getHeaders() })
       .then(res => res.json())
-      .then((json) => this.children.responses.append(new TextComponent(JSON.stringify(json, null, 4))))
-      .catch((err) => this.children.responses.append(new TextComponent(err.message)))
+      .then((json) => this.responses.append(new TextComponent(JSON.stringify(json, null, 4))))
+      .catch((err) => this.responses.append(new TextComponent(err.message)))
   }
 
   getHeaders() {
     return {
-      Authorization: `token ${this.children.access_token.children.input.getValue()}`,
+      Authorization: `token ${this.access_token.input.getValue()}`,
     }
   }
 
   getResonsesHTML() {
-    return this.children.responses
+    return this.responses
   }
 
   setOauthCode() {
