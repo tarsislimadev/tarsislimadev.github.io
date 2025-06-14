@@ -6,10 +6,8 @@ import { getEndpointsList } from './lists/endpoints.list.js'
 import * as messages from './components/messages/index.js'
 
 export class Page extends HTML {
-  children = {
-    endpoints: new EndpointsComponent(getEndpointsList()),
-    messages: new MessagesComponent(messages),
-  }
+  endpoints = new EndpointsComponent(getEndpointsList())
+  messages = new MessagesComponent(messages)
 
   onCreate() {
     super.onCreate()
@@ -25,10 +23,10 @@ export class Page extends HTML {
   }
 
   getEndpoints() {
-    return this.children.endpoints
+    return this.endpoints
   }
 
   getMessages() {
-    return this.children.messages
+    return this.messages
   }
 }

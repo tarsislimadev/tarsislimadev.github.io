@@ -6,10 +6,8 @@ import * as Local from '../../assets/js/utils/local.js'
 import { rest } from '../../assets/js/utils/api.js'
 
 export class Page extends PageComponent {
-  children = {
-    title: new HTML(),
-    responses: new HTML(),
-  }
+  title = new HTML()
+  responses = new HTML()
 
   onCreate() {
     super.onCreate()
@@ -56,16 +54,16 @@ export class Page extends PageComponent {
   appendResponse(name, resp = {}) {
     const text = JSON.stringify({ name, resp }, null, 4)
     const text_component = new TextComponent({ text })
-    this.children.responses.append(text_component)
+    this.responses.append(text_component)
   }
 
   getResponses() {
-    return this.children.responses
+    return this.responses
   }
 
   onFacebookPlaceButtonClick() {
     rest.graph_facebook.v22_0.placeId()
-      .then((res) => console.log({res}))
+      .then((res) => console.log({ res }))
       .catch((err) => console.error(err))
   }
 }
