@@ -9,12 +9,12 @@ export class ButtonComponent extends nButton {
   constructor({ text, onclick = (() => { }) }) {
     super()
     this.state.text = text
-    this.state.onclick = onclick
-    this.setStyles()
+    this.state.onclick = () => onclick()
   }
 
   onCreate() {
     super.onCreate()
+    this.setStyles()
     this.setText(this.state.text)
     this.addEventListener('click', () => this.state.onclick?.())
   }
