@@ -3,7 +3,23 @@ import { PageComponent } from '../../assets/js/components/page.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { LinkComponent } from '../../assets/js/components/link.component.js'
+import { RowComponent } from '../../assets/js/components/row.component.js'
+
 import { padLeft } from '../../assets/js/utils/str.js'
+
+class DownloadLinkComponent extends LinkComponent {
+  name = ''
+
+  constructor({ text = '', href = '' }) {
+    super({ text, href })
+    this.name = text
+  }
+
+  onCreate() {
+    super.onCreate()
+    this.setAttr('download', this.name)
+  }
+}
 
 export class Page extends PageComponent {
   state = {
@@ -13,35 +29,16 @@ export class Page extends PageComponent {
     id: -1,
   }
 
-  children = {
-    button: new ButtonComponent({ text: 'play', onclick: () => this.onButtonClick() }),
-    records: new HTML(),
-  }
+  button = new ButtonComponent({ text: 'play', onclick: () => this.onButtonClick() })
+  records = new HTML()
 
   onCreate() {
     super.onCreate()
-    this.setStyles()
-    this.append(this.getBox())
-  }
-
-  setStyles() {
-    this.setStyle('text-align', 'center')
-  }
-
-  getBox() {
-    const html = new HTML()
-    html.append(new TextComponent({ text: 'audio recorder' }))
-    html.append(this.getPlayButton())
-    html.append(this.getRecordsHTML())
-    return html
-  }
-
-  getPlayButton() {
-    return this.children.button
-  }
-
-  getRecordsHTML() {
-    return this.children.records
+    this.body.append(new RowComponent([
+      new TextComponent({ text: 'Audio Recorder' }),
+      this.button,
+      this.records,
+    ]))
   }
 
   onButtonClick() {
@@ -53,7 +50,7 @@ export class Page extends PageComponent {
   }
 
   setButtonText(text = '') {
-    this.children.button.setText(text)
+    this.button.setText(text)
   }
 
   startRecord() {
@@ -100,13 +97,9 @@ export class Page extends PageComponent {
   }
 
   onMediaRecorderDataAvailable({ data } = {}) {
-    const url = window.URL.createObjectURL(data)
-    this.children.records.append(this.createLinkElement(url, Date.now() + '.webm'))
-  }
-
-  createLinkElement(url, name) {
-    const link = new LinkComponent({ text: name, href: url })
-    link.setAttr('download', name)
-    return link
+    this.records.append(new DownloadLinkComponent({
+      text: Date.now() + '.webm',
+      href: window.URL.createObjectURL(data)
+    }))
   }
 }
