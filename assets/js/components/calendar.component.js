@@ -5,11 +5,9 @@ import { monthName } from '../../../assets/js/utils/calendar.js'
 import { padLeft } from '../../../assets/js/utils/str.js'
 
 export class CalendarComponent extends HTML {
-  children = {
-    year: new SelectComponent(),
-    month: new SelectComponent(),
-    days: new HTML(),
-  }
+  year = new SelectComponent()
+  month = new SelectComponent()
+  days = new HTML()
 
   state = {
     cur_date: new Date(),
@@ -28,9 +26,9 @@ export class CalendarComponent extends HTML {
   }
 
   loadDays() {
-    this.children.days.clear()
+    this.days.clear()
     const days = this.getDaysOfMonth(this.getYear(), this.getMonth())
-    Array.from(days).map((day) => this.children.days.append(this.getDateButton(day)))
+    Array.from(days).map((day) => this.days.append(this.getDateButton(day)))
   }
 
   getDateButton(date = new Date()) {
@@ -51,11 +49,11 @@ export class CalendarComponent extends HTML {
   }
 
   getYear() {
-    return this.children.year.getValue().toString()
+    return this.year.getValue().toString()
   }
 
   getMonth() {
-    return padLeft(this.children.month.getValue(), 2, '0').toString()
+    return padLeft(this.month.getValue(), 2, '0').toString()
   }
 
   getChangeButton() {
@@ -76,20 +74,20 @@ export class CalendarComponent extends HTML {
     const year = +(this.state.cur_date).getFullYear()
     Array.from(Array(5))
       .map((_, i) => (year + i).toString())
-      .map((i) => this.children.year.addOption(i, i))
-    this.children.year.addEventListener('change', () => this.dispatch('updateyear'))
-    return this.children.year
+      .map((i) => this.year.addOption(i, i))
+    this.year.addEventListener('change', () => this.dispatch('updateyear'))
+    return this.year
   }
 
   getMonthSelect() {
     Array.from(Array(12))
       .map((_, i) => monthName(i + 1))
-      .map((month, i) => this.children.month.addOption(i + 1, month))
-    this.children.month.addEventListener('change', () => this.dispatch('updatemonth'))
-    return this.children.month
+      .map((month, i) => this.month.addOption(i + 1, month))
+    this.month.addEventListener('change', () => this.dispatch('updatemonth'))
+    return this.month
   }
 
   getDaysHTML() {
-    return this.children.days
+    return this.days
   }
 }
