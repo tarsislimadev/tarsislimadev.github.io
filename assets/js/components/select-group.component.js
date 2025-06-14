@@ -12,8 +12,8 @@ export class SelectGroupComponent extends nSelectGroup {
 
   onCreate() {
     super.onCreate()
-    this.children.label.setText(this.text)
-    Array.from(this.values).map((value) => this.children.select.addOption(value, value))
+    this.label.setText(this.text)
+    Array.from(this.values).map((value) => this.select.addOption(value, value))
   }
 
 }
