@@ -2,13 +2,11 @@ import { HTML } from '../../../assets/js/libs/afrontend/index.js'
 import { MessageModel } from '../models/message.model.js'
 
 export class MessagesComponent extends HTML {
-  children = {
-    messages: [],
-  }
+  messages = []
 
   constructor(messages = []) {
     super()
-    this.children.messages = messages
+    this.messages = messages
   }
 
   onCreate() {
