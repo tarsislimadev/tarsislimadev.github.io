@@ -3,10 +3,8 @@ import { HTML, nFlex } from '../../assets/js/libs/afrontend/index.js'
 const app = HTML.fromId('app')
 
 class Screen extends HTML {
-  children = {
-    operation: new HTML(),
-    result: new HTML(),
-  }
+  operation = new HTML()
+  result = new HTML()
 
   state = {
     n1: 0,
