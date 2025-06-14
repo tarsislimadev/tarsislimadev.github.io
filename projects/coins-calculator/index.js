@@ -6,15 +6,13 @@ import { TextComponent } from '../../assets/js/components/text.component.js'
 import { LinkComponent } from '../../assets/js/components/link.component.js'
 
 export class Page extends PageComponent {
-  children = {
-    symbol: new InputComponent({ placeholder: 'symbol' }),
-    buy_quantity_input: new InputComponent({ placeholder: 'quantity', type: 'number' }),
-    buy_price_input: new InputComponent({ placeholder: 'price', type: 'number' }),
-    sell_price_input: new InputComponent({ placeholder: 'price', type: 'number' }),
-    gain_price: new TextComponent(),
-    gain_percent: new TextComponent(),
-    links: new HTML(),
-  }
+  symbol = new InputComponent({ placeholder: 'symbol' })
+  buy_quantity_input = new InputComponent({ placeholder: 'quantity', type: 'number' })
+  buy_price_input = new InputComponent({ placeholder: 'price', type: 'number' })
+  sell_price_input = new InputComponent({ placeholder: 'price', type: 'number' })
+  gain_price = new TextComponent()
+  gain_percent = new TextComponent()
+  links = new HTML()
 
   state = {
     buy: { quantity: 0, price: 0 },
@@ -33,7 +31,7 @@ export class Page extends PageComponent {
     this.appendFlex('in price', this.getGainPriceHTML())
     this.appendFlex('in percent', this.getGainPercentHTML())
     this.append(new ButtonComponent({ text: 'export', onclick: () => this.onExportButtonClick() }))
-    this.append(this.children.links)
+    this.append(this.links)
   }
 
   appendFlex(text = '', component = new HTML()) {
@@ -45,56 +43,56 @@ export class Page extends PageComponent {
   }
 
   getSymbolInput() {
-    return this.children.symbol
+    return this.symbol
   }
 
   getBuyQuantityInput() {
-    this.children.buy_quantity_input.addEventListener('keyup', () => this.calcGains())
-    return this.children.buy_quantity_input
+    this.buy_quantity_input.addEventListener('keyup', () => this.calcGains())
+    return this.buy_quantity_input
   }
 
   getBuyPriceInput() {
-    this.children.buy_price_input.addEventListener('keyup', () => this.calcGains())
-    return this.children.buy_price_input
+    this.buy_price_input.addEventListener('keyup', () => this.calcGains())
+    return this.buy_price_input
   }
 
   getSellPriceInput() {
-    this.children.sell_price_input.addEventListener('keyup', () => this.calcGains())
-    return this.children.sell_price_input
+    this.sell_price_input.addEventListener('keyup', () => this.calcGains())
+    return this.sell_price_input
   }
 
   getGainPriceHTML() {
-    return this.children.gain_price
+    return this.gain_price
   }
 
   getGainPercentHTML() {
-    return this.children.gain_percent
+    return this.gain_percent
   }
 
   calcGains() {
-    this.children.gain_price.setText(this.getPrice())
-    this.children.gain_percent.setText(this.getPercent() + '%')
+    this.gain_price.setText(this.getPrice())
+    this.gain_percent.setText(this.getPercent() + '%')
   }
 
   getPrice() {
-    const sell_price = this.children.sell_price_input.getValue()
-    const buy_quantity = this.children.buy_quantity_input.getValue()
-    const buy_price = this.children.buy_price_input.getValue()
+    const sell_price = this.sell_price_input.getValue()
+    const buy_quantity = this.buy_quantity_input.getValue()
+    const buy_price = this.buy_price_input.getValue()
     return ((sell_price * buy_quantity / buy_price) - buy_quantity).toFixed(4)
   }
 
   getPercent() {
     const price = this.getPrice()
-    const buy_quantity = this.children.buy_quantity_input.getValue()
+    const buy_quantity = this.buy_quantity_input.getValue()
     return (100 * price / buy_quantity).toFixed(4)
   }
 
   onExportButtonClick() {
-    this.children.links.append(this.createDownloadLink(
-      this.children.symbol.getValue(),
-      this.children.sell_price_input.getValue(),
-      this.children.buy_quantity_input.getValue(),
-      this.children.buy_price_input.getValue(),
+    this.links.append(this.createDownloadLink(
+      this.symbol.getValue(),
+      this.sell_price_input.getValue(),
+      this.buy_quantity_input.getValue(),
+      this.buy_price_input.getValue(),
       this.getPrice(),
       this.getPercent(),
     ))
