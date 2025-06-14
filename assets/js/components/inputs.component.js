@@ -1,10 +1,10 @@
 import { HTML } from '../../../assets/js/libs/afrontend/index.js'
 
 export class InputsComponent extends HTML {
-  children = {}
+  components = {}
 
   getComponent(component = '') {
-    return this.children[component]
+    return this.components[component]
   }
 
   getValue(component = '') {
