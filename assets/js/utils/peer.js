@@ -2,13 +2,9 @@ import { Peer } from '../../../assets/js/libs/peerjs/index.js'
 import { qrcode } from './functions.js'
 
 class MyPeer extends Peer {
-  state = {
-    project: null,
-  }
+  state = { project: null }
 
-  children = {
-    image: document.createElement('img'),
-  }
+  image = document.createElement('img')
 
   setProject(project) {
     this.state.project = project
@@ -16,7 +12,7 @@ class MyPeer extends Peer {
   }
 
   hideQRCode() {
-    document.body.removeChild(this.children.image)
+    document.body.removeChild(this.image)
     return this
   }
 
@@ -33,8 +29,8 @@ class MyPeer extends Peer {
   }
 
   getQRCodeImage(url = '') {
-    this.children.image.src = qrcode(url)
-    return this.children.image
+    this.image.src = qrcode(url)
+    return this.image
   }
 
   getQRCodeUrl() {
