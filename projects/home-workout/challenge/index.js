@@ -5,12 +5,10 @@ import { padLeft } from './../../../assets/js/utils/str.js'
 import * as LOCAL from './../../../assets/js/utils/local.js'
 
 export class Page extends HTML {
-  children = {
-    error: new HTML(),
-    title: new nH1(),
-    resume: new HTML(),
-    workouts: new HTML(),
-  }
+  error = new HTML()
+  title = new nH1()
+  resume = new HTML()
+  workouts = new HTML()
 
   onCreate() {
     this.append(this.getTitle())
@@ -20,19 +18,19 @@ export class Page extends HTML {
     API.getChallengeItem(LOCAL.get([window.location.pathname], null))
       .then((res) => (res.get('item')))
       .then(({ id, level, title, workouts }) => {
-        this.children.title.setText(title)
+        this.title.setText(title)
         this.setResume(workouts)
         this.setWorkouts(workouts)
       })
-      .catch((err) => this.children.error.setText(err.message))
+      .catch((err) => this.error.setText(err.message))
   }
 
   getTitle() {
     const flex = new nFlex()
 
-    // this.children.title.setStyle('margin', 'calc(1rem / 2) 0rem')
-    this.children.title.setStyle('padding', '0rem')
-    flex.append(this.children.title)
+    // this.title.setStyle('margin', 'calc(1rem / 2) 0rem')
+    this.title.setStyle('padding', '0rem')
+    flex.append(this.title)
 
     const button = new nButton()
     button.setText('start')
@@ -48,9 +46,9 @@ export class Page extends HTML {
   }
 
   getResume() {
-    this.children.resume.setStyle('padding', '1rem 0rem')
+    this.resume.setStyle('padding', '1rem 0rem')
 
-    return this.children.resume
+    return this.resume
   }
 
   secondsToMinutes(s = 0) {
@@ -65,7 +63,7 @@ export class Page extends HTML {
 
     const ws = Array.from(workouts).filter((w) => w.workouts).reduce((num, w) => num + w.workouts, 0)
 
-    this.children.resume.setText(
+    this.resume.setText(
       [
         `${this.secondsToMinutes(time)} min`,
         `${ws} workouts`,
@@ -74,7 +72,7 @@ export class Page extends HTML {
   }
 
   getWorkouts() {
-    return this.children.workouts
+    return this.workouts
   }
 
   setWorkouts(workouts = []) {
@@ -94,7 +92,7 @@ export class Page extends HTML {
 
       workout.append(new nHr())
 
-      this.children.workouts.append(workout)
+      this.workouts.append(workout)
     })
   }
 

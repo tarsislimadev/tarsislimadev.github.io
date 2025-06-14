@@ -4,11 +4,9 @@ import { padLeft, secondsToMinutes } from '../../../assets/js/utils/str.js'
 export class ChallengeListComponent extends HTML {
   item = null
 
-  children = {
-    title: new HTML(),
-    level: new HTML(),
-    total: new HTML(),
-  }
+  title = new HTML()
+  level = new HTML()
+  total = new HTML()
 
   constructor(item = {}) {
     super()
@@ -44,11 +42,11 @@ export class ChallengeListComponent extends HTML {
   }
 
   getTitle() {
-    this.children.title.setText(this.item.title)
+    this.title.setText(this.item.title)
 
-    this.children.title.setStyle('margin-bottom', 'calc(1rem / 4)')
+    this.title.setStyle('margin-bottom', 'calc(1rem / 4)')
 
-    return this.children.title
+    return this.title
   }
 
   parseDateString(datetime) {
@@ -59,11 +57,11 @@ export class ChallengeListComponent extends HTML {
   }
 
   getLevel() {
-    this.children.level.setText(`Level: ${this.item.level}`)
+    this.level.setText(`Level: ${this.item.level}`)
 
-    this.children.level.setStyle('margin-bottom', 'calc(1rem / 4)')
+    this.level.setStyle('margin-bottom', 'calc(1rem / 4)')
 
-    return this.children.level
+    return this.level
   }
 
   getTotal() {
@@ -71,9 +69,9 @@ export class ChallengeListComponent extends HTML {
 
     const [t, w] = workouts.reduce(([time, workout], w) => ([time + w.time, workout + (w.workouts || 0)]), [0, 0])
 
-    this.children.total.setText([`${secondsToMinutes(t)} min`, `${w} workouts`,].join(' - '))
+    this.total.setText([`${secondsToMinutes(t)} min`, `${w} workouts`,].join(' - '))
 
-    return this.children.total
+    return this.total
   }
 
 }

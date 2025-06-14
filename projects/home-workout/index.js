@@ -10,10 +10,8 @@ class CardHTML extends HTML {
     text: '',
   }
 
-  children = {
-    num: new HTML(),
-    text: new HTML(),
-  }
+  num = new HTML()
+  text = new HTML()
 
   constructor(num = 0, text = '') {
     super()
@@ -28,25 +26,23 @@ class CardHTML extends HTML {
   }
 
   getNumHTML() {
-    this.children.num.setText(padLeft(this.state.num, 2, '0'))
-    return this.children.num
+    this.num.setText(padLeft(this.state.num, 2, '0'))
+    return this.num
   }
 
   getTextHTML() {
-    this.children.text.setText(this.state.text)
-    return this.children.text
+    this.text.setText(this.state.text)
+    return this.text
   }
 }
 
 export class Page extends HTML {
-  children = {
-    errorMessage: new HTML(),
-    header: new HTML(),
-    resume: new HTML(),
-    goals: new HTML(),
-    challenges: new HTML(),
-    challengesList: new HTML(),
-  }
+  errorMessage = new HTML()
+  header = new HTML()
+  resume = new HTML()
+  goals = new HTML()
+  challenges = new HTML()
+  challengesList = new HTML()
 
   onCreate() {
     this.append(this.getHeader())
@@ -61,13 +57,13 @@ export class Page extends HTML {
     const title = new nH1()
     title.setText('Home Workout')
     title.setStyle('margin', '0rem')
-    this.children.header.append(title)
-    this.children.header.setStyle('padding', '1rem')
-    return this.children.header
+    this.header.append(title)
+    this.header.setStyle('padding', '1rem')
+    return this.header
   }
 
   getErrorMessage() {
-    return this.children.errorMessage
+    return this.errorMessage
   }
 
   getResume() {
@@ -75,29 +71,29 @@ export class Page extends HTML {
     flex.append(new CardHTML(0, 'minutes'))
     flex.append(new CardHTML(0, 'workouts'))
     flex.append(new CardHTML(0, 'kcal'))
-    this.children.resume.append(flex)
-    this.children.resume.setStyle('text-align', 'center')
-    this.children.resume.setStyle('padding', '1rem')
-    return this.children.resume
+    this.resume.append(flex)
+    this.resume.setStyle('text-align', 'center')
+    this.resume.setStyle('padding', '1rem')
+    return this.resume
   }
 
   getChallenges() {
     const title = new nH2()
     title.setText('Challenges')
-    this.children.challenges.append(title)
-    this.children.challenges.append(this.children.challengesList)
-    this.children.challenges.setStyle('margin', '1rem')
-    return this.children.challenges
+    this.challenges.append(title)
+    this.challenges.append(this.challengesList)
+    this.challenges.setStyle('margin', '1rem')
+    return this.challenges
   }
 
   appendChallengesList() {
     API.getChallengesList()
       .then((res) => {
-        this.children.challengesList.clear()
+        this.challengesList.clear()
         res.get('list')
           .map((item) => new ChallengeListComponent(item))
-          .map((challenge) => this.children.challengesList.append(challenge))
+          .map((challenge) => this.challengesList.append(challenge))
       })
-      .catch((err) => this.children.errorMessage.setText(err.message))
+      .catch((err) => this.errorMessage.setText(err.message))
   }
 }
