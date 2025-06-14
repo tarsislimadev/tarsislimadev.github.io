@@ -4,10 +4,8 @@ import { FormComponent } from './components/form.component.js'
 import { PageComponent } from '../../assets/js/components/page.component.js'
 
 export class Page extends PageComponent {
-  children = {
-    form: new FormComponent(),
-    results: new HTML(),
-  }
+  form = new FormComponent()
+  results = new HTML()
 
   onCreate() {
     super.onCreate()
@@ -17,12 +15,12 @@ export class Page extends PageComponent {
   }
 
   getForm() {
-    this.children.form.addEventListener('result', ({ value }) => console.log({ value }))
-    this.children.form.addEventListener('error', ({ value: error }) => console.error(error))
-    return this.children.form
+    this.form.addEventListener('result', ({ value }) => console.log({ value }))
+    this.form.addEventListener('error', ({ value: error }) => console.error(error))
+    return this.form
   }
 
   getResultsHTML() {
-    return this.children.results
+    return this.results
   }
 }

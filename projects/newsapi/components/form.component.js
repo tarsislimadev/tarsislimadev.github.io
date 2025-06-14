@@ -6,13 +6,11 @@ import { padLeft } from '../../../assets/js/utils/str.js'
 import * as API from '../../../assets/js/utils/api.js'
 
 export class FormComponent extends HTML {
-  children = {
-    apiKey: new InputComponent({ label: 'api key', value: this.getDefaultApiKey(), type: 'password' }),
-    query: new InputComponent({ label: 'query', value: this.getDefaultQuery() }),
-    from: new InputComponent({ label: 'from', value: this.getDefaultFrom() }),
-    to: new InputComponent({ label: 'to', value: this.getDefaultTo() }),
-    sortBy: new InputComponent({ label: 'sort by', value: this.getDefaultsortBy() }),
-  }
+  apiKey = new InputComponent({ label: 'api key', value: this.getDefaultApiKey(), type: 'password' })
+  query = new InputComponent({ label: 'query', value: this.getDefaultQuery() })
+  from = new InputComponent({ label: 'from', value: this.getDefaultFrom() })
+  to = new InputComponent({ label: 'to', value: this.getDefaultTo() })
+  sortBy = new InputComponent({ label: 'sort by', value: this.getDefaultsortBy() })
 
   getDefaultApiKey() {
     return ''
@@ -56,23 +54,23 @@ export class FormComponent extends HTML {
   }
 
   getApiKeyInputComponent() {
-    return this.children.apiKey
+    return this.apiKey
   }
 
   getQueryInputComponent() {
-    return this.children.query
+    return this.query
   }
 
   getFromInputComponent() {
-    return this.children.from
+    return this.from
   }
 
   getToInputComponent() {
-    return this.children.to
+    return this.to
   }
 
   getSortInputComponent() {
-    return this.children.sortBy
+    return this.sortBy
   }
 
   getSendButtonComponent() {
@@ -81,11 +79,11 @@ export class FormComponent extends HTML {
 
   onSendButtonComponentClick() {
     API.rest.newsapi.v2.call('everything', {
-      apiKey: this.children.apiKey.getValue(),
-      q: this.children.query.getValue(),
-      from: this.children.from.getValue(),
-      to: this.children.to.getValue(),
-      sortBy: this.children.sortBy.getValue(),
+      apiKey: this.apiKey.getValue(),
+      q: this.query.getValue(),
+      from: this.from.getValue(),
+      to: this.to.getValue(),
+      sortBy: this.sortBy.getValue(),
     })
       .then((json) => this.onNewsApiEverything(json))
       .catch((err) => this.onError(err))
