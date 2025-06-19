@@ -1,4 +1,4 @@
-import { nTr, nTd } from '../../../assets/js/libs/afrontend/index.js'
+import { nTr, nTd } from '../libs/afrontend/index.js'
 
 export class TableLineComponent extends nTr {
   cols = []
