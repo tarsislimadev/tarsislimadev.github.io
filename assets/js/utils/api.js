@@ -2,6 +2,8 @@ import { api_key } from '../../../assets/js/config/googleusercontent/index.js'
 
 import { request, simple_request } from './ajax.js'
 
+import { arr2str } from './str.js'
+
 import * as LOCAL from '../../../assets/js/utils/local.js'
 
 const url = (url, query = {}) => {
@@ -19,6 +21,13 @@ const getGmailHeader = () => ({ 'Authorization': `Bearer ${LOCAL.get(['google.ac
 const getFacebookHeaders = (headers = {}) => ({ ...headers, 'Authorization': `Bearer ${LOCAL.get(['facebook.access_token'])}` })
 
 export const rest = {
+  binance: {
+    v3: {
+      ticker: {
+        getPricesBySymbols: (symbols = []) => request('GET', `https://api4.binance.com/api/v3/ticker/price?symbols=[${arr2str(symbols)}]`).then(res => res.getData())
+      }
+    }
+  },
   musixmatch: {
     v1: {
       call: (method, path, params = {}) => request(method, url('https://api.musixmatch.com/ws/1.1/' + path, params), {}, { 'Access-Control-Allow-Origin': '*', 'Access-Control-Request-Headers': '*' })
