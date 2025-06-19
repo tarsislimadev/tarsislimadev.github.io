@@ -3,14 +3,15 @@ import { HTML, nTable, nTr, nTd } from '../../../assets/js/libs/afrontend/index.
 import { UpdatableTextComponent } from '../../../assets/js/components/updatable.text.component.js'
 import { ButtonComponent } from '../../../assets/js/components/button.component.js'
 import { TextComponent } from '../../../assets/js/components/text.component.js'
-import { TableLineComponent } from './table.line.component.js'
+import { TableLineComponent } from '../../../assets/js/components/table.line.component.js'
 
 import { dispatchWindowEvent } from '../../../assets/js/utils/window.js'
 
-import { BuyModel } from '../../../assets/js/models/buy.model.js'
+import { BinanceBuyModel } from '../models/binance.buy.model.js'
 
 import * as Local from '../../../assets/js/utils/local.js'
 import { PriceModel } from '../../../assets/js/models/price.model.js'
+import { BinanceLocal } from '../local/binance.local.js'
 
 class TableComponent extends nTable { }
 
@@ -20,16 +21,7 @@ export class BinancePricesTableComponent extends TableComponent {
     this.appendLines()
   }
 
-  getPrices() {
-    return Local.get(['binance.prices'])
-      .map((p) => {
-        const price = new PriceModel()
-        price.fromJSON(p)
-        return price
-      })
-  }
-
-  getPriceBySymbol(symbol) { return this.getPrices().find((p) => p.getSymbol() == symbol) }
+  getPriceBySymbol(symbol) { return BinanceLocal.getPrices().find((p) => p.getSymbol() == symbol) }
 
   getPriceStringBySymbol(symbol) { return this.getPriceBySymbol(symbol)?.getPriceString() }
 
@@ -45,7 +37,7 @@ export class BinancePricesTableComponent extends TableComponent {
   }
 
   onBuyButtonClick(symbol) {
-    Local.add(['binance.buys'], new BuyModel(this.getPriceBySymbol(symbol), 100))
+    Local.add(['binance.buys'], new BinanceBuyModel(this.getPriceBySymbol(symbol), 100))
     dispatchWindowEvent('updatebuys')
   }
 
