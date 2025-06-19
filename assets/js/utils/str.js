@@ -41,8 +41,17 @@ export const getDate = (day) => {
 }
 
 export const price2string = (price = 0, coin = '') => {
-  const [bills, cents] = price.toString().split('.')
-  return [coin, `${bills},${fixDecimals(padRight(cents, 2, '0'))}`]
+  let [bills, cents] = price.toString().split('.')
+  const neg = +bills < 0
+  if (neg) bills = bills.substring(1)
+  const new_bills = (bills)
+    .split('').reverse()
+    .map((n, i) => (i % 3 == 2 && i != bills.length - 1 ? '.' : '') + n)
+    .reverse().join('')
+  const new_cents = fixDecimals(padRight(cents, 2, '0'))
+  return [coin, `${neg ? '-' : ''}${new_bills},${new_cents}`]
     .filter((text) => text.length > 0)
     .join(' ')
 }
+
+export const arr2str = (arr = []) => arr.map((s) => `"${s}"`).join(',')
