@@ -1,4 +1,4 @@
-import { nFlex } from '../../../assets/js/libs/afrontend/index.js'
+import { nFlex } from '../libs/afrontend/index.js'
 
 export class FlexComponent extends nFlex {
   components = []
