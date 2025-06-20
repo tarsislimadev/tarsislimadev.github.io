@@ -120,6 +120,11 @@ export default Array.from([
     "step": 1
   },
   {
+    "id": "financial-times-rest-api",
+    "tags": [],
+    "step": 1
+  },
+  {
     "id": "forca",
     "tags": [],
     "step": 1
