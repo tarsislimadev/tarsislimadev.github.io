@@ -1,39 +1,37 @@
 import { HTML, nTable, nTr, nTd } from '../../../assets/js/libs/afrontend/index.js'
+import { TextComponent } from './text.component.js'
+import { TableColumnComponent } from '../../../assets/js/components/table.column.component.js'
+
+class TableHeaderComponent extends HTML {
+  getTagName() { return 'thead' }
+  getName() { return 'thead-component' }
+  hasContainer() { return false }
+}
+
+class TableBodyComponent extends HTML {
+  getTagName() { return 'tbody' }
+  getName() { return 'tbody-component' }
+  hasContainer() { return false }
+}
 
 export class TableComponent extends nTable {
-  constructor(data = [], headers = []) {
+  head = new TableHeaderComponent()
+  body = new TableBodyComponent()
+
+  constructor(headers = []) {
     super()
-    this.data = data
     this.headers = headers.length ? headers : Object.keys(this.data?.[0] || {})
   }
 
   onCreate() {
     super.onCreate()
-    this.createHeaders()
-    this.createBody()
+    this.append(this.head)
+    this.append(this.body)
   }
 
-  createHeaders() {
-    const header = new nTr()
-    Array.from(this.headers).map((key) => {
-      const td = new nTd()
-      td.setText(key)
-      header.append(td)
-    })
-    this.append(header)
+  addHeaders(headers = []) {
+    const tr = new nTr()
+    Array.from(headers).map((h) => tr.append(new TableColumnComponent(new TextComponent({ text: h }))))
+    this.append(this.head.append(tr))
   }
-
-  createBody() {
-    const self = this
-    Array.from(this.data).map((line) => {
-      const tr = new nTr()
-      Object.keys(line).map((key) => {
-        const td = new nTd()
-        td.setText(line[key])
-        tr.append(td)
-      })
-      self.append(tr)
-    })
-  }
-
 }
