@@ -8,20 +8,6 @@ export class nInput extends nInput {
   }
 }
 
-export class nButton extends nButton {
-  onCreate() {
-    super.onCreate()
-    this.setStyle('box-sizing', 'border-box')
-  }
-}
-
-export class nFlex extends nFlex {
-  onCreate() {
-    super.onCreate()
-    this.setStyle('box-sizing', 'border-box')
-  }
-}
-
 export class nTextAreaGroup extends nInputTextGroup {
   label = new nLabel()
   input = new nTextArea()
@@ -29,27 +15,6 @@ export class nTextAreaGroup extends nInputTextGroup {
 }
 
 export default { nInputTextGroup }
-
-export class nImage extends nImage {
-  onCreate() {
-    super.onCreate()
-    this.setStyle('box-sizing', 'border-box')
-  }
-}
-
-export class nLink extends nLink {
-  onCreate() {
-    super.onCreate()
-    this.setStyle('box-sizing', 'border-box')
-  }
-}
-
-export class nHr extends nHr {
-  onCreate() {
-    super.onCreate()
-    this.setStyle('box-sizing', 'border-box')
-  }
-}
 
 export class Item extends HTML {
   state = {}
