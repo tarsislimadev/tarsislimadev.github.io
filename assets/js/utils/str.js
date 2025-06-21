@@ -13,7 +13,7 @@ export const padRight = (text = '', length = 1, pad = ' ') => {
 
 export const datetime2str = (datetime = Date.now()) => {
   const date = new Date(datetime)
-  return `${date.getFullYear()}/${padLeft(date.getMonth(), 2, '0')}/${padLeft(date.getDate(), 2, '0')} ${padLeft(date.getHours(), 2, '0')}:${padLeft(date.getMinutes(), 2, '0')}:${padLeft(date.getSeconds(), 2, '0')}`
+  return `${date.getFullYear()}/${padLeft(date.getMonth() + 1, 2, '0')}/${padLeft(date.getDate(), 2, '0')} ${padLeft(date.getHours(), 2, '0')}:${padLeft(date.getMinutes(), 2, '0')}:${padLeft(date.getSeconds(), 2, '0')}`
 }
 
 export const interval2str = (interval = 0) => {
