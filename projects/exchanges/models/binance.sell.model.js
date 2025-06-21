@@ -18,11 +18,10 @@ export class BinanceSellModel extends Model {
     return { price, buy, datetime }
   }
 
-  fromJSON(sell = { buy: { price: { price: 0, symbol: '', datetime: new Date() }, amount: 1 }, price: { price: 0, symbol: '', datetime: new Date() } }) {
-    const buy = new BinanceBuyModel()
-    this.buy = buy.fromJSON(sell.buy)
-    const price = new PriceModel()
-    this.price = price.fromJSON(sell.price)
+  fromJSON(sell = { buy: { price: { price: 0, symbol: '', datetime: new Date() }, amount: 1 }, price: { price: 0, symbol: '', datetime: new Date() }, datetime: new Date() }) {
+    this.datetime = new Date(sell.datetime)
+    this.buy = new BinanceBuyModel().fromJSON(sell.buy)
+    this.price = new PriceModel().fromJSON(sell.price)
     return this
   }
 }

@@ -1,5 +1,6 @@
 import { Model } from '../../../assets/js/models/model.js'
 import { PriceModel } from '../../../assets/js/models/price.model.js'
+import { datetime2str } from '../../../assets/js/utils/str.js'
 
 export class BinanceBuyModel extends Model {
   datetime = new Date()
@@ -14,7 +15,7 @@ export class BinanceBuyModel extends Model {
 
   get total() { return this.price.getPrice() * this.amount }
 
-  get datetime_string() { return new Date(this.datetime).toJSON() }
+  get datetime_string() { return datetime2str(this.datetime) }
 
   toJSON() {
     const { price, amount, datetime_string } = this
@@ -23,8 +24,7 @@ export class BinanceBuyModel extends Model {
 
   fromJSON(buy = { price: { datetime: new Date(), price: 0, symbol: '' }, amount: 1, datetime: new Date() }) {
     this.datetime = new Date(buy.datetime)
-    const price = new PriceModel()
-    this.price = price.fromJSON(buy.price)
+    this.price = new PriceModel().fromJSON(buy.price)
     this.amount = buy.amount
     return this
   }
