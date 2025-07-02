@@ -15,13 +15,11 @@ export class FirebaseHelper {
 
   getDirectory() { return this.directory }
 
-  set(...args) { set(...args) }
-
   getRef(item = null) {
     return ref(this.database, item ? (this.getDirectory() + '/' + item) : this.getDirectory())
   }
 
-  save(data, ref1 = this.getRef(Date.now())) { return this.set(ref1, data) }
+  save(data, ref1 = this.getRef(Date.now())) { return set(ref1, data) }
 
   list() {
     return new Promise((resolve, reject) => {
