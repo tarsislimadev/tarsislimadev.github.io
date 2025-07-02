@@ -355,6 +355,11 @@ export default Array.from([
     "step": 1
   },
   {
+    "id": "texts",
+    "tags": ['firebase'],
+    "step": 1
+  },
+  {
     "id": "three.js-sample",
     "tags": [],
     "step": 1
