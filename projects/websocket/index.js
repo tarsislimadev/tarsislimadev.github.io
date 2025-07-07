@@ -2,6 +2,11 @@ import { HTML } from '../../assets/js/libs/afrontend/index.js'
 import { HeaderComponent } from './components/header.component.js'
 import { ContentComponent } from './components/content.component.js'
 import { FooterComponent } from './components/footer.component.js'
+import { dispatchWindowEvent } from '../../assets/js/utils/window.js'
+import { SocketMessageModel } from './models/socket.message.model.js'
+import { OpenSocketMessageModel } from './models/open.socket.message.model.js'
+import { CloseSocketMessageModel } from './models/close.socket.message.model.js'
+import { ErrorSocketMessageModel } from './models/error.socket.message.model.js'
 
 export class Page extends HTML {
   header = new HeaderComponent()
@@ -33,24 +38,22 @@ export class Page extends HTML {
   }
 
   onConnectOpen(data) {
-    this.content.addMessage('open', '')
+    dispatchWindowEvent('message', new OpenSocketMessageModel(data))
   }
 
   onConnectMessage({ data } = {}) {
-    this.addMessage(data.toString())
+    dispatchWindowEvent('message', new SocketMessageModel(data.toString()))
   }
 
   onConnectError(data) {
-    this.content.addMessage('error', data.message.toString())
+    dispatchWindowEvent('message', new ErrorSocketMessageModel(data))
   }
 
   onConnectClose(data) {
-    this.content.addMessage('close', '')
+    dispatchWindowEvent('message', new CloseSocketMessageModel(data))
   }
 
-  getContentComponent() {
-    return this.content
-  }
+  getContentComponent() { return this.content }
 
   getFooterComponent() {
     this.footer.addEventListener('send', (ev) => this.onSend(ev))
@@ -58,12 +61,7 @@ export class Page extends HTML {
   }
 
   onSend({ value: data } = {}) {
-    this.addMessage(data.toString())
+    dispatchWindowEvent('message', new SocketMessageModel(data.toString()))
     this.state.socket.send(data)
   }
-
-  addMessage(message) {
-    this.content.addMessage('message', message.toString())
-  }
-
 }
