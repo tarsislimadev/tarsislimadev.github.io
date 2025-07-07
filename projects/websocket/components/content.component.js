@@ -1,33 +1,55 @@
-import { HTML } from '../../../assets/js/libs/afrontend/index.js'
+import { HTML, nFlex, nInput } from '../../../assets/js/libs/afrontend/index.js'
 import { TextComponent } from '../../../assets/js/components/text.component.js'
 import * as str from '../../../assets/js/utils/str.js'
+import { MessageModel } from '../models/message.model.js'
+
+class nCheckbox extends nInput {
+  getName() { return 'checkbox' }
+
+  onCreate() {
+    super.onCreate()
+    this.setAttr('type', 'checkbox')
+    this.setAttr('id', 'checkbox-' + Date.now())
+  }
+}
 
 export class ContentComponent extends HTML {
   messages = new HTML()
 
   onCreate() {
     super.onCreate()
+    this.setEvents()
     this.setStyles()
-    this.append(this.getMessages())
+    this.append(this.getMessagesComponent())
+  }
+
+  setEvents() {
+    window.addEventListener('message', ({ value }) => this.addMessage(value))
   }
 
   setStyles() {
     this.setStyle('padding', '1rem')
   }
 
-  getMessages() {
+  getMessagesComponent() {
     return this.messages
   }
 
-  addMessage(header, ...messages) {
-    this.messages.prepend(this.createMessageCard(header, ...messages))
+  addMessage(message = new MessageModel()) {
+    this.messages.prepend(this.createMessageCard(message))
   }
 
-  createMessageCard(header, ...messages) {
+  createMessageCard(message) {
     const card = new HTML()
-    card.append(new TextComponent(header))
-    Array.from(messages).map((message) => card.append(new TextComponent(message)))
-    Array.from([Date.now()]).map((footer) => card.append(new TextComponent(footer, str.timestamp2str(footer))))
+    const head = new nFlex()
+    head.append(new TextComponent({ text: message.heads[0] }))
+    head.append(new TextComponent({ text: message.heads[1] }))
+    card.append(head)
+    card.append(new TextComponent({ text: message.body?.toString() }))
+    const foot = new nFlex()
+    foot.append(new TextComponent({ text: message.foots[0], title: str.timestamp2str(message.foots[0]) }))
+    foot.append(new TextComponent({ text: message.foots[1] }))
+    card.append(foot)
     return card
   }
 }
