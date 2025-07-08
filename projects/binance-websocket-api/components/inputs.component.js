@@ -8,7 +8,7 @@ import { getIntervalsList } from '../../../assets/js/lists/intervals.list.js'
 class TimestampComponent extends InputComponent {
   getInput() {
     const input = super.getInput()
-    input.addEventListener('focus', () => input.setValue(Date.now()))
+    input.addEventListener('focus', () => input.setValue(Date.now() - (1000 * 60 * 60 * 24)))
     return input
   }
 
