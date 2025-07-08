@@ -1,18 +1,26 @@
-import { HTML } from '../../../assets/js/libs/afrontend/index.js'
-import { SelectComponent } from '../../../assets/js/components/select.component.js'
+import { Element } from '../../../assets/js/elements/element.js'
+
 import { ButtonComponent } from '../../../assets/js/components/button.component.js'
-import { getEndpointsList, getInputEndpointsList } from '../lists/endpoints.list.js'
 import { InputsComponent } from './inputs.component.js'
+
+import { getEndpointsList, getInputEndpointsList } from '../lists/endpoints.list.js'
+
+import { dispatchWindowEvent } from '../../../assets/js/utils/window.js'
+
+import { SelectElement } from '../../../assets/js/elements/select.element.js'
 
 const inputs = new InputsComponent()
 
-export class FormComponent extends HTML {
-  select = new SelectComponent({ options: getInputEndpointsList().map(({ name }) => ([name, name])) })
-  inputs = new HTML()
+export class FormComponent extends Element {
+  select = new SelectElement({
+    options: getInputEndpointsList().map(({ name }) => ([name, name])),
+    events: { change: () => this.onSelectComponentChange() }
+  })
+  inputs = new Element()
 
   onCreate() {
     super.onCreate()
-    this.append(this.getSelectComponent())
+    this.append(this.select)
     this.append(this.getInputs())
   }
 
@@ -30,22 +38,19 @@ export class FormComponent extends HTML {
     Array.from(params).map((param) => this.inputs.append(inputs.getComponent(param)))
   }
 
-  getSelectComponent() {
-    this.select.addEventListener('change', () => this.onSelectComponentChange())
-    return this.select
-  }
-
   getInputs() {
-    const html = new HTML()
-    html.append(this.inputs)
-    html.append(new ButtonComponent({ text: 'send', onclick: () => this.onSendButtonClick() }))
-    return html
+    return new Element({
+      children: [
+        this.inputs,
+        new ButtonComponent({ text: 'send', onclick: () => this.onSendButtonClick() })
+      ]
+    })
   }
 
   onSendButtonClick() {
     const name = this.getSelectValue()
     const params = this.getEndpointByName(name)?.params
     const values = Array.from(params).map((param) => [param, inputs.getValue(param)])
-    this.dispatch('submit', { name, values })
+    dispatchWindowEvent('submit', { name, values })
   }
 }
