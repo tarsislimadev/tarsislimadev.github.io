@@ -12,19 +12,15 @@ import { OpenSocketMessageModel } from '../../assets/js/models/open.socket.messa
 import { MessageModel } from '../../assets/js/models/message.model.js'
 
 import { ApplicationWebSocket } from '../../assets/js/utils/socket.js'
+import { dispatchWindowEvent } from '../../assets/js/utils/window.js'
 
 import { websocket } from '../../assets/js/apis/binance.js'
 
 import BINANCE from '../../assets/js/config/binance/index.js'
 
 export class Page extends PageComponent {
-  state = {
-    socket: this.createSocketConnection(),
-    messages: [],
-  }
-
-  form = new FormComponent()
-  messages = new MessagesComponent()
+  socket = this.createSocketConnection()
+  messages_list = []
 
   createSocketConnection() {
     return new ApplicationWebSocket(websocket.url, {
@@ -46,7 +42,7 @@ export class Page extends PageComponent {
   }
 
   getMessageById(id) {
-    return this.state.messages.find((m = new MessageModel()) => m.Id == id)
+    return this.messages_list.find((m = new MessageModel()) => m.Id == id)
   }
 
   onSocketError(data) {
@@ -55,41 +51,42 @@ export class Page extends PageComponent {
 
   onSocketClose(data) {
     this.appendMessage(new CloseSocketMessageModel(data))
-    if (this.canOpenSocketConnection()) this.state.socket = this.createSocketConnection()
+    if (this.canOpenSocketConnection()) this.socket = this.createSocketConnection()
   }
 
   canOpenSocketConnection() {
-    return this.state.messages.filter((m = new MessageModel()) => (m.Side == 'socket' && ['close', 'error'].indexOf(m.Endpoint))).length <= 3
+    return this.messages_list.filter((m = new MessageModel()) => (m.Side == 'socket' && ['close', 'error'].indexOf(m.Endpoint))).length <= 3
   }
 
   onCreate() {
     super.onCreate()
     this.setEvents()
+    this.loadCharts()
     this.append(new LinkComponent({ text: BINANCE.websocket.name, href: BINANCE.websocket.docs }))
-    this.append(new TwoColumnsComponent({ html1: this.getFormComponent(), html2: this.getMessagesComponent() }))
+    this.append(new TwoColumnsComponent({
+      html1: new FormComponent(),
+      html2: new MessagesComponent(),
+    }))
+  }
+
+  loadCharts() {
+    google.charts.load('current', { 'packages': ['corechart'] })
+    google.charts.setOnLoadCallback(() => this.appendMessage(new MessageModel('charts', {})))
   }
 
   setEvents() {
-    this.form.addEventListener('submit', ({ value: data }) => this.onFormSubmit(data))
+    window.addEventListener('submit', ({ value: data }) => this.onFormSubmit(data))
   }
 
   onFormSubmit(data) {
     const payload = Array.from(data.values).reduce((p, [key, value]) => ({ ...p, [key]: value }), {})
     const message = new InputSocketMessageModel(data.name, payload)
-    this.state.socket.send(JSON.stringify(message))
+    this.socket.send(JSON.stringify(message))
     this.appendMessage(message)
   }
 
-  getFormComponent() {
-    return this.form
-  }
-
-  getMessagesComponent() {
-    return this.messages
-  }
-
   appendMessage(message = new MessageModel()) {
-    this.state.messages.push(message)
-    this.messages.dispatch('message', message)
+    this.messages_list.push(message)
+    dispatchWindowEvent('message', message)
   }
 }
