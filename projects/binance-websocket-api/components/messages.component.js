@@ -15,7 +15,7 @@ export class MessagesComponent extends HTML {
   }
 
   setEvents() {
-    this.addEventListener('message', ({ value: data }) => this.onMessage(data))
+    window.addEventListener('message', ({ value: data }) => this.onMessage(data))
   }
 
   onMessage(message = new MessageModel()) {
