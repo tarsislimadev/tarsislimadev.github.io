@@ -1,5 +1,9 @@
 # [Exchanges]()
 
+Client opens apps, select coin pair and clicks Start button.
+
+## latest
+
 To buy and sell currencies on exchanges
 
 - [ ] Após a compra do dolar, o ativo pode ser vendido no mesmo dia.
