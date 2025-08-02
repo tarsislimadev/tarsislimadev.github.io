@@ -1,4 +1,4 @@
-import { SocketMessageModel } from './socket.message.model.js'
+import { SocketMessageModel } from '../../../assets/js/models/socket.message.model.js'
 
 export class SocketCloseMessageModel extends SocketMessageModel {
   constructor(datetime = Date.now()) {
