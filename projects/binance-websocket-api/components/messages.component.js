@@ -33,7 +33,8 @@ export class MessagesComponent extends HTML {
 
   parseInputMessageComponent(message = new MessageModel()) {
     switch (message.Endpoint) {
-      case 'klines': return new inputs.KlinesMessageCardComponent(message)
+      case 'klines': return new inputs.KlinesIinputMessageCardComponent(message)
+      case 'SUBSCRIBE': return new inputs.InputMessageCardComponent(message)
     }
 
     return new MessageCardComponent(message)

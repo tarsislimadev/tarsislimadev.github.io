@@ -23,5 +23,6 @@ export class InputsComponent extends COMPONENTS.InputsComponent {
     symbol: new SelectComponent({ label: 'symbol', options: getSymbolsList().map((s) => ([s, s])) }),
     interval: new SelectComponent({ label: 'interval', options: getIntervalsList().map((s) => ([s, s])) }),
     startTime: new TimestampComponent({ label: 'startTime' }),
+    symbols: new InputComponent({ label: 'Symbols' }),
   }
 }

@@ -8,25 +8,31 @@ import { getEndpointsList, getInputEndpointsList } from '../lists/endpoints.list
 import { dispatchWindowEvent } from '../../../assets/js/utils/window.js'
 
 import { SelectElement } from '../../../assets/js/elements/select.element.js'
+import { SelectComponent } from '../../../assets/js/components/select.component.js'
 
 const inputs = new InputsComponent()
 
 export class FormComponent extends Element {
-  select = new SelectElement({
-    options: getInputEndpointsList().map(({ name }) => ([name, name])),
-    events: { change: () => this.onSelectComponentChange() }
-  })
+  select = this.getSelectComponent()
   inputs = new Element()
 
   onCreate() {
     super.onCreate()
     this.append(this.select)
     this.append(this.getInputs())
+    this.append(new ButtonComponent({ text: 'send', onclick: () => this.onSendButtonClick() }))
   }
 
-  getSelectValue() {
-    return this.select.getValue()
+  getSelectComponent() {
+    const select = new SelectComponent({
+      label: 'endpoints',
+      options: getInputEndpointsList().map(({ name }) => ([name, name]))
+    })
+    select.input.addEventListener('change', () => this.onSelectComponentChange())
+    return select
   }
+
+  getSelectValue() { return this.select.getValue() }
 
   getEndpointByName(name = this.getSelectValue()) {
     return getEndpointsList().find((e) => e.name == name)
@@ -38,14 +44,7 @@ export class FormComponent extends Element {
     Array.from(params).map((param) => this.inputs.append(inputs.getComponent(param)))
   }
 
-  getInputs() {
-    return new Element({
-      children: [
-        this.inputs,
-        new ButtonComponent({ text: 'send', onclick: () => this.onSendButtonClick() })
-      ]
-    })
-  }
+  getInputs() { return this.inputs }
 
   onSendButtonClick() {
     const name = this.getSelectValue()
