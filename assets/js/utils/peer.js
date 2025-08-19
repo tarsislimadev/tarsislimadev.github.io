@@ -43,8 +43,8 @@ class MyPeer extends Peer {
 
 export const createJustNewPeer = (project) => (new MyPeer()).setProject(project)
 
-export const createNewPeer = (project, qrcode = false) => {
-  const peer = new MyPeer()
+export const createNewPeer = (project, { qrcode = false, id = undefined }) => {
+  const peer = new MyPeer(id)
   peer.setProject(project)
 
   peer.on('connection', (conn) => {
