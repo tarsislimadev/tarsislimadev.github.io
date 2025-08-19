@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Truco 2</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="module">
+    import { HTML, nButton } from '../../assets/js/libs/afrontend/index.js'
+    HTML.fromElement(document.body).setStyle('margin', '0')
+    const app = HTML.fromId('app')
+    const button = new nButton()
+    button.setText('new game')
+    button.addEventListener('click', () => window.location = ('game.html?id=' + button.getData('id')))
+    app.append(button)
+    setInterval(() => button.setData('id', Date.now()), 100)
+  </script>
+</body>
+
+</html>
