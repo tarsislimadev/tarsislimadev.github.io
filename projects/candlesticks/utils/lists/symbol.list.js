@@ -6,4 +6,6 @@ export const getSymbolList = () => ([
   'BNBUSDT',
   'BTCBRL',
   'BTCUSDT',
+  'USDCBRL',
+  'USDTBRL',
 ])
