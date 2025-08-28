@@ -23,7 +23,7 @@
     calc.setStyle('font-size', '3rem')
     app.append(calc)
 
-    const buttonsEl = new nFlex()
+    const buttonsEl = new HTML()
     app.append(buttonsEl)
 
     const randomNumber = (num = 1) => Math.floor((Math.random() * num))
@@ -38,11 +38,17 @@
 
       buttonsEl.clear()
 
-      console.log([numb, numb - 1, numb + 1, numb + 2, numb - 2]
+      const nums = Array.from(Array(4)).map(() => randomNumber(10))
+
+      console.log([numb, numb - nums[0], numb + nums[1], numb + nums[2], numb - nums[3]]
         .sort((a, b) => randomNumber(2) == 0 ? (a - b) : (b - a))
         .map((n) => {
           const buttonEl = new nButton()
           buttonEl.setText(n)
+          buttonEl.setStyle('width', '100%')
+          buttonEl.setStyle('font-size', '2rem')
+          buttonEl.setStyle('padding', 'calc(1rem / 2)')
+          buttonEl.setStyle('margin-bottom', 'calc(1rem / 1)')
           buttonEl.addEventListener('click', () => {
             if (firstPart + secondPart === n) {
               buttonEl.setStyle('background-color', '#000000')
