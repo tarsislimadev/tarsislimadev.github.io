@@ -40,11 +40,6 @@ export default Array.from([
     "step": 1
   },
   {
-    "id": "bitcoin",
-    "tags": [],
-    "step": 1
-  },
-  {
     "id": "bitcointoyou",
     "tags": [],
     "step": 1
