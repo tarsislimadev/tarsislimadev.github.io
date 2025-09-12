@@ -10,11 +10,6 @@ export default Array.from([
     "step": 1
   },
   {
-    "id": "airplane",
-    "tags": [],
-    "step": 1
-  },
-  {
     "id": "anagram",
     "tags": [],
     "step": 1
@@ -26,6 +21,11 @@ export default Array.from([
   },
   {
     "id": "audio-recorder",
+    "tags": [],
+    "step": 1
+  },
+  {
+    "id": "backend",
     "tags": [],
     "step": 1
   },
@@ -115,6 +115,11 @@ export default Array.from([
     "step": 1
   },
   {
+    "id": "facebook-rest-api-latest",
+    "tags": [],
+    "step": 1
+  },
+  {
     "id": "financial-times-rest-api",
     "tags": [],
     "step": 1
@@ -125,7 +130,7 @@ export default Array.from([
     "step": 1
   },
   {
-    "id": "foxbit-websocket-api",
+    "id": "frontend",
     "tags": [],
     "step": 1
   },
@@ -180,6 +185,11 @@ export default Array.from([
     "step": 1
   },
   {
+    "id": "locations",
+    "tags": [],
+    "step": 1
+  },
+  {
     "id": "luxfacta",
     "tags": [],
     "step": 1
@@ -225,6 +235,11 @@ export default Array.from([
     "step": 1
   },
   {
+    "id": "n8n",
+    "tags": [],
+    "step": 1
+  },
+  {
     "id": "newsapi",
     "tags": [],
     "step": 1
@@ -265,6 +280,11 @@ export default Array.from([
     "step": 1
   },
   {
+    "id": "phones",
+    "tags": [],
+    "step": 1
+  },
+  {
     "id": "photos-rest-api",
     "tags": [],
     "step": 1
@@ -274,11 +294,11 @@ export default Array.from([
     "tags": [],
     "step": 1
   },
-  // {
-  //   "id": "piano-paypal",
-  //   "tags": [],
-  //   "step": 1
-  // },
+  {
+    "id": "piano-paypal",
+    "tags": [],
+    "step": 1
+  },
   {
     "id": "planow",
     "tags": [],
@@ -291,6 +311,11 @@ export default Array.from([
   },
   {
     "id": "rdap",
+    "tags": [],
+    "step": 1
+  },
+  {
+    "id": "remote-controlled-3d-camera",
     "tags": [],
     "step": 1
   },
@@ -351,16 +376,16 @@ export default Array.from([
   },
   {
     "id": "texts",
-    "tags": ['firebase'],
-    "step": 1
-  },
-  {
-    "id": "three.js-sample",
     "tags": [],
     "step": 1
   },
   {
     "id": "truco",
+    "tags": [],
+    "step": 1
+  },
+  {
+    "id": "truco2",
     "tags": [],
     "step": 1
   },
