@@ -22,10 +22,6 @@ export class Page extends PageComponent {
   }
 
   getGameComponent() {
-    this.state.ee.addEventListener(
-      'text',
-      ({ value: text }) => console.log('text', text)
-    )
     return this.game
   }
 
@@ -37,5 +33,7 @@ export class Page extends PageComponent {
         this.game.append(new TextComponent({ text }))
       })
     })
+
+    this.state.peer.on('error', (err) => console.error('peer error', err))
   }
 }

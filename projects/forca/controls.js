@@ -35,15 +35,26 @@ export class Page extends PageComponent {
 
   setPeerEvents() {
     const id = this.getId()
+    if (!id) {
+      console.error('No peer ID provided in URL parameter')
+      return
+    }
+
     this.state.peer.on('open', () => {
       console.log('peer open')
       const conn = this.state.peer.connect(id)
-      this.addEventListener('message', ({ value: message }) => conn.send({ message }))
-      conn.on('open', () => console.log('conn open', conn))
+      this.state.conn = conn
+
+      conn.on('open', () => {
+        console.log('conn open', conn)
+        this.addEventListener('message', ({ value: message }) => conn.send({ message }))
+      })
       conn.on('close', () => console.log('conn close', conn))
       conn.on('error', (err) => console.log('conn error', err, conn))
       console.log({ id, conn })
     })
+
+    this.state.peer.on('error', (err) => console.error('peer error', err))
   }
 
   getId() {
