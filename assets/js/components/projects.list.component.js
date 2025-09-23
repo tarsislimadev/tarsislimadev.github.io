@@ -1,6 +1,6 @@
-import { HTML } from '../assets/js/libs/afrontend/index.js'
-import { BootstrapCardComponent } from '../assets/js/components/bootstrap/index.js'
-import { LinkComponent } from '../assets/js/components/link.component.js'
+import { HTML } from '../libs/afrontend/index.js'
+import { BootstrapCardComponent } from '../components/bootstrap/index.js'
+import { LinkComponent } from '../components/link.component.js'
 
 class ProjectModel {
   id = null

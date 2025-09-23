@@ -3,11 +3,11 @@ import { PageComponent } from '../assets/js/components/page.component.js'
 
 import projects from '../assets/js/lists/projects.js'
 
-import { ProjectsListComponent } from './projects.list.component.js'
-import { NewHeaderComponent } from './new.header.component.js'
+import { ProjectsListComponent } from '../assets/js/components/projects.list.component.js'
 
 export class Page extends PageComponent {
   projectsList = new ProjectsListComponent()
+
   getBodyComponent() {
     const html = new HTML()
     html.append(this.projectsList)

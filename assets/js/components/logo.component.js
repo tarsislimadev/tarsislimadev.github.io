@@ -1,6 +1,6 @@
-import { HTML, nSpan, nFlex, nImage } from '../assets/js/libs/afrontend/index.js'
+import { HTML, nSpan, nFlex, nImage } from '../libs/afrontend/index.js'
 
-import { getPageStyle } from '../assets/js/utils/page.js'
+import { getPageStyle } from '../utils/page.js'
 
 export class LogoComponent extends HTML {
   onCreate() {
