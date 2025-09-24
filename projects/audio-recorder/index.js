@@ -35,7 +35,7 @@ export class Page extends PageComponent {
   onCreate() {
     super.onCreate()
     this.body.append(new RowComponent([
-      new TextComponent({ text: 'Audio Recorder' }),
+      new TextComponent({ text: 'audio recorder' }),
       this.button,
       this.records,
     ]))
@@ -61,6 +61,7 @@ export class Page extends PageComponent {
 
   stopRecording() {
     this.state.media_recorder?.stop()
+    clearInterval(this.state.id)
     this.state.timer = 0
   }
 
