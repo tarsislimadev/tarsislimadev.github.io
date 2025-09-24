@@ -6,13 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Apex Charts</title>
   <meta name="google-adsense-account" content="ca-pub-8803365396237758">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8803365396237758" crossorigin="anonymous"></script>
-  <script src=" https://cdn.jsdelivr.net/npm/apexcharts@4.4.0/dist/apexcharts.min.js "></script>
-  <link href=" https://cdn.jsdelivr.net/npm/apexcharts@4.4.0/dist/apexcharts.min.css " rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8803365396237758"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts@4.4.0/dist/apexcharts.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/apexcharts@4.4.0/dist/apexcharts.min.css" rel="stylesheet">
+  <link href="./index.css" rel="stylesheet">
 </head>
 
 <body>
-  <div id="chart"></div>
+  <div id="app">
+    <h1>Using ApexCharts</h1>
+    <p>On https://api4.binance.com/api/v3/klines?symbol=BNBUSDT&interval=1h&limit=100</p>
+    <div id="chart"></div>
+  </div>
   <script type="module">
     const searchParams = (param, def = '') => { const url = new URL(window.location); return url.searchParams.get(param) || def }
 
