@@ -10,11 +10,11 @@ export class HeaderComponent extends HTML {
       products: 'https://loja.tarsislima.com/',
     },
     links: Array.from([
-      ['products'],
-      ['projects', '/projects/',],
-      // ['github', '/pages/github/',],
-      // ['linkedin', '/pages/linkedin/',],
-      // ['youtube', '/pages/youtube/',],
+      // ['products'],
+      ['projects', '/',],
+      ['github', '/pages/github/',],
+      ['linkedin', '/pages/linkedin/',],
+      ['youtube', '/pages/youtube/',],
       LOCAL.get(['access_token']) ? ['logout', '/pages/logout/'] : ['login', '/pages/login/'],
     ])
   }
