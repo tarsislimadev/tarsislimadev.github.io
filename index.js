@@ -9,9 +9,17 @@ export class Page extends PageComponent {
   projectsList = new ProjectsListComponent()
 
   getBodyComponent() {
-    const html = new HTML()
+    const html = this.createHTML()
     html.append(this.projectsList)
     this.projectsList.updateProjectsList(projects)
+    return html
+  }
+
+  createHTML() {
+    const html = new HTML()
+    html.setStyle('margin', '0 auto')
+    html.setStyle('width', '30rem')
+    html.setStyle('max-width', '100%')
     return html
   }
 }
