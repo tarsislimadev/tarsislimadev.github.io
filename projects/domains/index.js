@@ -42,7 +42,7 @@ export class Page extends PageComponent {
   }
 
   getDomainInputComponent() {
-    this.domain_input.addEventListener('keypress', ({ key }) => key == 'Enter' && this.findDomain())
+    this.domain_input.addEventListener('keypress', ({ key }) => key == 'Enter' && this.getHostName())
     return this.domain_input
   }
 
@@ -56,6 +56,12 @@ export class Page extends PageComponent {
 
   writeInfo(info = {}) {
     this.info.setText(JSON.stringify(info, null, 4))
+  }
+
+  getHostName() {
+    const domain = this.domain_input.getValue()
+    const url = new URL(domain)
+    this.domain_input.setValue(url.hostname)
   }
 
   findDomain(domain = this.domain_input.input.getValue(), datetime = Date.now().toString()) {
