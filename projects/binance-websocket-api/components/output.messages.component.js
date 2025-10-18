@@ -1,7 +1,5 @@
 import { BinanceMessageCardComponent } from './binance.message.card.component.js'
 import { CardBodyComponent } from '../../../assets/js/components/card.body.component.js'
-import { TextComponent } from '../../../assets/js/components/text.component.js'
-
 import { Element } from '../../../assets/js/elements/element.js'
 
 class CandlestickChartsElement extends Element {
@@ -13,18 +11,20 @@ class CandlestickChartsElement extends Element {
   }
 
   onCreate() {
-    const chart = new google.visualization.CandlestickChart(this.element)
-    chart.draw(
-      google.visualization.arrayToDataTable(this.data, true),
-      {
-        legend: 'none',
-        bar: { groupWidth: '100%' }, // Remove space between bars.
-        candlestick: {
-          fallingColor: { strokeWidth: 0, fill: '#a52714' }, // red
-          risingColor: { strokeWidth: 0, fill: '#0f9d58' }   // green
+    if (typeof google !== 'undefined' && google.visualization) {
+      const chart = new google.visualization.CandlestickChart(this.element)
+      chart.draw(
+        google.visualization.arrayToDataTable(this.data, true),
+        {
+          legend: 'none',
+          bar: { groupWidth: '100%' }, // Remove space between bars.
+          candlestick: {
+            fallingColor: { strokeWidth: 0, fill: '#a52714' }, // red
+            risingColor: { strokeWidth: 0, fill: '#0f9d58' }   // green
+          }
         }
-      }
-    )
+      )
+    }
   }
 }
 

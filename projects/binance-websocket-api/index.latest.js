@@ -59,7 +59,7 @@ export class Page extends PageComponent {
   }
 
   canOpenSocketConnection() {
-    return this.state.messages.filter((m = new MessageModel()) => (m.Side == 'socket' && ['close', 'error'].indexOf(m.Endpoint))).length <= 3
+    return this.state.messages.filter((m = new MessageModel()) => (m.Side == 'socket' && ['close', 'error'].indexOf(m.Endpoint) !== -1)).length <= 3
   }
 
   onCreate() {

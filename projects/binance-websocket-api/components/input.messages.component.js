@@ -4,7 +4,7 @@ import { TextComponent } from '../../../assets/js/components/text.component.js'
 
 export class InputMessageCardComponent extends BinanceMessageCardComponent { }
 
-export class KlinesIinputMessageCardComponent extends BinanceMessageCardComponent {
+export class KlinesInputMessageCardComponent extends BinanceMessageCardComponent {
   getBodyComponent() {
     const body = new CardBodyComponent()
     body.append(new TextComponent({ text: 'klines' }))
