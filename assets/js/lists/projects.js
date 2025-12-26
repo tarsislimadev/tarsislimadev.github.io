@@ -310,6 +310,11 @@ export default Array.from([
     "step": 1
   },
   {
+    "id": "questions",
+    "tags": [],
+    "step": 1
+  },
+  {
     "id": "rdap",
     "tags": [],
     "step": 1
