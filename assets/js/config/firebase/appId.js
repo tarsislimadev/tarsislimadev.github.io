@@ -1,1 +1,3 @@
-export default '1:546714325016:web:23ac669c44df761204336d'
+import { appId } from './firebaseConfig.js'
+
+export default appId

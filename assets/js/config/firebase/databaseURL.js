@@ -1,1 +1,3 @@
-export default 'https://tarsislimadev-default-rtdb.firebaseio.com'
+import { databaseURL } from './firebaseConfig.js'
+
+export default databaseURL

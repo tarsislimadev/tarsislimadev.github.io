@@ -1,1 +1,3 @@
-export default 'AIzaSyAdEUEpTK6ASpttnO6XXuDJTlzpXMdk-WU'
+import { apiKey } from './firebaseConfig.js'
+
+export default apiKey
