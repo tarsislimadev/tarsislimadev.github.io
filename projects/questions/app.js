@@ -5,7 +5,7 @@ import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { initializeApp } from '../../assets/js/apis/firebase/app/index.js'
 import { getFirestore } from '../../assets/js/apis/firebase/firestore/index.js'
 import { getDatabase, ref, onValue } from '../../assets/js/apis/firebase/database/index.js'
-import firebase from '../../assets/js/config/firebase/firebaseConfig.js'
+import firebase from '../../assets/js/config/firebase/index.js'
 import * as URL_UTILS from '../../assets/js/utils/url.js'
 import * as FLOW from '../../assets/js/utils/flow.js'
 
@@ -53,17 +53,16 @@ export class Page extends PageComponent {
     this.append(new TextComponent({ text: 'Questions' }))
     this.append(this.question)
     const searchParam = URL_UTILS.getURLSearchParam('questions')
+    const html = new HTML()
+    this.append(html)
     if (searchParam) {
       onValue(this.getRef('/' + searchParam), (data) => {
-        const html = new HTML()
         html.append(new TextComponent({ text: `Questions about ${searchParam}` }))
         html.append(new ButtonComponent({ text: 'Play', onclick: () => [html.clear(), this.nextQuestion()] }))
-        this.append(html)
         this.questions = data.val()
         console.log({ questions: this.questions })
       })
     } else {
-      this.append(new TextComponent({ text: 'Choose your questions:' }))
       onValue(this.getRef(), (data) => {
         Object.keys(data.val()).map((key) => {
           const url = new URL(window.location)
