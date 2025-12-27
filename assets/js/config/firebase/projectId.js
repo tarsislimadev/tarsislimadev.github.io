@@ -1,3 +1,1 @@
-import { projectId } from './firebaseConfig.js'
-
-export default projectId
+export default 'tarsislimadev'
