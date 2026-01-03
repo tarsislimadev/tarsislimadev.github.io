@@ -1,4 +1,6 @@
 const onOpenCvReady = () => {
+  document.getElementById('buttonPlay').remove()
+
   const video = document.getElementById('videoInput')
   navigator.mediaDevices.getUserMedia({ video: true, audio: false })
     .then((stream) => {

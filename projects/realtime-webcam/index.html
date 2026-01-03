@@ -4,13 +4,13 @@
 <head>
   <meta charset="utf-8">
   <title>Real-Time Webcam</title>
+  <link rel="stylesheet" href="./index.css" />
 </head>
 
 <body>
   <button id="buttonPlay">play</button>
-  <video id="videoInput" width="640" height="480" autoplay muted></video>
+  <video id="videoInput" width="640" height="480" autoplay muted hidden></video>
   <canvas id="canvasOutput" width="640" height="480"></canvas>
-
   <script src="https://docs.opencv.org/4.x/opencv.js"></script>
   <script src="./index.js"></script>
 </body>
