@@ -1,6 +1,7 @@
 import { HTML } from '../libs/afrontend/index.js'
 import { BootstrapCardComponent } from '../components/bootstrap/index.js'
 import { LinkComponent } from '../components/link.component.js'
+import { TextComponent } from '../components/text.component.js'
 
 class ProjectModel {
   id = null
@@ -20,7 +21,7 @@ class ProjectThumbnailComponent extends BootstrapCardComponent {
     this.setContainerStyle('padding-bottom', '1rem')
     this.card_image_top.src(`/projects/${this.project.id}/image.jpg`)
     this.card_body.body_title.append(this.getLinkComponent())
-    this.card_body.body_text.setText('Step: ' + this.getStepById(this.project.step))
+    this.card_body.body_text.append(new TextComponent({ text: this.project.description }))
   }
 
   getStepById(step = 1) {
