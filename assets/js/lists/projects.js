@@ -25,6 +25,7 @@ export default Array.from([
   { "id": "opencv", "description": "A simple OpenCV example", "step": 1 },
   { "id": "phone-number", "description": "See how to format phone numbers", "step": 1 },
   { "id": "piano", "description": "Play music on 3D piano", "step": 1 },
+  { "id": "realtime-webcam", "description": "Just see how Edge Detection works", "step": 1 },
   { "id": "socket", "description": "Send messages on WebSocket connections", "step": 1 },
   { "id": "string-interpolation", "description": "Just see how String Interpolation works", "step": 1 },
   { "id": "texts", "description": "It's just to save simple texts", "step": 1 },
