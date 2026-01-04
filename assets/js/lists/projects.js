@@ -13,6 +13,7 @@ export default Array.from([
   { "id": "domains", "description": "Describe domain data", "step": 3 },
   { "id": "edge-detection", "description": "Just see how Edge Detection works", "step": 1 },
   { "id": "exchanges", "description": "Plan buys and sells of coins", "step": 1 },
+  { "id": "face-detection", "description": "Just see how Face Detection works", "step": 1 },
   { "id": "forca", "description": "Find hidden words", "step": 1 },
   { "id": "gemini-rest-api", "description": "Chat with Gemini", "step": 1 },
   { "id": "home-workout", "description": "Manage your Home Workouts", "step": 1 },
