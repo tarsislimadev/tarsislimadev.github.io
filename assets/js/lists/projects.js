@@ -5,7 +5,7 @@ export default Array.from([
   { "id": "busy", "description": "Save what you are doing", "step": 1 },
   { "id": "calc", "description": "Calc these sums", "step": 3 },
   { "id": "chat", "description": "Talk to strangers", "step": 1 },
-  { "id": "clock", "description": "What time is it?", "step": 1 },
+  { "id": "clock2", "description": "What time is it?", "step": 2 },
   { "id": "coins", "description": "Mock buys on Binance", "step": 1 },
   { "id": "coins-calculator", "description": "Plan buy of coins", "step": 1 },
   { "id": "cube", "description": "Make your move with the world's most iconic puzzle", "step": 1 },
