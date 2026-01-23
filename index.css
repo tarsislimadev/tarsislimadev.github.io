@@ -1,0 +1,5 @@
+#title,
+#title div {
+  display: flex;
+  justify-content: space-between;
+}
