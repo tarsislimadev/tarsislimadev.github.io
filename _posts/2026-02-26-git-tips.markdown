@@ -1,0 +1,13 @@
+---
+layout: post
+title:  "Git tips"
+date:   2026-02-26 09:00:00 -0300
+categories: git tips
+---
+# Git tips
+
+## initiate a git repository
+
+```bash
+git init
+```
