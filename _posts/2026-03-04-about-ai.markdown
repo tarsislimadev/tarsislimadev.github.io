@@ -1,0 +1,15 @@
+---
+layout: post
+title:  "About AI"
+date:   2026-03-04 07:00:00 -0300
+categories: about ai neural-networks
+---
+# About AI
+
+I'm learning more about AI now, while I'm studying Artificila Inteligence on [Fatec Rio Claro](#)
+
+Yesterday, I worked on my new project Asteroid. It's a copy of an Atari's game that I'm developing using Synaptic.js and Three.js.
+
+In AI neural networks, we may see network and "psycho" concepts.
+
+[to be continued]
