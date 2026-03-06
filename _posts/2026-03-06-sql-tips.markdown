@@ -1,20 +1,26 @@
 ---
 layout: post
-title:  "SQL Class"
+title:  "SQL Tips"
 date:   2026-03-06 08:10:00 -0300
-categories: sql class
+categories: sql tips
 ---
-# SQL Class
+# SQL Tips
 
 I'm learning more about SQL now, while I'm studying Artificila Inteligence on [Fatec Rio Claro](#)
+
+## Creating a database
 
 ```sql
 create database taxi;
 ```
 
+## Using a database
+
 ```sql
 use taxi;
 ```
+
+## Creating a table
 
 ```sql
 create table drivers (
