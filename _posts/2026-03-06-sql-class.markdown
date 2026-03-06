@@ -1,0 +1,29 @@
+---
+layout: post
+title:  "SQL Class"
+date:   2026-03-06 08:10:00 -0300
+categories: sql class
+---
+# SQL Class
+
+I'm learning more about SQL now, while I'm studying Artificila Inteligence on [Fatec Rio Claro](#)
+
+```sql
+create database taxi;
+```
+
+```sql
+use taxi;
+```
+
+```sql
+create table drivers (
+    id int primary key,
+    name varchar(100),
+    phone varchar(100),
+    email varchar(100),
+    password varchar(100),
+    created_at timestamp,
+    updated_at timestamp
+);
+```
