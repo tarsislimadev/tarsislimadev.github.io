@@ -1,0 +1,25 @@
+---
+layout: post
+title: "Run n8n servers"
+date: 2026-03-09 10:00:00 -0300
+categories: n8n install
+---
+# How to install and run n8n
+
+## Run Docker image
+
+```bash
+docker volume create n8n_data
+
+docker run -it --rm --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n docker.n8n.io/n8nio/n8n
+```
+
+## Run NPX package
+
+```bash
+npx n8n
+```
+
+## Open browser
+
+[localhost:5678](http://localhost:5678)
