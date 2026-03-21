@@ -9,5 +9,5 @@ categories: automation docker ai tips
 ## Text to Speech
 
 ```bash
-docker run -v .:/app -w /app -e input=file.txt -e output file.mp3 tmvdl/ai:txt2mp3
+docker run -v .:/files -w /files -e input=file.txt -e output=file.mp3 tmvdl/ai:txt2mp3
 ```
