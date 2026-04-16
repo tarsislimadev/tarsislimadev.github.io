@@ -1,0 +1,109 @@
+---
+layout: post
+title: "Azure Tips"
+date: 2026-04-16 06:45:00 -0300
+categories: devops azure cli tips
+---
+# Azure CLI Tips
+
+## Installation and Setup
+
+1. **Install Azure CLI**
+   ```bash
+   # Windows
+   msiexec.exe /I https://aka.ms/azure-cli.msi
+   
+   # macOS
+   brew install azure-cli
+   
+   # Linux
+   curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+   ```
+
+2. **Login to Azure**
+   ```bash
+   az login
+   ```
+
+## Development Environment
+
+### 1. Create Resource Group
+```bash
+az group create --name myapp-dev-rg --location eastus
+```
+
+### 2. Create App Service Plan
+```bash
+az appservice plan create --name myapp-dev-plan --resource-group myapp-dev-rg --sku B1 --is-linux
+```
+
+### 3. Create Web App
+```bash
+az webapp create --name myapp-dev --plan myapp-dev-plan --resource-group myapp-dev-rg --runtime "node|18-lts"
+```
+
+### 4. Deploy to Dev
+```bash
+az webapp deployment source config-zip --resource-group myapp-dev-rg --name myapp-dev --src app.zip
+```
+
+## Staging Environment
+
+### 1. Create Staging Resources
+```bash
+az group create --name myapp-stg-rg --location eastus
+az appservice plan create --name myapp-stg-plan --resource-group myapp-stg-rg --sku S1 --is-linux
+az webapp create --name myapp-stg --plan myapp-stg-plan --resource-group myapp-stg-rg --runtime "node|18-lts"
+```
+
+### 2. Deploy to Staging
+```bash
+az webapp deployment source config-zip --resource-group myapp-stg-rg --name myapp-stg --src app.zip
+```
+
+### 3. Run Smoke Tests
+```bash
+# Test endpoints
+curl https://myapp-stg.azurewebsites.net/health
+```
+
+## Production Environment
+
+### 1. Create Production Resources
+```bash
+az group create --name myapp-prod-rg --location eastus
+az appservice plan create --name myapp-prod-plan --resource-group myapp-prod-rg --sku P1V2 --is-linux
+az webapp create --name myapp-prod --plan myapp-prod-plan --resource-group myapp-prod-rg --runtime "node|18-lts"
+```
+
+### 2. Enable SSL/TLS
+```bash
+az webapp config ssl bind --certificate-thumbprint <thumbprint> --ssl-type SNI --name myapp-prod --resource-group myapp-prod-rg
+```
+
+### 3. Deploy to Production
+```bash
+az webapp deployment source config-zip --resource-group myapp-prod-rg --name myapp-prod --src app.zip
+```
+
+### 4. Monitor and Scale
+```bash
+# View metrics
+az monitor metrics list --resource /subscriptions/{subscription-id}/resourceGroups/myapp-prod-rg/providers/Microsoft.Web/sites/myapp-prod
+
+# Auto-scale
+az monitor autoscale create --resource-group myapp-prod-rg --resource-name myapp-prod-plan --resource-type "Microsoft.Web/serverfarms" --min-count 2 --max-count 5
+```
+
+## Useful Commands
+
+```bash
+# List all resources
+az resource list --output table
+
+# Delete resource group
+az group delete --name myapp-dev-rg
+
+# Get deployment logs
+az webapp log tail --name myapp-prod --resource-group myapp-prod-rg
+```
