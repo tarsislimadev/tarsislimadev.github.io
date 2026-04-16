@@ -22,7 +22,7 @@ title: Tarsis Lima
 email: br.tmvdl+github@gmail.com
 description: The best Full Stack Developer
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://blog.tarsislima.com" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://tarsislimadev.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: tarsislimadev
 github_username:  tarsislimadev
 
