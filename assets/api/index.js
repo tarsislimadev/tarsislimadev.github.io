@@ -1,18 +1,15 @@
 const base_url = 'https://tarsislimadev.github.io/api/v20260522';
 
 export default {
-  fetch: async (endpoint, { method = 'GET', headers: { ...customHeaders }, body = null }) => {
+  fetch: async (endpoint, { method = 'GET', headers = {}, body = null } = {}) => {
     const response = await fetch(`${base_url}${endpoint}`, {
       method,
       headers: {
         'Content-Type': 'application/json',
-        ...customHeaders
+        ...headers
       },
       body: body ? JSON.stringify(body) : null
     });
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
     return response.json();
   }
 }
