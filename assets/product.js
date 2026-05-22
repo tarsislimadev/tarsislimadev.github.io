@@ -1,6 +1,8 @@
 const post_title_elements = [document.getElementById('product')];
 
-const API = require('./api/index.js');
+// const API = require('./api/index.js');
+
+import * as API from './api/index.js';
 
 window.addEventListener('DOMContentLoaded', () => {
   console.log('DOM loaded');

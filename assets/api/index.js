@@ -1,6 +1,6 @@
 const base_url = 'https://tarsislimadev.github.io/api/v20260522';
 
-module.exports = {
+export default {
   fetch: async (endpoint, { method = 'GET', headers: { ...customHeaders }, body = null }) => {
     const response = await fetch(`${base_url}${endpoint}`, {
       method,
