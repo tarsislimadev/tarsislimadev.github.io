@@ -7,4 +7,4 @@ categories: ['category']
 
 <div id="product"></div>
 
-<script src="/assets/product.js"></script>
+<script type="module" src="/assets/product.js"></script>
