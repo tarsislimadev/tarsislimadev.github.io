@@ -1,4 +1,4 @@
-const post_title_elements = Array.from(document.getElementsByClassName('post-title'));
+const post_title_elements = [document.getElementById('product')];
 
 const API = require('./api/index.js');
 
