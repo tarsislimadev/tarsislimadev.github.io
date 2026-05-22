@@ -1,0 +1,10 @@
+---
+layout: post
+title: "Product"
+date: 2001-01-01 00:45:00 -0300
+categories: ['category']
+---
+
+# 
+
+<script src="/product.js"></script>
