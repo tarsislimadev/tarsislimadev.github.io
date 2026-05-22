@@ -1,9 +1,16 @@
-const post_title_elements = document.getElementsByClassName('post_title');
+const post_title_elements = Array.from(document.getElementsByClassName('post-title'));
 
-alert('product')
+const API = require('./api/index.js');
 
 window.addEventListener('DOMContentLoaded', () => {
   console.log('DOM loaded');
-  const id = window.location.search.split('id=')[1];
-  post_title_elements.forEach(element => element.textContent = `Product ${id}`);
+  const id = window.location.search.split('id=').at(-1);
+  post_title_elements.map(element => element.textContent = `Loading product ${id}`);
+
+  API.fetch(`/products/${id}`).then(product => {
+    post_title_elements.map(element => element.textContent = product.name);
+  }).catch(error => {
+    console.error('Error fetching product:', error);
+    post_title_elements.map(element => element.textContent = 'Error loading product');
+  });
 });
