@@ -1,4 +1,4 @@
-const base_url = 'https://tarsislimadev.github.io/api/v20260522';
+const base_url = 'http://20.75.92.141';
 
 export default {
   fetch: async (endpoint, { method = 'GET', headers = {}, body = null } = {}) => {
