@@ -1,18 +1,13 @@
-const post_title_elements = [document.getElementById('product')];
+import API from './api/index.js';
 
-// const API = require('./api/index.js');
+const el = [document.getElementById('product')];
 
-import * as API from './api/index.js';
+const id = window.location.search.split('id=').at(-1);
+el.map(element => element.textContent = `Loading product ${id}`);
 
-window.addEventListener('DOMContentLoaded', () => {
-  console.log('DOM loaded');
-  const id = window.location.search.split('id=').at(-1);
-  post_title_elements.map(element => element.textContent = `Loading product ${id}`);
-
-  API.fetch(`/products/${id}`).then(product => {
-    post_title_elements.map(element => element.textContent = product.name);
-  }).catch(error => {
-    console.error('Error fetching product:', error);
-    post_title_elements.map(element => element.textContent = 'Error loading product');
-  });
+API.fetch(`/products/${id}`).then(product => {
+  el.map(element => element.textContent = product.name);
+}).catch(error => {
+  console.error('Error fetching product:', error);
+  el.map(element => element.textContent = 'Error loading product');
 });
