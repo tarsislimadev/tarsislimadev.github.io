@@ -11,36 +11,18 @@ export class Page extends HTML {
 
   el = {
     peerIdDisplay: new HTML(),
+    connectButton: new nButton(),
   }
 
   constructor() {
     super()
-    this.state.conn = this.peer.connect(this.state.peerId)
-    this.setEvents()
-  }
-
-  setEvents() {
-    this.peer.on('open', (id) => {
-      const text = new HTML()
-      text.setText('My peer ID is: ' + id)
-      this.el.peerIdDisplay.append(text)
-    })
-    this.state.conn?.on('open', (id) => {
-      const roomId = new HTML()
-      roomId.setText('Room peer ID is: ' + id)
-      this.el.peerIdDisplay.append(roomId)
-    })
-    this.state.conn?.on('data', (data) => {
-      console.log('Received data:', data)
-    })
-    this.state.conn?.on('error', (err) => {
-      console.error('Connection error:', err)
-    })
   }
 
   onCreate() {
     this.setText('Pixel Room')
     this.append(this.el.peerIdDisplay)
+    this.state.conn = this.peer.connect(this.state.peerId)
+    this.setEvents()
   }
 
   getPeerIdFromUrl() {
