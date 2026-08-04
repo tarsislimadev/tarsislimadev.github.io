@@ -20,8 +20,6 @@ export class Page extends HTML {
       const link = new nLink()
       link.setText(id)
       link.setAttr('href', `./controls.html?roomId=${id}`)
-      // 
-      this.el.peerIdDisplay.clear()
       this.el.peerIdDisplay.append(text)
       this.el.peerIdDisplay.append(link)
     })
