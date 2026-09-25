@@ -1,4 +1,4 @@
-# Tarsis Lima - Personal Blog & Technical Portfolio
+# Tarsis Lima - Personal Blog &amp; Technical Portfolio
 
 This repository contains the source code, posts, assets, and configuration for the personal website and technical blog of **Tarsis Lima** (`@tarsislimadev`), hosted at [tarsislimadev.github.io](https://tarsislimadev.github.io). 
 
