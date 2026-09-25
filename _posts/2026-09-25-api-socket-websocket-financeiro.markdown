@@ -38,9 +38,7 @@ O **WebSocket** é a evolução para quem precisa de streaming de dados, mas ope
 
 ## Resumo Comparativo
 
-| Tecnologia | Modelo | Protocolo | Ideal para... |
-| :--- | :--- | :--- | :--- |
-| **API Rest** | Requisição $\rightarrow$ Resposta | HTTP | Consultas pontuais, Cadastros |
+| **API Rest** | Requisição -> Resposta | HTTP | Consultas pontuais, Cadastros |
 | **API Socket** | Streaming / Fluxo | TCP/UDP | Market Data de alta performance |
 | **WebSocket** | Bidirecional Persistente | TCP (via HTTP) | Dashboards Web em tempo real |
 
