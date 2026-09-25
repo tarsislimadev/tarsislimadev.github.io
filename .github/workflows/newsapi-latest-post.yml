@@ -1,0 +1,95 @@
+name: Create post from NewsAPI
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 8 * * 1"
+
+permissions:
+  contents: write
+
+jobs:
+  create-post:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Fetch the latest technology article
+        env:
+          NEWSAPI_KEY: ${{ secrets.NEWSAPI_KEY }}
+        run: |
+          set -euo pipefail
+
+          if [[ -z "$NEWSAPI_KEY" ]]; then
+            echo "NEWSAPI_KEY is not configured. Add it in Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+
+          response=$(curl --fail --silent --show-error \
+            --get "https://newsapi.org/v2/everything" \
+            --data-urlencode "q=technology" \
+            --data-urlencode "language=en" \
+            --data-urlencode "sortBy=publishedAt" \
+            --data-urlencode "pageSize=1" \
+            --header "X-Api-Key: $NEWSAPI_KEY")
+
+          if [[ "$(jq -r '.status' <<<"$response")" != "ok" ]] || [[ "$(jq '.articles | length' <<<"$response")" -eq 0 ]]; then
+            echo "NewsAPI did not return an article:"
+            jq . <<<"$response"
+            exit 1
+          fi
+
+          article_url=$(jq -r '.articles[0].url' <<<"$response")
+          if grep -R -F -q -- "$article_url" _posts; then
+            echo "This article has already been published: $article_url"
+            exit 0
+          fi
+
+          published_at=$(jq -r '.articles[0].publishedAt' <<<"$response")
+          post_date=$(date -u -d "$published_at" +%Y-%m-%d)
+          post_time=$(date -u -d "$published_at" +%H:%M:%S)
+          title=$(jq -r '.articles[0].title // "Technology news"' <<<"$response")
+          title_yaml=$(jq -Rn --arg value "$title" '$value | @json')
+          slug=$(printf '%s' "$title" \
+            | tr '[:upper:]' '[:lower:]' \
+            | sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//' \
+            | cut -c1-70)
+          slug=${slug:-technology-news}
+          post_file="_posts/${post_date}-${slug}.markdown"
+          article_description=$(jq -r '.articles[0].description // "Read the original article for the complete story."' <<<"$response")
+          article_content=$(jq -r '.articles[0].content // "The original article does not provide a content excerpt."' <<<"$response")
+          source_name=$(jq -r '.articles[0].source.name // "News source"' <<<"$response")
+          image_url=$(jq -r '.articles[0].urlToImage // empty' <<<"$response")
+
+          {
+            printf '%s\n' '---'
+            printf 'layout: post\n'
+            printf 'title: %s\n' "$title_yaml"
+            printf 'date: %s %s +0000\n' "$post_date" "$post_time"
+            printf 'categories: news technology\n'
+            printf '%s\n\n' '---'
+            if [[ -n "$image_url" ]]; then
+              printf '![%s](%s)\n\n' "$title" "$image_url"
+            fi
+            printf '# %s\n\n' "$title"
+            printf '%s\n\n' "$article_description"
+            printf '## Article\n\n%s\n\n' "$article_content"
+            printf '**Source:** [%s](%s)\n' "$source_name" "$article_url"
+          } > "$post_file"
+
+          echo "Created $post_file"
+
+      - name: Commit the generated post
+        run: |
+          set -euo pipefail
+          if [[ -z "$(git status --short)" ]]; then
+            echo "No new post to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _posts/
+          git commit -m "feat: add latest technology news post"
+          git push
