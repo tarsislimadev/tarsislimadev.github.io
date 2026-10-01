@@ -1,0 +1,240 @@
+---
+layout: default
+title: Telegram Message Sender
+permalink: /telegram/
+---
+
+<style>
+  .telegram-page {
+    --telegram-ink: #17212b;
+    --telegram-muted: #607080;
+    --telegram-line: #d9e2e8;
+    --telegram-blue: #229ed9;
+    --telegram-blue-dark: #147eaf;
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 2rem 1rem 4rem;
+    color: var(--telegram-ink);
+  }
+
+  .telegram-hero {
+    padding: 2.5rem 0 1.75rem;
+    border-bottom: 1px solid var(--telegram-line);
+  }
+
+  .telegram-kicker {
+    margin: 0 0 0.75rem;
+    color: var(--telegram-blue-dark);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .telegram-hero h1 {
+    margin: 0;
+    font-size: clamp(2rem, 6vw, 3.8rem);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+
+  .telegram-hero p {
+    max-width: 620px;
+    margin: 1rem 0 0;
+    color: var(--telegram-muted);
+    font-size: 1.05rem;
+  }
+
+  .telegram-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(220px, 0.7fr);
+    gap: 2rem;
+    padding-top: 2rem;
+  }
+
+  .telegram-form {
+    display: grid;
+    gap: 1.15rem;
+  }
+
+  .telegram-field {
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  .telegram-field label {
+    font-weight: 700;
+  }
+
+  .telegram-field small,
+  .telegram-note {
+    color: var(--telegram-muted);
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .telegram-field input,
+  .telegram-field textarea,
+  .telegram-field select {
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid var(--telegram-line);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--telegram-ink);
+    font: inherit;
+    padding: 0.78rem 0.85rem;
+  }
+
+  .telegram-field textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+
+  .telegram-field input:focus,
+  .telegram-field textarea:focus,
+  .telegram-field select:focus {
+    border-color: var(--telegram-blue);
+    outline: 3px solid rgba(34, 158, 217, 0.18);
+  }
+
+  .telegram-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .telegram-checkbox {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    color: var(--telegram-muted);
+    font-size: 0.9rem;
+  }
+
+  .telegram-checkbox input {
+    accent-color: var(--telegram-blue);
+  }
+
+  .telegram-submit {
+    border: 0;
+    border-radius: 6px;
+    background: var(--telegram-blue);
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+    padding: 0.85rem 1.2rem;
+    transition: background 160ms ease, transform 160ms ease;
+  }
+
+  .telegram-submit:hover {
+    background: var(--telegram-blue-dark);
+    transform: translateY(-1px);
+  }
+
+  .telegram-submit:disabled {
+    cursor: wait;
+    opacity: 0.65;
+    transform: none;
+  }
+
+  .telegram-status {
+    min-height: 1.5rem;
+    margin: 0;
+    font-size: 0.92rem;
+  }
+
+  .telegram-status[data-state="success"] {
+    color: #167447;
+  }
+
+  .telegram-status[data-state="error"] {
+    color: #b42318;
+  }
+
+  .telegram-aside {
+    align-self: start;
+    border-top: 4px solid var(--telegram-blue);
+    background: #eef8fc;
+    padding: 1.2rem;
+  }
+
+  .telegram-aside h2 {
+    margin: 0 0 0.65rem;
+    font-size: 1.1rem;
+  }
+
+  .telegram-aside p {
+    margin: 0;
+    color: var(--telegram-muted);
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 700px) {
+    .telegram-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .telegram-hero {
+      padding-top: 1rem;
+    }
+  }
+</style>
+
+<main class="telegram-page">
+  <header class="telegram-hero">
+    <p class="telegram-kicker">Telegram Bot API</p>
+    <h1>Send a message</h1>
+    <p>Write to a Telegram chat without leaving your browser. Credentials are used for this request only and are never stored by this page.</p>
+  </header>
+
+  <div class="telegram-layout">
+    <form class="telegram-form" id="telegram-form">
+      <div class="telegram-field">
+        <label for="bot-token">Bot token</label>
+        <input id="bot-token" name="botToken" type="password" autocomplete="off" required placeholder="123456789:AA...">
+        <small>Get this from BotFather. Keep it private and do not use a shared computer.</small>
+      </div>
+
+      <div class="telegram-field">
+        <label for="chat-id">Chat ID</label>
+        <input id="chat-id" name="chatId" type="text" inputmode="text" required placeholder="123456789 or -100...">
+        <small>Use @userinfobot or your bot's updates to find the destination chat ID.</small>
+      </div>
+
+      <div class="telegram-field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" maxlength="4096" required placeholder="Type your message..."></textarea>
+        <small>Telegram accepts up to 4,096 characters in a text message.</small>
+      </div>
+
+      <div class="telegram-options">
+        <div class="telegram-field">
+          <label for="parse-mode">Format</label>
+          <select id="parse-mode" name="parseMode">
+            <option value="">Plain text</option>
+            <option value="HTML">HTML</option>
+            <option value="MarkdownV2">MarkdownV2</option>
+          </select>
+        </div>
+        <label class="telegram-checkbox">
+          <input id="disable-preview" name="disablePreview" type="checkbox">
+          Disable link preview
+        </label>
+      </div>
+
+      <button class="telegram-submit" type="submit">Send message</button>
+      <p class="telegram-status" id="telegram-status" role="status" aria-live="polite"></p>
+    </form>
+
+    <aside class="telegram-aside">
+      <h2>Before sending</h2>
+      <p>This page calls Telegram directly from your browser. It does not send your token to this website or save it in local storage. Revoke a token with BotFather if it is ever exposed.</p>
+    </aside>
+  </div>
+</main>
+
+<script src="{{ '/assets/telegram.js' | relative_url }}"></script>
