@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "\"Irish mining-waste facilities ‘a curse on future generations’, conference hears\""
+title: "Irish mining-waste facilities ‘a curse on future generations’, conference hears"
 date: 2026-10-04 16:39:58 +0000
 categories: news technology
 ---
