@@ -1,1 +1,3 @@
-document.querySelector('#app').innerHTML += Date.now() + ';'
+document.body.addEventListener('click', function() {
+  document.querySelector('#app').innerHTML += Date.now() + '<br/>';
+});
